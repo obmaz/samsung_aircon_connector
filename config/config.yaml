@@ -1,0 +1,5 @@
+ServerPort : 8090
+TargetHost : Docker or Server IP
+TargetPort : 2878
+Token : Token
+DUID : MAC_ADDRESS
