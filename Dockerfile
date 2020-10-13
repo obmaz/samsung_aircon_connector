@@ -1,6 +1,6 @@
 FROM golang:1.14 
 MAINTAINER zambobmaz@gmail.com
-EXPOSE 8090 
+EXPOSE 20080 
 
 RUN apt-get update
 RUN apt-get install -y vim
