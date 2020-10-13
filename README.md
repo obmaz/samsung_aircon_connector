@@ -46,7 +46,7 @@ To communicate between Aircon and Server, you should set some value to config.
 The config file is located in "/config/config.yaml"
 
 ```yaml
-ServerPort : 8090
+ServerPort : 20080
 TargetHost : The Aircon IP
 TargetPort : 2878
 Token : Unique id from the aircon (Use GetToken API or Openssl)
