@@ -38,8 +38,8 @@ func loadConfig() {
 	}
 
 	log.Println("ServerPort : ", config.ServerPort)
-	log.Println("TargetHost	: ", config.TargetHost)
-	log.Println("TargetPort : ", config.TargetPort)
+	log.Println("AirconIP	: ", config.AirconIP)
+	log.Println("AirconPort: ", config.AirconPort)
 	log.Println("Token : ", config.Token)
 	log.Println("DUID : ", config.DUID)
 }
@@ -317,7 +317,7 @@ func connect(retry int) error {
 				Timeout: time.Second * 30,
 			},
 			"tcp",
-			config.TargetHost+":"+config.TargetPort,
+			config.AirconIP+":"+config.AirconIP,
 			conf,
 		)
 

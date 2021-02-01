@@ -26,10 +26,10 @@ Note that the korea model does not need cert.
 ![Restart](./readme_images/2.jpg)
 
 * Map the /config directory to external
-![Restart](./readme_images/2.jpg)
+![Restart](./readme_images/3.jpg)
 
 * Check Host Network
-![Restart](./readme_images/2.jpg)
+![Restart](./readme_images/4.jpg)
 
 ### Linux
 Note that the golang should be installed to compile.
@@ -73,14 +73,14 @@ It only has two http status code: 200 Ok and 400 Bad Request.
 #### Set Config via API (TBD)
 * End Point
 ```
-/config/targethost/{value}
+/config/airconip/{value}
 /config/duid/{value}
 /config/token/{value}
 ```
 
 * Sample Request
 ```
-/config/targethost/192.168.0.188
+/config/airconip/192.168.0.188
 /config/duid/30144A125XXX
 /config/token/ea89ff86-xxxx-xxxx-a9e6-705b3a3d1756
 ```

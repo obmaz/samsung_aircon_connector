@@ -2,8 +2,8 @@ package model
 
 type ConfigType struct {
 	ServerPort string `yaml:"ServerPort"`
-	TargetHost string `yaml:"TargetHost"`
-	TargetPort string `yaml:"TargetPort"`
+	AirconIP string `yaml:"AirconIP"`
+	AirconPort string `yaml:"AirconPort"`
 	Token      string `yaml:"Token"`
 	DUID       string `yaml:"DUID"`
 }
