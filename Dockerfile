@@ -15,4 +15,4 @@ RUN go build
 RUN mkdir -p /config
 RUN cp -n /app/samsung_legacy_aircon_connector/config/config.yaml /config
 
-CMD ["sh","/app/samsung_legacy_aircon_connector/samsung_legacy_aircon_connector"]
+CMD ["/bin/bash","/app/samsung_legacy_aircon_connector/samsung_legacy_aircon_connector"]
