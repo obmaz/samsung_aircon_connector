@@ -15,4 +15,7 @@ RUN go build
 RUN mkdir -p /config
 RUN cp -n /app/samsung_legacy_aircon_connector/config/config.yaml /config
 
-CMD ["sh","./samsung_legacy_aircon_connector"]
+CMD ["sh","/app/samsung_legacy_aircon_connector/samsung_legacy_aircon_connector"]
+
+
+#sudo docker run -d -p 20080:20080 --name samsung_aircon_connector -v /volume1/docker/samsung_legacy_aircon_connector/config:/config zambobmaz/samsung_legacy_aircon_connector
