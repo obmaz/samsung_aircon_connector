@@ -26,10 +26,10 @@ Note that the korea model does not need cert.
 ![Restart](./readme_images/2.jpg)
 
 * Map the /config directory to external
-![Restart](./readme_images/3.jpg)
+![Map](./readme_images/3.jpg)
 
 * Check Host Network
-![Restart](./readme_images/4.jpg)
+![Network](./readme_images/4.jpg)
 
 ### Linux
 Note that the golang should be installed to compile.
@@ -47,8 +47,8 @@ The config file is located in "/config/config.yaml"
 
 ```yaml
 ServerPort : 20080
-TargetHost : The Aircon IP
-TargetPort : 2878
+AirconIP : The Aircon IP
+AirconPort : 2878
 Token : Unique id from the aircon (Use GetToken API or Openssl)
 DUID : WiFi_MAC_ADDRESS
 ```
