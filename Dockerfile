@@ -13,6 +13,6 @@ RUN git checkout v1.1.0
 RUN go mod download
 RUN go build
 RUN mkdir -p /config
-RUN cp -n ./config/config.yaml /config
+RUN cp -n /app/samsung_legacy_aircon_connector/config/config.yaml /config
 
 CMD ["sh","./samsung_legacy_aircon_connector"]
