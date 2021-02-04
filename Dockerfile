@@ -12,7 +12,7 @@ WORKDIR /app
 # RUN git checkout v1.2.0
 # RUN go mod download
 # RUN go build
-COPY samsung_legacy_aircon_connector /app
-COPY config/config.yaml /config
+COPY samsung_legacy_aircon_connector /app/samsung_legacy_aircon_connector
+COPY config/config.yaml /config/config.yaml
 
 ENTRYPOINT /app/samsung_legacy_aircon_connector/run.sh
