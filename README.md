@@ -81,8 +81,8 @@ It only has two http status code: 200 Ok and 400 Bad Request.
 * Sample Request
 ```
 /config/airconip/192.168.0.188
-/config/duid/30144A125XXX
-/config/token/ea89ff86-xxxx-xxxx-a9e6-705b3a3d1756
+/config/duid/30144A125FDX
+/config/token/ea89ff86-ef12-46a0-a9e6-705b3a3d175X
 ```
 
 #### Reset Connection
