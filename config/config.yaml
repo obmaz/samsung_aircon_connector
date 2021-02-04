@@ -1,5 +1,5 @@
 ServerPort : 20080
-TargetHost : Docker or Server IP
-TargetPort : 2878
+AirconIP : Docker or Server IP
+AirconPort : 2878
 Token : Token
 DUID : MAC_ADDRESS
