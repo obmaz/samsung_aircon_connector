@@ -1,4 +1,4 @@
 #!/bin/bash
 
-#sudo cp -n /app/samsung_legacy_aircon_connector/config/config.yaml /config
+sudo cp -n ./config.yaml /config/config.yaml
 /app/run.sh
