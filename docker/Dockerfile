@@ -14,4 +14,4 @@ RUN go mod download
 RUN go build
 RUN mkdir -p /config
 
-ENTRYPOINT /app/samsung_legacy_aircon_connector/samsung_legacy_aircon_connector
+ENTRYPOINT /app/samsung_legacy_aircon_connector/run.sh
