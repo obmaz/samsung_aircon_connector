@@ -1,0 +1,10 @@
+version: '1.0'
+services:
+    samsung_legacy_aircon_connector:
+        restart: always
+        ports:
+            - '20080:20080'
+        container_name: samsung_aircon_connector
+        volumes:
+            - '/volume1/docker/samsung_legacy_aircon_connector/config:/config'
+        image: zambobmaz/samsung_legacy_aircon_connector
