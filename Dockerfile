@@ -1,4 +1,4 @@
-FROM golang:1.14 
+FROM ubuntu:20.04
 MAINTAINER zambobmaz@gmail.com
 EXPOSE 20080 
 
