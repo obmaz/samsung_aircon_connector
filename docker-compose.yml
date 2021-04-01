@@ -6,5 +6,5 @@ services:
             - '20080:20080'
         container_name: samsung_aircon_connector
         volumes:
-            - '/config:/config'
+            - '/your/host/directory/config:/config:cached:/config'
         image: zambobmaz/samsung_legacy_aircon_connector
