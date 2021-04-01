@@ -1,4 +1,8 @@
-# Samsung Legacy Aircon Connector
+# Samsung Legacy Aircon Connector - DTH for Smartthings
+Currently not available. I will implement it this summer if my ikea button broken.
+You can set the command to button by using web-core.
+
+# Samsung Legacy Aircon Connector - RESTApi Server
 This app provides RESTFul APIs to control legacy Samsung Aircon using socket connection with 2878 port.  
 
 ## Limitation
@@ -30,13 +34,16 @@ $ ./samsung_legacy_aircon_connector
 * zambobmaz/samsung_legacy_aircon_connector
 
 #### Docker CLI
-Note that you do not need to clone git or pull the docker image. "docker run" pulls the image from docker hub.
+Note that you do not need to clone git or pull the docker image. 
+"docker run" pulls the image from docker hub.
+
 ```bash
 sudo docker run -d --restart always -p 20080:20080 --name samsung_aircon_connector -v /volume1/docker/samsung_legacy_aircon_connector/config:/config:cached zambobmaz/samsung_legacy_aircon_connector
 ```
 
 #### Docker Compose
-Note that you need to clone git or need docker-compose.yaml file.
+Note that it requires docker-compose.yml file.
+Use git clone or copy and paste the file.
 
 ```bash
 sudo docker-compose up -d
