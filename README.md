@@ -2,7 +2,7 @@
 This app provides RESTFul APIs to control legacy Samsung Aircon using socket connection with 2878 port.  
 
 ## Limitation
-The aircon MCU is not good, so it sometimes could not return updated status due to delay. 
+The aircon MCU is not good, so it sometimes could not return updated status due to MCU error or processing delay. 
 
 ## Dev Enviroment
 * Model : AF-HA153WRG (Korea)
@@ -24,6 +24,11 @@ Note that the korea model does not need cert.
 sudo docker run -d --restart always -p 20080:20080 --name samsung_aircon_connector -v /volume1/docker/samsung_legacy_aircon_connector/config:/config:cached zambobmaz/samsung_legacy_aircon_connector
 ```
 
+#### Docker Compose
+```bash
+sudo docker-compose up -d
+```
+
 #### Docker Synology
 * Check Permission
 ![Permission](./readme_images/1.jpg)
@@ -34,7 +39,7 @@ sudo docker run -d --restart always -p 20080:20080 --name samsung_aircon_connect
 * Map the /config directory to external
 ![Map](./readme_images/3.jpg)
 
-* Check Host Network
+* Check Host Network (Optional)
 ![Network](./readme_images/4.jpg)
 
 ### Linux
@@ -53,10 +58,10 @@ The config file is located in "/config/config.yaml"
 
 ```yaml
 ServerPort : 20080
-AirconIP : The Aircon IP
+AirconIP : {he Aircon IP}
 AirconPort : 2878
-Token : Unique id from the aircon (Use GetToken API or Openssl)
-DUID : WiFi_MAC_ADDRESS
+Token : {nique id from the aircon (Use GetToken API or Openssl)}
+DUID : {iFi_MAC_ADDRESS}
 ```
 
 ## How to Get Token
