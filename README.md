@@ -43,7 +43,7 @@ sudo docker-compose up -d
 ![Network](./readme_images/4.jpg)
 
 ### Linux
-Note that the golang should be installed to compile.
+Note that the golang should be installed if you want compile.
 
 ```bash
 $ git clone https://github.com/obmaz/samsung_legacy_aircon_connector.git
@@ -58,16 +58,16 @@ The config file is located in "/config/config.yaml"
 
 ```yaml
 ServerPort : 20080
-AirconIP : {he Aircon IP}
+AirconIP : {Aircon IP}
 AirconPort : 2878
-Token : {nique id from the aircon (Use GetToken API or Openssl)}
-DUID : {iFi_MAC_ADDRESS}
+Token : {unique id from the aircon (Use GetToken API or Openssl)}
+DUID : {Aircon WiFi_MAC_ADDRESS}
 ```
 
 ## How to Get Token
 Before use API, the token should be set enviroment.  
 The Token is only brodacast one time when the aircon is turned on.  
-So call GetToken API first(or use Openssl) and turn on the aircon.
+So call GetToken API first(or use Openssl) and then turn on the aircon.
 
 ## API
 These APIs designed for ease-use on browser URL.  
@@ -439,7 +439,7 @@ AC_FUN_WINDLEVEL/Mid
 ```
 
 ### Openssl for test
-Note that Openssl is not a part of this app.  
+Note that Openssl is not a part of this app.
 Use it for testing if this app does not work well.
 
 #### Connect
