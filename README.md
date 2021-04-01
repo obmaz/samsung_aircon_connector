@@ -1,5 +1,5 @@
 # Samsung Legacy Aircon Connector - DTH for Smartthings
-Currently not available. I will implement it this summer if my ikea button broken. 
+Currently not available. I will implement it this summer if my ikea button broken.  
 You can set the command to button by using web-core.
 
 # Samsung Legacy Aircon Connector - RESTApi Server
