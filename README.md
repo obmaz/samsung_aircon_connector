@@ -38,7 +38,7 @@ Note that you do not need to clone git or pull the docker image.
 "docker run" pulls the image from docker hub.
 
 ```bash
-sudo docker run -d --restart always -p 20080:20080 --name samsung_aircon_connector -v /volume1/docker/samsung_legacy_aircon_connector/config:/config:cached zambobmaz/samsung_legacy_aircon_connector
+sudo docker run -d --restart always -p 20080:20080 --name samsung_aircon_connector -v /config:/config:cached zambobmaz/samsung_legacy_aircon_connector
 ```
 
 #### Docker Compose
