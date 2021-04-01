@@ -15,21 +15,36 @@ The aircon should be connected to router (Use Official App)
 Note that the korea model does not need cert.
 
 ## Build & Run
+### Linux
+Note that the golang should be installed if you want build.
+
+```bash
+$ git clone https://github.com/obmaz/samsung_legacy_aircon_connector.git
+$ cd samsung_legacy_aircon_connector
+$ go build
+$ ./samsung_legacy_aircon_connector
+```
+
 ### Docker
 * Docker Hub : https://hub.docker.com/r/zambobmaz/samsung_legacy_aircon_connector/tags
 * zambobmaz/samsung_legacy_aircon_connector
 
 #### Docker CLI
+Note that you do not need to clone git or pull the docker image. "docker run" pulls the image from docker hub.
 ```bash
 sudo docker run -d --restart always -p 20080:20080 --name samsung_aircon_connector -v /volume1/docker/samsung_legacy_aircon_connector/config:/config:cached zambobmaz/samsung_legacy_aircon_connector
 ```
 
 #### Docker Compose
+Note that you need to clone git or need docker-compose.yaml file.
+
 ```bash
 sudo docker-compose up -d
 ```
 
 #### Docker Synology
+Note that you need to pull the docker image in Synology docker app.
+
 * Check Permission
 ![Permission](./readme_images/1.jpg)
 
@@ -41,16 +56,6 @@ sudo docker-compose up -d
 
 * Check Host Network (Optional)
 ![Network](./readme_images/4.jpg)
-
-### Linux
-Note that the golang should be installed if you want compile.
-
-```bash
-$ git clone https://github.com/obmaz/samsung_legacy_aircon_connector.git
-$ cd samsung_legacy_aircon_connector
-$ go build
-$ ./samsung_legacy_aircon_connector
-```
 
 ## Config
 To communicate between Aircon and Server, you should set some value to config.  
