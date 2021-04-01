@@ -34,11 +34,11 @@ $ ./samsung_legacy_aircon_connector
 * zambobmaz/samsung_legacy_aircon_connector
 
 #### Docker CLI
-Note that you do not need to clone git or pull the docker image. 
-"docker run" pulls the image from docker hub.
+Note that you do not need to clone git or pull the docker image. docker pulls the image from docker hub when docker run.
+Modify the -v option to match your directory path
 
 ```bash
-sudo docker run -d --restart always -p 20080:20080 --name samsung_aircon_connector -v /config:/config:cached zambobmaz/samsung_legacy_aircon_connector
+sudo docker run -d --restart always -p 20080:20080 --name samsung_aircon_connector -v /your/host/directory/config:/config:cached zambobmaz/samsung_legacy_aircon_connector
 ```
 
 #### Docker Compose
