@@ -34,7 +34,7 @@ $ ./samsung_legacy_aircon_connector
 * zambobmaz/samsung_legacy_aircon_connector
 
 #### Docker CLI
-Note that you do not need to clone git or pull the docker image. docker pulls the image from docker hub when docker run.
+Note that you do not need to clone git or pull the docker image. docker pulls the image from docker hub when docker run.  
 Modify the -v option to match your host directory path
 
 ```bash
@@ -42,8 +42,8 @@ sudo docker run -d --restart always -p 20080:20080 --name samsung_aircon_connect
 ```
 
 #### Docker Compose
-Note that it requires docker-compose.yml file.
-Use git clone or copy and paste the file.
+Note that it requires docker-compose.yml file.  
+Use git clone or copy and paste the file.  
 Modify the volume in yml file to match your host directory path
 
 
