@@ -29,7 +29,7 @@ func loadConfig() {
 	file, err := ioutil.ReadFile("/config/config.yaml")
 
 	if err != nil {
-		log.Printf("Config Load Error : %s", err.Error())
+		log.Printf("Config Load Error : %s", err.Error())
 	} else {
 		err = yaml.Unmarshal(file, &config)
 		if err != nil {
@@ -37,8 +37,8 @@ func loadConfig() {
 		}
 	}
 
-	log.Println("ServerPort : ", config.ServerPort)
-	log.Println("AirconIP	: ", config.AirconIP)
+	log.Println("ServerPort : ", config.ServerPort)
+	log.Println("AirconIP : ", config.AirconIP)
 	log.Println("AirconPort: ", config.AirconPort)
 	log.Println("Token : ", config.Token)
 	log.Println("DUID : ", config.DUID)

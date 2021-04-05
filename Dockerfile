@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 MAINTAINER zambobmaz@gmail.com
-EXPOSE 20080 
+EXPOSE 20080
 
 WORKDIR /app
 
