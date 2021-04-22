@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Build and push Docker images
 
 on:
   push:
@@ -10,9 +10,10 @@ jobs:
 
   build:
 
+
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Build the Docker image
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v2.4.0
       run: docker build . --file Dockerfile --tag zambobmaz/samsung_legacy_aircon_connector
