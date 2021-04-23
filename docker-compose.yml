@@ -2,6 +2,7 @@ version: '3.3'
 services:
     samsung_legacy_aircon_connector:
         restart: always
+        user: root
         ports:
             - '20080:20080'
         container_name: samsung_aircon_connector
