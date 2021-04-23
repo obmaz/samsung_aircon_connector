@@ -4,8 +4,11 @@ EXPOSE 20080
 
 WORKDIR /app
 
-COPY samsung_legacy_aircon_connector samsung_legacy_aircon_connector
+COPY samsung_aircon_connector samsung_aircon_connector
 COPY run.sh run.sh
 COPY config/config.yaml config.yaml
+
+RUN chmod +x run.sh
+RUN chmod +x samsung_aircon_connector
 
 ENTRYPOINT /app/run.sh
