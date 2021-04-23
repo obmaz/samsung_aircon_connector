@@ -1,4 +1,4 @@
-module samsung_legacy_aircon_connector
+module samsung_aircon_connector
 
 go 1.14
 
