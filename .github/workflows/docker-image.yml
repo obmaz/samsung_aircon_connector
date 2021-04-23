@@ -28,7 +28,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: zambobmaz/samsung_legacy_aircon_connector:latest
+          tags: zambobmaz/samsung_aircon_connector:latest
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
