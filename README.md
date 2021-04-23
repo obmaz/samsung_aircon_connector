@@ -1,8 +1,8 @@
-# Samsung Legacy Aircon Connector - DTH for Smartthings
+# Samsung Aircon Connector - DTH for Smartthings
 Currently not available. I will implement it this summer if my ikea button broken.  
 You can set the command to button by using web-core.
 
-# Samsung Legacy Aircon Connector - RESTApi Server
+# Samsung Aircon Connector - RESTApi Server
 This app provides RESTFul APIs to control legacy Samsung Aircon using socket connection with 2878 port.  
 
 ## Limitation
