@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net"
-	"samsung_legacy_aircon_connector/model"
+	"samsung_aircon_connector/model"
 	"strconv"
 	"strings"
 	"time"
