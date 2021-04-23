@@ -28,4 +28,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: samsung_aircon_connector
-        path: ./
+        path: samsung_aircon_connector
