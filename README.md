@@ -14,7 +14,7 @@ The aircon MCU is not good, so it sometimes could not return updated status due 
 * Test : Ubuntu 18.04 Lts
 
 ## Pre Requirement
-#### Network Connection
+### Network Connection
 The aircon should be connected to router (Use Official App)  
 Note that the korea model does not need cert.
 
