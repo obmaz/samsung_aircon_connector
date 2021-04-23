@@ -4,7 +4,7 @@ EXPOSE 20080
 
 WORKDIR /app
 
-COPY bin/samsung_aircon_connector samsung_aircon_connector
+COPY samsung_aircon_connector samsung_aircon_connector
 COPY run.sh run.sh
 COPY config/config.yaml config.yaml
 
