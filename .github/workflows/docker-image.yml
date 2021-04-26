@@ -21,7 +21,7 @@ jobs:
          path: ./
       
       - name : Move bin
-        run: | mv samsung_aircon_connector/samsung_aircon_connector ./
+        run: mv samsung_aircon_connector/samsung_aircon_connector ./
       
       - name: Set up QEMU 
         uses: docker/setup-qemu-action@v1
