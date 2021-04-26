@@ -6,7 +6,7 @@ WORKDIR /app
 
 COPY samsung_aircon_connector samsung_aircon_connector
 COPY run.sh run.sh
-COPY config/config.yaml config.yaml
+COPY config/config.yaml config/config.yaml
 
 RUN chmod +x run.sh
 RUN chmod +x samsung_aircon_connector
