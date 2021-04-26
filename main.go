@@ -11,6 +11,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"flag"
 
 	"github.com/gin-gonic/gin"
 	"gopkg.in/yaml.v2"
@@ -20,20 +21,29 @@ var conn *tls.Conn
 var cmdCount = 0
 var config = model.ConfigType{}
 var currentDeviceState = model.DeviceStateRes{}
+var isDocker bool = false
 
 func init() {
-	loadConfig()
 }
 
 func loadConfig() {
-	file, err := ioutil.ReadFile("/config/config.yaml")
+    var path string
+    if isDocker {
+        log.Println("Docker Mode")
+	    path = "/config/config.yaml"
+    } else {
+        log.Println("Local Mode")
+        path = "./config/config.yaml"
+    }
+
+    file, err := ioutil.ReadFile(path)
 
 	if err != nil {
-		log.Printf("Config Load Error : %s", err.Error())
+		log.Fatalf("Config Load Error : %s", err.Error())
 	} else {
 		err = yaml.Unmarshal(file, &config)
 		if err != nil {
-			log.Printf("Config Unmarshal Error : %s", err.Error())
+			log.Fatalf("Config Unmarshal Error : %s", err.Error())
 		}
 	}
 
@@ -45,6 +55,10 @@ func loadConfig() {
 }
 
 func main() {
+    flag.BoolVar(&isDocker, "docker", false, "boolean")
+    flag.Parse()
+	loadConfig()
+
 	router := gin.Default()
 	router.GET("/get/:command", requestGetHandler)
 	router.GET("/config/:command", requestConfigHandler)
@@ -80,6 +94,7 @@ func requestConfigHandler(ctx *gin.Context) {
 	case "close":
 		if conn != nil {
 			disconnect()
+
 		}
 
 		makeResponse(ctx, response, nil)
