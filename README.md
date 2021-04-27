@@ -30,15 +30,15 @@ $ ./samsung_aircon_connector
 ```
 
 ### Docker
-* Docker Hub : https://hub.docker.com/r/zambobmaz/samsung_aircon_connector/tags
-* zambobmaz/samsung_aircon_connector
+* Docker Hub : https://hub.docker.com/r/bobmaz99/samsung_aircon_connector/tags
+* obmaz99/samsung_aircon_connector
 
 #### Docker CLI
 Note that you do not need to clone git or pull the docker image. docker pulls the image from docker hub when docker run.  
 Modify the -v option to match your host directory path
 
 ```bash
-sudo docker run -d --restart always -p 20080:20080 --name samsung_aircon_connector -v /your/host/directory/config:/config:cached zambobmaz/samsung_aircon_connector
+sudo docker run -d --restart always -p 20080:20080 --name samsung_aircon_connector -v /your/host/directory/config:/config:cached obmaz99/samsung_aircon_connector
 ```
 
 #### Docker Compose
