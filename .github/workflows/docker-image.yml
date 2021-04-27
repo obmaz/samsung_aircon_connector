@@ -41,7 +41,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: zambobmaz/samsung_aircon_connector:latest
+          tags: obmaz99/samsung_aircon_connector:latest
       
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
