@@ -4,6 +4,7 @@ import (
 	"crypto/tls"
 	"encoding/xml"
 	"errors"
+	"flag"
 	"io/ioutil"
 	"log"
 	"net"
@@ -11,7 +12,6 @@ import (
 	"strconv"
 	"strings"
 	"time"
-	"flag"
 
 	"github.com/gin-gonic/gin"
 	"gopkg.in/yaml.v2"
@@ -27,16 +27,16 @@ func init() {
 }
 
 func loadConfig() {
-    var path string
-    if isDocker {
-        log.Println("Docker Mode")
-	    path = "/config/config.yaml"
-    } else {
-        log.Println("Local Mode")
-        path = "./config/config.yaml"
-    }
+	var path string
+	if isDocker {
+		log.Println("Docker Mode")
+		path = "/config/config.yaml"
+	} else {
+		log.Println("Local Mode")
+		path = "./config/config.yaml"
+	}
 
-    file, err := ioutil.ReadFile(path)
+	file, err := ioutil.ReadFile(path)
 
 	if err != nil {
 		log.Fatalf("Config Load Error : %s", err.Error())
@@ -55,8 +55,8 @@ func loadConfig() {
 }
 
 func main() {
-    flag.BoolVar(&isDocker, "docker", false, "boolean")
-    flag.Parse()
+	flag.BoolVar(&isDocker, "docker", false, "boolean")
+	flag.Parse()
 	loadConfig()
 
 	router := gin.Default()
@@ -332,7 +332,7 @@ func connect(retry int) error {
 				Timeout: time.Second * 30,
 			},
 			"tcp",
-			config.AirconIP+":"+config.AirconIP,
+			config.AirconIP+":"+config.AirconPort,
 			conf,
 		)
 
