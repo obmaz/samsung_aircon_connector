@@ -167,7 +167,7 @@ import groovy.transform.Field
         ]
 
 metadata {
-    definition(name: "Samsung Air Conditioner", namespace: "zambobmaz", author: "zambombaz", mnmn: "SmartThings", vid: "SmartThings-smartthings-Z-Wave_Thermostat") {
+    definition(name: "Samsung Air Connector", namespace: "zambobmaz", author: "zambombaz", mnmn: "SmartThings", vid: "SmartThings-smartthings-Z-Wave_Thermostat") {
         capability "Thermostat"
         capability "Thermostat Cooling Setpoint"
         //capability "Thermostat Heating Setpoint"
