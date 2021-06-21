@@ -380,8 +380,7 @@ def setThermostatMode(mode) {
 }
 
 def refresh() {
-setCoolingSetpoint(26)
-
+	setCoolingSetpoint(26)
 }
 
 def parse(String description) {
