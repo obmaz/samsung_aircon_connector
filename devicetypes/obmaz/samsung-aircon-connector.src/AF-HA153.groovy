@@ -1,5 +1,5 @@
 /**
- *  Samsung Aircon Connector (v.0.0.1)
+ *  Samsung Aircon Connector
  *
  * MIT License
  *
@@ -167,7 +167,7 @@ import groovy.transform.Field
         ]
 
 metadata {
-    definition(name: "Samsung Aircon Connector", namespace: "obmaz", author: "obmaz", mnmn: "SmartThings", vid: "SmartThings-smartthings-Z-Wave_Thermostat") {
+    definition(name: "AF HA153", namespace: "obmaz", author: "obmaz", mnmn: "SmartThings", vid: "SmartThings-smartthings-Z-Wave_Thermostat") {
         capability "Thermostat"
         capability "Thermostat Cooling Setpoint"
         //capability "Thermostat Heating Setpoint"
