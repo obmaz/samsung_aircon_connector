@@ -249,8 +249,8 @@ def setData(dataList) {
 }
 
 def setStatus(data) {
- setCoolingSetpoint(19)
- 
+    setCoolingSetpoint(19)
+
     log.debug "setStatus Update >> ${data.key} >> ${data.data}"
     def jsonObj = new JsonSlurper().parseText(data.data)
 
@@ -380,7 +380,7 @@ def setThermostatMode(mode) {
 }
 
 def refresh() {
-	setCoolingSetpoint(26)
+    setCoolingSetpoint(26)
 }
 
 def parse(String description) {
@@ -392,8 +392,8 @@ def setCoolingSetpoint(level) {
 
     if (level < 18 || level > 30) {
         level = 25
-    }    
-    
+    }
+
     sendEvent(name: "coolingSetpoint", value: level)
     sendControlCommand("AC_FUN_TEMPSET/$level")
 }

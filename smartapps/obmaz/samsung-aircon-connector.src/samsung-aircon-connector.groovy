@@ -28,31 +28,31 @@
  */
 
 definition(
-    name: "Samsung Aircon Connector",
-    namespace: "obmaz",
-    author: "obmaz",
-    description: "Samsung Aircon Connector",
-    category: "My Apps",
-    iconUrl: "http://baldeagle072.github.io/icons/standard-tile@1x.png",
-    iconX2Url: "http://baldeagle072.github.io/icons/standard-tile@2x.png",
-    iconX3Url: "http://baldeagle072.github.io/icons/standard-tile@3x.png")
+        name: "Samsung Aircon Connector",
+        namespace: "obmaz",
+        author: "obmaz",
+        description: "Samsung Aircon Connector",
+        category: "My Apps",
+        iconUrl: "http://baldeagle072.github.io/icons/standard-tile@1x.png",
+        iconX2Url: "http://baldeagle072.github.io/icons/standard-tile@2x.png",
+        iconX3Url: "http://baldeagle072.github.io/icons/standard-tile@3x.png")
 
 preferences {
-	section("Samsung Aircon Connector Creator") {
-		input "switchLabel", "text", title: "Switch Label", required: true
-	}
+    section("Samsung Aircon Connector Creator") {
+        input "switchLabel", "text", title: "Switch Label", required: true
+    }
 }
 
 def installed() {
-	log.debug "Installed with settings: ${settings}"
-	initialize()
+    log.debug "Installed with settings: ${settings}"
+    initialize()
 }
 
 def updated() {
-	log.debug "Updated with settings: ${settings}"
+    log.debug "Updated with settings: ${settings}"
 
-	unsubscribe()
-	initialize()
+    unsubscribe()
+    initialize()
 }
 
 def initialize() {
