@@ -1,14 +1,7 @@
 # Samsung Aircon Connector - Smartthing
-Go to Smartthing Groovy IDE site https://graph.api.smartthings.com/  
-Go to "My Location" and click one your location  
-Go to "My SmartApps"  
-    click "settings"  
-    click "Add new repository"  
-    add owner : obmaz / name : samsung_airconnector / branch : master  
-Go to "My Device Handlers"  
-    click "settings"  
-    click "Add new repository"  
-    add owner : obmaz / name : samsung_airconnector / branch : master  
+Smartthing Groovy IDE site https://graph.api.smartthings.com/  
+Add github repo to botha "My SmartApps" and "My Device Handlers"  
+- add owner : obmaz / name : samsung_airconnector / branch : master  
   
 ![dth](./readme_images/dth_smartapp.jpg)
 
