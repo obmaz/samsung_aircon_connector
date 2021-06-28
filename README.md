@@ -8,12 +8,7 @@ Add github repo to botha "My SmartApps" and "My Device Handlers"
 Add and Run SmartApp in your phone.  
 It will make virtual device based on DTH and SmartApp  
 
-![smartapp](./readme_images/smartapp1.jpg)
-
-- SmartApp Screen
-
-![app](./readme_images/app1.jpg)
-- SmartThings Screen
+![smartapp](./readme_images/smartapp1.jpg) ![app](./readme_images/app1.jpg)
 
 # Samsung Aircon Connector - RESTApi Server
 This app provides RESTFul APIs to control legacy Samsung Aircon using socket connection with 2878 port.  
