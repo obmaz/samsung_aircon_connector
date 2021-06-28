@@ -1,6 +1,8 @@
-# Samsung Aircon Connector - DTH for Smartthings
-Currently not available. I will implement it this summer if my ikea button broken.  
-You can set the command to button by using web-core.
+# Samsung Aircon Connector - Smartthing
+Add both SmartApp and DTH to your smartthing groovy (classic) ide "obmaz/samsung_airconnector"
+
+Add abd Run SmartApp in your phone.
+It will make virtual device based on DTH and SmartApp
 
 # Samsung Aircon Connector - RESTApi Server
 This app provides RESTFul APIs to control legacy Samsung Aircon using socket connection with 2878 port.  
