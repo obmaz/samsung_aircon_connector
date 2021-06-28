@@ -29,7 +29,7 @@ jobs:
     
     - name: 'Upload Artifact'
       uses: actions/upload-artifact@v2
-      working-directory: ./server
       with:
         name: artifact
+        path: samsung_aircon_connector/server
         if-no-files-found: error 
