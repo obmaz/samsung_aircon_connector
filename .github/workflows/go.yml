@@ -20,14 +20,16 @@ jobs:
         go-version: 1.16
 
     - name: Build
+      working-directory: ./server
       run: go build -v
 
     - name: Test
+      working-directory: ./server
       run: go test -v
     
     - name: 'Upload Artifact'
       uses: actions/upload-artifact@v2
+      working-directory: ./server
       with:
         name: artifact
-        path: samsung_aircon_connector/server
         if-no-files-found: error 
