@@ -31,5 +31,5 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: artifact
-        path: samsung_aircon_connector/server
+        path: samsung_aircon_connector
         if-no-files-found: error 
