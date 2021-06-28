@@ -1,4 +1,4 @@
-# Samsung Aircon Connector - Smartthing
+# Samsung Aircon Connector - Smartthings
 Smartthing Groovy IDE site https://graph.api.smartthings.com/  
 Add github repo to botha "My SmartApps" and "My Device Handlers"  
 - add owner : obmaz / name : samsung_airconnector / branch : master  
