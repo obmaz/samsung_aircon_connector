@@ -8,10 +8,11 @@ Add github repo to botha "My SmartApps" and "My Device Handlers"
 Add and Run SmartApp in your phone.  
 It will make virtual device based on DTH and SmartApp  
 
-![smartapp](./readme_images/smartapp1.jpg){:height="50%" width="50%"}
+![smartapp](./readme_images/smartapp1.jpg)
+[[./readme_images/smartapp1.jpg | width=100px | alt=Bridge]]
 - SmartApp Screen
 
-![app](./readme_images/app1.jpg){:height="50%" width="50%"}
+![app](./readme_images/app1.jpg)
 - SmartThings Screen
 
 # Samsung Aircon Connector - RESTApi Server
