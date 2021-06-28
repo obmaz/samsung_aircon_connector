@@ -167,7 +167,7 @@ import groovy.transform.Field
         ]
 
 metadata {
-    definition(name: "AF HA153", namespace: "obmaz", author: "obmaz", mnmn: "SmartThings", vid: "SmartThings-smartthings-Z-Wave_Thermostat") {
+    definition(name: "af ha153", namespace: "obmaz", author: "obmaz", mnmn: "SmartThings", vid: "SmartThings-smartthings-Z-Wave_Thermostat") {
         capability "Thermostat"
         capability "Thermostat Cooling Setpoint"
         //capability "Thermostat Heating Setpoint"
@@ -363,7 +363,6 @@ def fanAuto() {
     wind2()
 }
 
-
 def setThermostatMode(mode) {
     log.debug "setThermostatMode " + mode
     switch (mode) {
@@ -379,7 +378,12 @@ def setThermostatMode(mode) {
     }
 }
 
+
+
+
+
 def refresh() {
+    log.debug "refresh"
     setCoolingSetpoint(26)
 }
 
