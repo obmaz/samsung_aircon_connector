@@ -225,17 +225,6 @@ metadata {
 }
 
 
-def updated() {
-    //최초 인스톨시? 디바이스 updated 시?
-    log.debug "Updated"
-    sendEvent(name: "wind1", value: WIND_VALUE[wind1]["str"])
-    sendEvent(name: "wind2", value: WIND_VALUE[wind2]["str"])
-    sendEvent(name: "wind3", value: WIND_VALUE[wind3]["str"])
-    sendEvent(name: "wind4", value: WIND_VALUE[wind4]["str"])
-    sendEvent(name: "wind5", value: WIND_VALUE[wind5]["str"])
-    sendEvent(name: "wind6", value: WIND_VALUE[wind6]["str"])
-}
-
 def setInfo(String app_url, String address) {
     log.debug "${app_url}, ${address}"
     state.app_url = app_url
@@ -343,11 +332,6 @@ def setStatus(data) {
     updateLastTime();
 }
 
-def installed() {
-    log.debug "Installed"
-    sendEvent(name: "supportedThermostatFanModes", value: ["auto", "circulate", "followschedule", "on"])
-    sendEvent(name: "supportedThermostatModes", value: ["auto", "cool", "heat", "off"])
-}
 
 def updateLastTime() {
     log.debug "updateLastTime"
@@ -379,12 +363,19 @@ def setThermostatMode(mode) {
 }
 
 
-
-
-
 def refresh() {
     log.debug "refresh"
     setCoolingSetpoint(26)
+}
+
+def updated() {
+    log.debug "Updated"
+}
+
+def installed() {
+    log.debug "Installed"
+    sendEvent(name: "supportedThermostatFanModes", value: ["auto", "circulate", "followschedule", "on"])
+    sendEvent(name: "supportedThermostatModes", value: ["auto", "cool", "heat", "off"])
 }
 
 def parse(String description) {
@@ -394,8 +385,10 @@ def parse(String description) {
 def setCoolingSetpoint(level) {
     log.debug "setCoolingSetpoint : $level"
 
-    if (level < 18 || level > 30) {
-        level = 25
+    if (level < 18) {
+        level = 18
+    } else if (level > 30) {
+        level = 30
     }
 
     sendEvent(name: "coolingSetpoint", value: level)
@@ -417,18 +410,30 @@ def sendGetCommand(command) {
 }
 
 def sendCommand(path) {
-    log.debug "sendCommand : $path"
+    log.debug "sendCommand : " + parent.getServerIP() + ":" + parent.getServerPort() + "$path"
     def options = [
             "method" : "GET",
             "path"   : path,
             "headers": [
-                    "HOST"        : "192.168.0.71:20080",
+                    "HOST"        : parent.getServerIP() + ":" + parent.getServerPort(),
                     "Content-Type": "application/json"
             ],
     ]
 
-    def myhubAction = new physicalgraph.device.HubAction(options, null, [callback: _callback])
+    def myhubAction = new physicalgraph.device.HubAction(options, null, [callback: callback])
     sendHubCommand(myhubAction)
+}
+
+// 작동 안되고 있음
+def callback(physicalgraph.device.HubResponse hubResponse) {
+    def msg, json, status
+    try {
+        msg = parseLanMessage(hubResponse.description)
+        def jsonObj = new JsonSlurper().parseText(msg.body)
+        log.debug "callback : " + jsonObj
+    } catch (e) {
+        log.error "callback : Exception caught while parsing data: " + e
+    }
 }
 
 /*
