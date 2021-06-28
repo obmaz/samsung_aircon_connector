@@ -21,7 +21,7 @@ jobs:
          path: ./
       
       - name: Move bin
-        run: mv artifact/samsung_aircon_connector ./
+        run: mv artifact/server/samsung_aircon_connector ./
       
       - name: Set up QEMU 
         uses: docker/setup-qemu-action@v1
