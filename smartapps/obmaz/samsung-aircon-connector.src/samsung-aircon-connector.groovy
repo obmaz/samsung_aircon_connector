@@ -38,8 +38,12 @@ definition(
         iconX3Url: "http://baldeagle072.github.io/icons/standard-tile@3x.png")
 
 preferences {
-    section("Samsung Aircon Connector Creator") {
-        input "switchLabel", "text", title: "Switch Label", required: true
+    page(name: "page", title: "", install: true) {
+        section("Samsung Aircon Connector") {
+            input "dthModel", "enum", title: "Model", options: ["af ha153"]
+            input "serverIP", "text", title: "Server IP", description: "192.168.0.12"
+            input "serverPort", "text", title: "Server Port", description: "20080"
+        }
     }
 }
 
@@ -50,17 +54,16 @@ def installed() {
 
 def updated() {
     log.debug "Updated with settings: ${settings}"
-
     unsubscribe()
     initialize()
 }
 
 def initialize() {
-    def deviceId = app.id + "SamsungAirconConnector"
+    def deviceId = app.id + "_" + dthModel
     log.debug(deviceId)
     def existing = getChildDevice(deviceId)
     if (!existing) {
-        def childDevice = addChildDevice("obmaz", "Samsung Aircon Connector", deviceId, null, [label: switchLabel])
+        def childDevice = addChildDevice("obmaz", dthModel, deviceId, null, [label: dthModel])
     }
 }
 
