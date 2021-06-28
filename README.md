@@ -62,17 +62,17 @@ sudo docker-compose up -d
 #### Docker Synology
 Note that you need to pull the docker image in Synology docker app.
 
-* Check Permission
-![Permission](./readme_images/1.jpg)
+* Check Permission  
+![Permission](./readme_images/1.jpg)  
 
-* Check Auto Restart
-![Restart](./readme_images/2.jpg)
+* Check Auto Restart  
+![Restart](./readme_images/2.jpg)  
 
-* Map the /config directory to external
-![Map](./readme_images/3.jpg)
+* Map the /config directory to external  
+![Map](./readme_images/3.jpg)  
 
-* Check Host Network (Optional)
-![Network](./readme_images/4.jpg)
+* Check Host Network (Optional)  
+![Network](./readme_images/4.jpg)  
 
 ## Config
 To communicate between Aircon and Server, you should set some value to config.  
