@@ -1,10 +1,25 @@
 # Samsung Aircon Connector - Smartthing
-Add both SmartApp and DTH to your smartthing groovy (classic) ide "obmaz/samsung_airconnector"
+Go to Smartthing Groovy IDE site https://graph.api.smartthings.com/
+Go to "My Location" and click one your location
+Go to "My SmartApps"
+    click "settings" 
+    click "Add new repository"
+    add owner : obmaz / name : samsung_airconnector / branch : master
+Go to "My Device Handlers"
+    click "settings" 
+    click "Add new repository"
+    add owner : obmaz / name : samsung_airconnector / branch : master
 
 ![dth](./readme_images/dth_smartapp.jpg)
 
 Add and Run SmartApp in your phone.
 It will make virtual device based on DTH and SmartApp
+
+![smartapp](./readme_images/smartapp1.jpg)
+- SmartApp Screen
+
+![app](./readme_images/app1.jpg)
+- SmartThings Screen
 
 # Samsung Aircon Connector - RESTApi Server
 This app provides RESTFul APIs to control legacy Samsung Aircon using socket connection with 2878 port.  
