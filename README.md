@@ -1,9 +1,9 @@
 # Samsung Aircon Connector - Smartthing
 Add both SmartApp and DTH to your smartthing groovy (classic) ide "obmaz/samsung_airconnector"
 
-![dth](./readme_images/dth_smartapp.png)
+![dth](./readme_images/dth_smartapp.jpg)
 
-Add abd Run SmartApp in your phone.
+Add and Run SmartApp in your phone.
 It will make virtual device based on DTH and SmartApp
 
 # Samsung Aircon Connector - RESTApi Server
