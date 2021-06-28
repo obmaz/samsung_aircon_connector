@@ -38,12 +38,27 @@ definition(
         iconX3Url: "http://baldeagle072.github.io/icons/standard-tile@3x.png")
 
 preferences {
-    // If it does not use page secction, "Assign a Name" Section will appear as a default
-    page(name: "page", install: true) {
-        section("Samsung Aircon Connector") {
+    page(name: "firstPage")
+}
+
+def firstPage() {
+    // If it does not use page, "Assign a Name" Section will appear as a default
+    dynamicPage(name: "firstPage", title: "Samsung Aircon Connector", nextPage: null, uninstall: true, install: true) {
+        if (location.hubs.size() < 1) {
+            section() {
+                paragraph "[ERROR]\nSmartThings Hub not found.\nYou need a SmartThings Hub to use Mi-Connector."
+            }
+            return
+        }
+
+        section("Smartthings") {
+            input "devHub", "enum", title: "Hub", required: true, multiple: false, options: getHubs()
+        }
+
+        section("Samsung Aircon Connector Serever") {
             input "dthModel", "enum", title: "Model", options: ["af ha153"]
-            input "serverIP", "text", title: "Server IP", description: "192.168.0.12"
-            input "serverPort", "text", title: "Server Port", description: "20080"
+            input "serverIP", "text", title: "Server IP", description: "ex) 192.168.0.71"
+            input "serverPort", "text", title: "Server Port", description: "ex) 20080"
         }
     }
 }
@@ -64,8 +79,44 @@ def initialize() {
     log.debug(deviceId)
     def existing = getChildDevice(deviceId)
     if (!existing) {
-        def childDevice = addChildDevice("obmaz", dthModel, deviceId, null, [label: dthModel])
+        def childDevice = addChildDevice("obmaz", dthModel, deviceId, getLocationID(), [label: dthModel])
     }
+}
+
+def getServerIP() {
+    return settings.serverIP
+}
+
+def getServerPort() {
+    return settings.serverPort
+}
+
+def getLocationID() {
+    def locationID = null
+    try {
+        locationID = getHubID(devHub)
+    } catch (err) {
+    }
+    return locationID
+}
+
+def getHubs() {
+    def list = []
+    location.getHubs().each { hub ->
+        list.push(hub.name)
+    }
+    return list
+}
+
+def getHubID(name) {
+    def id = null
+    location.getHubs().each {
+        hub ->
+            if (hub.name == name) {
+                id = hub.id
+            }
+    }
+    return id
 }
 
 def uninstalled() {
