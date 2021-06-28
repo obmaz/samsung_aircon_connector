@@ -38,7 +38,8 @@ definition(
         iconX3Url: "http://baldeagle072.github.io/icons/standard-tile@3x.png")
 
 preferences {
-    page(name: "page", title: "", install: true) {
+    // If it does not use page secction, "Assign a Name" Section will appear as a default
+    page(name: "page", install: true) {
         section("Samsung Aircon Connector") {
             input "dthModel", "enum", title: "Model", options: ["af ha153"]
             input "serverIP", "text", title: "Server IP", description: "192.168.0.12"
