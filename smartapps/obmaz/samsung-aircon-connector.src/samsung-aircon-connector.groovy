@@ -56,9 +56,13 @@ def firstPage() {
         }
 
         section("Samsung Aircon Connector Serever") {
-            input "dthModel", "enum", title: "Model", options: ["af ha153"]
-            input "serverIP", "text", title: "Server IP", description: "ex) 192.168.0.71"
-            input "serverPort", "text", title: "Server Port", description: "ex) 20080"
+            input "dthModel", "enum", title: "Model", required: true, options: ["af ha153"]
+            input "serverIP", "text", title: "Server IP", required: true, description: "ex) 192.168.0.71"
+            input "serverPort", "text", title: "Server Port", required: true, description: "ex) 20080"
+        }
+        
+        section("Controller") {
+            input "deviceName", "text", title: "Device Name", required: true, description: "ex) My Airconditioner"
         }
     }
 }
@@ -79,7 +83,7 @@ def initialize() {
     log.debug(deviceId)
     def existing = getChildDevice(deviceId)
     if (!existing) {
-        def childDevice = addChildDevice("obmaz", dthModel, deviceId, getLocationID(), [label: dthModel])
+        def childDevice = addChildDevice("obmaz", dthModel, deviceId, getLocationID(), [label: deviceName])
     }
 }
 
