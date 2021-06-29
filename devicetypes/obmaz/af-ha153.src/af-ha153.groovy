@@ -158,7 +158,7 @@ import groovy.transform.Field
                 3084 : [val: "@AC_MAIN_WIND_STRENGTH_TURBO_LEFT_W|AC_MAIN_WIND_STRENGTH_TURBO_RIGHT_W", str: "Turbo All"],
                 65280: [val: "@AC_MAIN_WIND_STRENGTH_SLOW_RIGHT_W", str: "Slow Right"],
                 65281: [val: "@AC_MAIN_WIND_STRENGTH_SLOW_LOW_RIGHT_W", str: "Log Right"],
-                   65282: [val: "@AC_MAIN_WIND_STRENGTH_LOW_RIGHT_W", str: "Low Right"],
+                65282: [val: "@AC_MAIN_WIND_STRENGTH_LOW_RIGHT_W", str: "Low Right"],
                 65283: [val: "@AC_MAIN_WIND_STRENGTH_LOW_MID_RIGHT_W", str: "Low Mid Right"],
                 65284: [val: "@AC_MAIN_WIND_STRENGTH_MID_RIGHT_W", str: "Mid Right"],
                 65285: [val: "@AC_MAIN_WIND_STRENGTH_MID_HIGH_RIGHT_W", str: "Mid Hight Right"],
@@ -167,7 +167,7 @@ import groovy.transform.Field
         ]
 
 metadata {
-    definition(name: "af ha153", namespace: "obmaz", author: "obmaz", mnmn: "SmartThings", vid: "SmartThings-smartthings-Z-Wave_Thermostat") {
+    definition(name: "af ha153", namespace: "obmaz", author: "obmaz", mnmn: "SmartThings", vid: "SmartThings-smartthings-Z-Wave_Thermostat", ocfDeviceType: 'oic.d.airconditioner') {
         capability "Thermostat"
         capability "Thermostat Cooling Setpoint"
         //capability "Thermostat Heating Setpoint"
