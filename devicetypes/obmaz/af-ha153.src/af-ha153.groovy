@@ -363,10 +363,6 @@ def setThermostatMode(mode) {
 }
 
 
-def refresh() {
-    log.debug "refresh"
-}
-
 def updated() {
     log.debug "Updated"
 }
@@ -379,6 +375,11 @@ def installed() {
 
 def parse(String description) {
     log.debug "parse : $description"
+}
+
+def refresh() {
+    log.debug "refresh"
+    sendGetCommand("devicestate")    
 }
 
 def setCoolingSetpoint(level) {
@@ -423,7 +424,6 @@ def sendCommand(path) {
     sendHubCommand(myhubAction)
 }
 
-// 작동 안되고 있음
 def callback(physicalgraph.device.HubResponse hubResponse) {
     def msg, json, status
     try {
@@ -435,10 +435,8 @@ def callback(physicalgraph.device.HubResponse hubResponse) {
     }
 }
 
+
 /*
-/get/devicestate
-
-
 AC_ADD_AUTOCLEAN/On
 AC_ADD_SPI/Off
 AC_ADD_SPI/On
@@ -558,8 +556,5 @@ def evergySavingMode() {
     makeCommand('', '{"command":"Set","ctrlKey":"basicCtrl","dataKey":"airState.opMode","dataValue":' + 8 + '}')
 }
 
-def control(cmd, value) {
-    makeCommand(cmd, value)
-}
 
  */
