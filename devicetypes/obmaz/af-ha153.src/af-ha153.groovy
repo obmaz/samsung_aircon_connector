@@ -167,16 +167,15 @@ import groovy.transform.Field
         ]
 
 metadata {
-    definition(name: "af ha153", namespace: "obmaz", author: "obmaz", mnmn: "SmartThings", vid: "SmartThings-smartthings-Z-Wave_Thermostat", ocfDeviceType: 'oic.d.airconditioner') {
-        capability "Thermostat"
-        capability "Thermostat Cooling Setpoint"
-        //capability "Thermostat Heating Setpoint"
-        capability "Thermostat Operating State"
-        capability "Thermostat Mode"
-        capability "Thermostat Fan Mode"
-        capability "Relative Humidity Measurement"
-        capability "Refresh"
-        //capability "Dust Sensor"
+    definition(name: "af ha153", namespace: "obmaz", author: "obmaz", mnmn: "SmartThings", vid: "94d9a579-a027-31d5-b534-9da3833b1ffa", ocfDeviceType: 'oic.d.airconditioner') {
+ 		capability "Thermostat"
+		capability "Thermostat Mode"
+		capability "Thermostat Heating Setpoint"
+		capability "Temperature Measurement"	
+		capability "Thermostat Operating State"
+		capability "Refresh"
+		capability "Actuator"
+		/*capability "Sensor"
 
         command "coolMode"
         command "dryMode"
@@ -203,7 +202,8 @@ metadata {
         attribute "pm1", "number"
         attribute "wind", "string"
         attribute "sleepTime", "string"
-        attribute "windUpDown", "string"
+        attribute "", "string"
+        */
     }
 
     simulator {
@@ -365,7 +365,6 @@ def setThermostatMode(mode) {
 
 def refresh() {
     log.debug "refresh"
-    setCoolingSetpoint(26)
 }
 
 def updated() {
