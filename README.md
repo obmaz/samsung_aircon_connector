@@ -18,8 +18,8 @@ The aircon MCU is not good, so it sometimes could not return updated status due 
 
 ## Dev Enviroment
 * Model : AF-HA153WRG (Korea)
-* Language : GoLang 1.14
-* Test : Ubuntu 18.04 Lts
+* Language : GoLang 1.16
+* Test : Ubuntu 20.04 Lts
 
 ## Pre Requirement
 ### Network Connection
@@ -114,8 +114,8 @@ It only has two http status code: 200 Ok and 400 Bad Request.
 * Sample Request
 ```
 /config/airconip/192.168.0.188
-/config/duid/30144A125FDX
-/config/token/ea89ff86-ef12-46a0-a9e6-705b3a3d175X
+/config/duid/30144A125XXX
+/config/token/ea89ff86-xxxx-xxxx-a9e6-705b3a3d1756
 ```
 
 #### Reset Connection
@@ -149,7 +149,7 @@ Please use it if connection problem happens.
     "command": "Token",
     "status": "Success",
     "data": {
-        "token": "ea89ff86-ef12-46a0-a9e6-705b3a3d1756"
+        "token": "ea89ff86-xxxx-xxxx-a9e6-705b3a3d1756"
     }
 }
 ```
@@ -466,11 +466,17 @@ Use it for testing if this app does not work well.
 
 #### Connect
 ```bash
+$ openssl s_client -connect {Aircon IP:Port} -cipher 'HIGH:!DH:!aNULL'
+$ openssl s_client -connect {Aircon IP:Port} -cert cert.pem -cipher 'HIGH:!DH:!aNULL'
+```
+
+```bash
 $ openssl s_client -connect 192.168.0.188:2878 -cipher 'HIGH:!DH:!aNULL'
 $ openssl s_client -connect 192.168.0.188:2878 -cert cert.pem -cipher 'HIGH:!DH:!aNULL'
 ```
 #### Get Token
 Use below command first. After that turn on the aircon.
+
 ```xml
 <Request Type="GetToken"/>
 ```
