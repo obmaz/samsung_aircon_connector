@@ -67,16 +67,11 @@ import groovy.transform.Field
 metadata {
     definition(name: "af ha153", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThings", vid: "116b34c7-6a2b-3c9d-b2e4-5e64fc1a987f", ocfDeviceType: 'oic.d.airconditioner') {
         capability "Thermostat"
-
+        capability "Refresh"
         capability "imageafter45121.colorTemperatureMoon"
-
-
-//        attribute "mode", "string"
-//        attribute "airClean", "string"
-//        attribute "pm1", "number"
-//        attribute "wind", "string"
-//        attribute "sleepTime", "string"
-//        attribute "", "string"
+        attribute "lastCheckin", "Date"
+        command "setStatus"
+        command "setStatusMap"
     }
 
     simulator {
@@ -87,16 +82,8 @@ metadata {
 
         input name: "powerOnValue", title: "Power On Value", type: "number", required: false, defaultValue: 257
         input name: "powerOffValue", title: "Power Off Value", type: "number", required: false, defaultValue: 0
-
-        input name: "wind1", title: "Wind#1 Type", type: "number", required: false, defaultValue: 2056
-        input name: "wind2", title: "Wind#2 Type", type: "number", required: false, defaultValue: 1286
-        input name: "wind3", title: "Wind#3 Type", type: "number", required: false, defaultValue: 1028
-        input name: "wind4", title: "Wind#4 Type", type: "number", required: false, defaultValue: 772
-        input name: "wind5", title: "Wind#5 Type", type: "number", required: false, defaultValue: 1279
-        input name: "wind6", title: "Wind#6 Type", type: "number", required: false, defaultValue: 65284
     }
 }
-
 
 def setInfo(String app_url, String address) {
     log.debug "setInfo : ${app_url}, ${address}"
@@ -344,98 +331,3 @@ AC_FUN_WINDLEVEL/Low
 AC_FUN_WINDLEVEL/Mid
 
 */
-
-/*
-
-
-def wind(val) {
-    makeCommand('', '{"command":"Set","ctrlKey":"basicCtrl","dataKey":"airState.windStrength","dataValue":' + val + '}')
-}
-
-def wind1() {
-    wind(wind1)
-}
-
-def wind2() {
-    wind(wind2)
-}
-
-def wind3() {
-    wind(wind3)
-}
-
-def wind4() {
-    wind(wind4)
-}
-
-def wind5() {
-    wind(wind5)
-}
-
-def wind6() {
-    wind(wind6)
-}
-
-
-def cool() {
-    makeCommand('', '{"command":"Operation","ctrlKey":"basicCtrl","dataKey":"airState.operation","dataValue":' + (powerOnValue.toString() == null ? "257" : powerOnValue.toString()) + '}')
-}
-
-def auto() {
-    cool()
-}
-
-def heat() {
-    makeCommand('', '{"command":"Operation","ctrlKey":"basicCtrl","dataKey":"airState.operation","dataValue":' + 4 + '}')
-}
-
-def off() {
-    makeCommand('', '{"command":"Operation","ctrlKey":"basicCtrl","dataKey":"airState.operation","dataValue":' + (powerOffValue.toString() == null ? "0" : powerOffValue.toString()) + '}')
-}
-
-def airCleanOn() {
-    makeCommand('', '{"command":"Set","ctrlKey":"basicCtrl","dataKey":"airState.miscFuncState.airFast","dataValue":' + 1 + '}')
-}
-
-def airCleanOff() {
-    makeCommand('', '{"command":"Set","ctrlKey":"basicCtrl","dataKey":"airState.miscFuncState.airFast","dataValue":' + 0 + '}')
-}
-
-def coolMode() {
-    makeCommand('', '{"command":"Set","ctrlKey":"basicCtrl","dataKey":"airState.opMode","dataValue":' + 0 + '}')
-}
-
-def dryMode() {
-    makeCommand('', '{"command":"Set","ctrlKey":"basicCtrl","dataKey":"airState.opMode","dataValue":' + 1 + '}')
-}
-
-def fanMode() {
-    makeCommand('', '{"command":"Set","ctrlKey":"basicCtrl","dataKey":"airState.opMode","dataValue":' + 2 + '}')
-}
-
-def aiMode() {
-    makeCommand('', '{"command":"Set","ctrlKey":"basicCtrl","dataKey":"airState.opMode","dataValue":' + 3 + '}')
-}
-
-def heatMode() {
-    makeCommand('', '{"command":"Set","ctrlKey":"basicCtrl","dataKey":"airState.opMode","dataValue":' + 4 + '}')
-}
-
-def airCleanMode() {
-    makeCommand('', '{"command":"Set","ctrlKey":"basicCtrl","dataKey":"airState.opMode","dataValue":' + 5 + '}')
-}
-
-def acoMode() {
-    makeCommand('', '{"command":"Set","ctrlKey":"basicCtrl","dataKey":"airState.opMode","dataValue":' + 6 + '}')
-}
-
-def aromaMode() {
-    makeCommand('', '{"command":"Set","ctrlKey":"basicCtrl","dataKey":"airState.opMode","dataValue":' + 7 + '}')
-}
-
-def evergySavingMode() {
-    makeCommand('', '{"command":"Set","ctrlKey":"basicCtrl","dataKey":"airState.opMode","dataValue":' + 8 + '}')
-}
-
-
- */
