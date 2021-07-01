@@ -101,7 +101,6 @@ metadata {
         attribute "wind", "string"
         attribute "sleepTime", "string"
         attribute "", "string"
-        */
     }
 
     simulator {
