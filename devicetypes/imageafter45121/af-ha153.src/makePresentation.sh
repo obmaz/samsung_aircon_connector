@@ -1,6 +1,14 @@
+# Smartthings CLI : https://github.com/SmartThingsCommunity/smartthings-cli
+
+# Show capabilities
+# ./smartthings capabilities
+
+# Delete capability
+# ./smartthings capabilities:delete {id}
+
 # Create custom capabilitiy
 # It generates the uid like "imageafter45121.colorTemperatureMoon"
-# ./smartthings capabilities:create
+# ./smartthings capabilities:create -n imageafter45121
 
 # Register custom capability
 # it might register custom capavilitiy to smartthings server
