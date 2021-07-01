@@ -73,7 +73,7 @@ metadata {
 		capability "Thermostat Operating State"
 		capability "Refresh"
 		capability "Actuator"
-		capability "mageafter45121.colorTemperatureMoon"
+		capability "imageafter45121.colorTemperatureMoon"
 
         command "coolMode"
         command "dryMode"
