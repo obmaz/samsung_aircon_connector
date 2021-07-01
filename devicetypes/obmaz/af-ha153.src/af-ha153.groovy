@@ -65,15 +65,15 @@ import groovy.transform.Field
         ]
 
 metadata {
-    definition(name: "af ha15399", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThings", vid: "1508c046-1429-3642-b115-a805a64ec459", ocfDeviceType: 'oic.d.airconditioner') {
- 		capability "Thermostat"
-		capability "Thermostat Mode"
-		capability "Thermostat Heating Setpoint"
-		capability "Temperature Measurement"	
-		capability "Thermostat Operating State"
-		capability "Refresh"
-		capability "Actuator"
-		capability "imageafter45121.colorTemperatureMoon"
+    definition(name: "af ha153", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThings", vid: "1508c046-1429-3642-b115-a805a64ec459", ocfDeviceType: 'oic.d.airconditioner') {
+        capability "Thermostat"
+        capability "Thermostat Mode"
+        capability "Thermostat Heating Setpoint"
+        capability "Temperature Measurement"
+        capability "Thermostat Operating State"
+        capability "Refresh"
+        capability "Actuator"
+        capability "imageafter45121.colorTemperatureMoon"
 
         command "coolMode"
         command "dryMode"
