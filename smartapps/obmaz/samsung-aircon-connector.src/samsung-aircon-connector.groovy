@@ -43,7 +43,7 @@ preferences {
 
 def firstPage() {
     // If it does not use page, "Assign a Name" Section will appear as a default
-    dynamicPage(name: "firstPage", title: "Samsung Aircon Connector", nextPage: null, uninstall: true, install: true) {
+    dynamicPage(name: "Setting", title: "Samsung Aircon Connector", nextPage: null, uninstall: true, install: true) {
         if (location.hubs.size() < 1) {
             section() {
                 paragraph "[ERROR]\nSmartThings Hub not found.\nYou need a SmartThings Hub to use Mi-Connector."
@@ -55,33 +55,37 @@ def firstPage() {
             input "devHub", "enum", title: "Hub", required: true, multiple: false, options: getHubs()
         }
 
-        section("Samsung Aircon Connector Serever") {
+        section("Connector Server") {
             input "dthModel", "enum", title: "Model", required: true, options: ["af ha153"]
             input "serverIP", "text", title: "Server IP", required: true, description: "ex) 192.168.0.71"
             input "serverPort", "text", title: "Server Port", required: true, description: "ex) 20080"
         }
         
-        section("Controller") {
+        section("Device") {
             input "deviceName", "text", title: "Device Name", required: true, description: "ex) My Airconditioner"
         }
     }
 }
 
 def installed() {
-    log.debug "Installed with settings: ${settings}"
+    log.debug "Installed : ${settings}"
+
     initialize()
 }
 
 def updated() {
-    log.debug "Updated with settings: ${settings}"
+    log.debug "Updated : ${settings}"
+
     unsubscribe()
     initialize()
 }
 
 def initialize() {
+    log.debug "initialize"
+
     def deviceId = app.id + "_" + dthModel
-    log.debug(deviceId)
     def existing = getChildDevice(deviceId)
+
     if (!existing) {
         def childDevice = addChildDevice("obmaz", dthModel, deviceId, getLocationID(), [label: deviceName])
     }
@@ -106,8 +110,8 @@ def getLocationID() {
 
 def getHubs() {
     def list = []
-    location.getHubs().each { hub ->
-        list.push(hub.name)
+    location.getHubs().each {
+        hub -> list.push(hub.name)
     }
     return list
 }
@@ -124,6 +128,8 @@ def getHubID(name) {
 }
 
 def uninstalled() {
+    log.debug "uninstalled"
+
     removeChildDevices(getChildDevices())
 }
 
