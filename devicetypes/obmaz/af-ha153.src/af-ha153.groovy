@@ -65,35 +65,11 @@ import groovy.transform.Field
         ]
 
 metadata {
-    definition(name: "af ha153", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThings", vid: "1508c046-1429-3642-b115-a805a64ec459", ocfDeviceType: 'oic.d.airconditioner') {
+    definition(name: "af ha153", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThings", vid: "116b34c7-6a2b-3c9d-b2e4-5e64fc1a987f", ocfDeviceType: 'oic.d.airconditioner') {
         capability "Thermostat"
-//        capability "Thermostat Mode"
-//        capability "Thermostat Heating Setpoint"
-//        capability "Temperature Measurement"
-//        capability "Thermostat Operating State"
-//        capability "Refresh"
-//        capability "Actuator"
+
         capability "imageafter45121.colorTemperatureMoon"
 
-//        command "coolMode"
-//        command "dryMode"
-//        command "aiMode"
-//        command "heatMode"
-//        command "airCleanMode"
-//        command "acoMode"
-//        command "aromaMode"
-//        command "evergySavingMode"
-//
-//        command "wind", ["number"]
-//        command "wind1"
-//        command "wind2"
-//        command "wind3"
-//        command "wind4"
-//        command "wind5"
-//        command "wind6"
-//
-//        command "setStatus"
-//        command "control", ["string", "string"]
 
 //        attribute "mode", "string"
 //        attribute "airClean", "string"
