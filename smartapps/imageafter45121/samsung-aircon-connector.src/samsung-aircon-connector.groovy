@@ -27,9 +27,13 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
+import groovy.transform.Field
+
+@Field nameSpace = 'imageafter45121'
+
 definition(
         name: "Samsung Aircon Connector",
-        namespace: "imageafter45121",
+        namespace: nameSpace,
         author: "obmaz",
         description: "Samsung Aircon Connector",
         category: "My Apps",
@@ -87,7 +91,7 @@ def initialize() {
     def existing = getChildDevice(deviceId)
 
     if (!existing) {
-        def childDevice = addChildDevice("obmaz", dthModel, deviceId, getLocationID(), [label: deviceName])
+        def childDevice = addChildDevice(nameSpace, dthModel, deviceId, getLocationID(), [label: deviceName])
     }
 }
 
