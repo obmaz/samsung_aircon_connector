@@ -68,13 +68,13 @@ def firstPage() {
 }
 
 def installed() {
-    log.debug "Installed : ${settings}"
+    log.debug "installed : ${settings}"
 
     initialize()
 }
 
 def updated() {
-    log.debug "Updated : ${settings}"
+    log.debug "updated : ${settings}"
 
     unsubscribe()
     initialize()
