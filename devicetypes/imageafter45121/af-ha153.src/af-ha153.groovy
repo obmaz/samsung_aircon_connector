@@ -39,7 +39,7 @@ metadata {
         attribute "airConditionerMode",  "enum"
         attribute "lastCheckin", "Date"
 
-        commnad "setAirConditionerMode"
+//        commnad "setAirConditionerMode"
 //        command "setStatus"
 //        command "setStatusMap"
     }
