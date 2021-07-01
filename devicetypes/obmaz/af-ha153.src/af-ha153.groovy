@@ -65,7 +65,7 @@ import groovy.transform.Field
         ]
 
 metadata {
-    definition(name: "af ha153", namespace: "obmaz", author: "obmaz", mnmn: "SmartThings", vid: "1508c046-1429-3642-b115-a805a64ec459", ocfDeviceType: 'oic.d.airconditioner') {
+    definition(name: "af ha153", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThings", vid: "1508c046-1429-3642-b115-a805a64ec459", ocfDeviceType: 'oic.d.airconditioner') {
  		capability "Thermostat"
 		capability "Thermostat Mode"
 		capability "Thermostat Heating Setpoint"

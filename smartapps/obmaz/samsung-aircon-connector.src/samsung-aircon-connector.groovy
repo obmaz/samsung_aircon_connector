@@ -29,7 +29,7 @@
 
 definition(
         name: "Samsung Aircon Connector",
-        namespace: "obmaz",
+        namespace: "imageafter45121",
         author: "obmaz",
         description: "Samsung Aircon Connector",
         category: "My Apps",

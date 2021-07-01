@@ -1,5 +1,5 @@
 # Create custom capabilitiy
-# It generates the uid like "mageafter45121.colorTemperatureMoon"
+# It generates the uid like "imageafter45121.colorTemperatureMoon"
 # ./smartthings capabilities:create
 
 # Register custom capability
