@@ -31,15 +31,14 @@ import groovy.json.JsonSlurper
 import groovy.transform.Field
 
 metadata {
-    definition(name: "af ha153", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThings", vid: "b1b599e7-93eb-3805-8d71-f34d3ec48e72", ocfDeviceType: 'oic.d.airconditioner') {
-        capability "Air Conditioner Mode"
+    definition(name: "af ha153", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThings", vid: "441cc54e-752e-35ea-914c-3edfcddd7bb1", ocfDeviceType: 'oic.d.airconditioner') {
+        capability "Temperature Measurement"
+        capability "Thermostat Cooling Setpoint"
         capability "Refresh"
         capability "imageafter45121.colorTemperatureMoon"
 
-        attribute "airConditionerMode",  "enum"
         attribute "lastCheckin", "Date"
-
-//        commnad "setAirConditionerMode"
+//		attribute "temperature", [string]
 //        command "setStatus"
 //        command "setStatusMap"
     }
@@ -62,13 +61,13 @@ def updateLastTime() {
 
 def updated() {
     log.debug "updated"
+    sendEvent(name: "setAirConditionerMode", value: ["auto", "cool", "dry", "coolClean", "fanOnly"])
 }
 
 def installed() {
     log.debug "installed"
 
-    sendEvent(name: "supportedThermostatFanModes", value: ["auto", "circulate", "followschedule", "on"])
-    sendEvent(name: "supportedThermostatModes", value: ["auto", "cool", "heat", "off"])
+//    sendEvent(name: "supportedThermostatModes", value: ["auto", "cool", "heat", "off"])
 }
 
 def parse(String description) {
@@ -78,21 +77,24 @@ def parse(String description) {
 def refresh() {
     log.debug "refresh"
 
+    sendEvent(name: "temperature", value: 17, unit: "C")
     sendGetCommand("devicestate")
+
     updateLastTime()
 }
 
-def setCoolingSetpoint(level) {
+// Thermostat Cooling Setpoint
+def setCoolingSetpoint(setpoint) {
     log.debug "setCoolingSetpoint : $level"
 
-    if (level < 18) {
-        level = 18
-    } else if (level > 30) {
-        level = 30
+    if (setpoint < 18) {
+        setpoint = 18
+    } else if (setpoint > 30) {
+        setpoint = 30
     }
 
-    sendEvent(name: "coolingSetpoint", value: level)
-    sendControlCommand("AC_FUN_TEMPSET/$level")
+    sendEvent(name: "coolingSetpoint", value: setpoint)
+    sendControlCommand("AC_FUN_TEMPSET/$setpoint")
 }
 
 def sendControlCommand(command) {

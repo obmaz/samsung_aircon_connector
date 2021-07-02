@@ -3,7 +3,7 @@
         "states": [
             {
                 "component": "main",
-                "capability": "refresh",
+                "capability": "temperatureMeasurement",
                 "version": 1,
                 "values": [],
                 "patch": []
@@ -12,7 +12,7 @@
         "actions": [
             {
                 "component": "main",
-                "capability": "refresh",
+                "capability": "temperatureMeasurement",
                 "version": 1,
                 "values": [],
                 "patch": []
@@ -22,6 +22,13 @@
     "detailView": [
         {
             "component": "main",
+            "capability": "temperatureMeasurement",
+            "version": 1,
+            "values": [],
+            "patch": []
+        },
+        {
+            "component": "main",
             "capability": "refresh",
             "version": 1,
             "values": [],
@@ -29,7 +36,7 @@
         },
         {
             "component": "main",
-            "capability": "thermostat",
+            "capability": "thermostatCoolingSetpoint",
             "version": 1,
             "values": [],
             "patch": []
@@ -46,6 +53,13 @@
         "conditions": [
             {
                 "component": "main",
+                "capability": "temperatureMeasurement",
+                "version": 1,
+                "values": [],
+                "patch": []
+            },
+            {
+                "component": "main",
                 "capability": "refresh",
                 "version": 1,
                 "values": [],
@@ -53,7 +67,7 @@
             },
             {
                 "component": "main",
-                "capability": "thermostat",
+                "capability": "thermostatCoolingSetpoint",
                 "version": 1,
                 "values": [],
                 "patch": []
@@ -69,6 +83,13 @@
         "actions": [
             {
                 "component": "main",
+                "capability": "temperatureMeasurement",
+                "version": 1,
+                "values": [],
+                "patch": []
+            },
+            {
+                "component": "main",
                 "capability": "refresh",
                 "version": 1,
                 "values": [],
@@ -76,7 +97,7 @@
             },
             {
                 "component": "main",
-                "capability": "thermostat",
+                "capability": "thermostatCoolingSetpoint",
                 "version": 1,
                 "values": [],
                 "patch": []
