@@ -1,4 +1,5 @@
 # Smartthings CLI : https://github.com/SmartThingsCommunity/smartthings-cli
+# Capabilities Reference : https://smartthings.developer.samsung.com/docs/api-ref/capabilities.html
 
 # Show capabilities
 # ./smartthings capabilities
