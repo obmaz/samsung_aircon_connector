@@ -224,7 +224,7 @@ AC_FUN_WINDLEVEL/Mid
     "status": "Okay",
     "deviceState": {
       "device": {
-        "duid": "30144A125FDC",
+        "duid": "30144A125XXX",
         "groupId": "AC",
         "modelId": "AC",
         "attr": [
