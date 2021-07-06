@@ -82,7 +82,7 @@ def parse(String description) {
 
 def refresh() {
     log.debug "refresh"
-    sendCommand("/get/devicestate", callback)
+    sendCommand("/get/devicestate", refreshCallback)
 }
 
 def fanAuto() {
@@ -163,7 +163,7 @@ def sendCommand(path, callback) {
     sendHubCommand(myhubAction)
 }
 
-def callback(physicalgraph.device.HubResponse hubResponse) {
+def refreshCallback(physicalgraph.device.HubResponse hubResponse) {
     log.debug "callback"
 
     try {
