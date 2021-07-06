@@ -30,10 +30,14 @@
 import groovy.json.JsonSlurper
 import groovy.transform.Field
 
+@Field currentSetCoolingSetpoint = 0
+
 metadata {
     definition(name: "af ha153", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThings", vid: "441cc54e-752e-35ea-914c-3edfcddd7bb1", ocfDeviceType: 'oic.d.airconditioner') {
         capability "Temperature Measurement"
         capability "Thermostat Cooling Setpoint"
+        capability "Thermostat Fan Mode"
+
         capability "Refresh"
         capability "imageafter45121.colorTemperatureMoon"
 
@@ -61,7 +65,7 @@ def updateLastTime() {
 
 def updated() {
     log.debug "updated"
-    sendEvent(name: "setAirConditionerMode", value: ["auto", "cool", "dry", "coolClean", "fanOnly"])
+    sendEvent(name: "supportedThermostatFanModes", value: ["auto", "circulate2", "followschedule", "on", "test"])
 }
 
 def installed() {
@@ -77,15 +81,30 @@ def parse(String description) {
 def refresh() {
     log.debug "refresh"
 
-    sendEvent(name: "temperature", value: 17, unit: "C")
     sendGetCommand("devicestate")
-
     updateLastTime()
+}
+
+def fanAuto() {
+    log.debug "fanAuto"
+
+}
+
+def fanCirculate() {
+    log.debug "fanCirculate"
+}
+
+def fanOn() {
+    log.debug "fanOn"
+}
+
+def setThermostatFanMode(mode) {
+    log.debug "setThermostatFanMode : $mode"
 }
 
 // Thermostat Cooling Setpoint
 def setCoolingSetpoint(setpoint) {
-    log.debug "setCoolingSetpoint : $level"
+    log.debug "setCoolingSetpoint : $setpoint"
 
     if (setpoint < 18) {
         setpoint = 18
