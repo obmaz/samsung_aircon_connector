@@ -196,7 +196,7 @@ AC_FUN_DIRECTION/Left
 AC_FUN_DIRECTION/Right
 AC_FUN_COMODE/Off
 AC_FUN_COMODE/Quiet //Silent Mode
-AC_FUN_COMODE/Smart //Smart Sensor On(?)
+AC_FUN_COMODE/Smart //Smart Sensor Mode based on Camera 
 AC_FUN_COMODE/Speed //Temporary Speed up
 AC_FUN_POWER/Off
 AC_FUN_POWER/On
