@@ -68,6 +68,8 @@ def updated() {
     // Only can remove the enum, cannot add or modify due to "additionalProperties : false" in capavility definition
     sendEvent(name: "supportedThermostatFanModes", value: ["auto", "circulate", "followschedule", "on"])
     sendEvent(name: "supportedThermostatModes", value: ["auto", "eco", "rush our", "cool", "off"])
+
+    runEvery1Minute(refresh)
 }
 
 def installed() {
@@ -164,7 +166,7 @@ def sendCommand(path, callback) {
 }
 
 def refreshCallback(physicalgraph.device.HubResponse hubResponse) {
-    log.debug "callback"
+    log.debug "refreshCallback"
 
     try {
         def msg = parseLanMessage(hubResponse.description)
@@ -175,10 +177,9 @@ def refreshCallback(physicalgraph.device.HubResponse hubResponse) {
             currentState[jsonObj.data.deviceState.device.attr[i].id] = jsonObj.data.deviceState.device.attr[i].value
         }
     } catch (e) {
-        log.error "callback : Exception caught while parsing data: " + e
+        log.error "refreshCallback : Exception caught while parsing data: " + e
     }
 
-    log.debug "jsonMap : $currentState"
     updateAttribute()
 }
 
@@ -219,129 +220,4 @@ AC_FUN_OPMODE/Heat
 AC_FUN_WINDLEVEL/Auto
 AC_FUN_WINDLEVEL/Low
 AC_FUN_WINDLEVEL/Mid
-*/
-
-
-/*
-@Field
-        AIR_CLEAN_VALUE = [
-                0: [val: "@AC_MAIN_AIRCLEAN_OFF_W", str: "OFF"],
-                1: [val: "@AC_MAIN_AIRCLEAN_ON_W", str: "ON"]
-        ]
-
-@Field
-        OPERATION_VALUE = [
-                0  : [val: "@AC_MAIN_OPERATION_OFF_W", str: "OFF"],
-                1  : [val: "@AC_MAIN_OPERATION_RIGHT_ON_W", str: "RIGHT ON"],
-                256: [val: "@AC_MAIN_OPERATION_LEFT_ON_W", str: "LEFT ON"],
-                257: [val: "@AC_MAIN_OPERATION_ALL_ON_W", str: "ALL ON"]
-        ]
-
-def setInfo(String app_url, String address) {
-    log.debug "setInfo : ${app_url}, ${address}"
-    state.app_url = app_url
-    state.id = address
-}
-
-def setData(dataList) {
-    for (data in dataList) {
-        state[data.id] = data.code
-    }
-}
-
-def setStatus(data) {
-    setCoolingSetpoint(19)
-
-    log.debug "setStatus Update >> ${data.key} >> ${data.data}"
-    def jsonObj = new JsonSlurper().parseText(data.data)
-
-    if (jsonObj.data.state.reported != null) {
-        def report = jsonObj.data.state.reported
-
-        if (report["airState.operation"] != null) {
-            sendEvent(name: "switch", value: report["airState.operation"] == 0 ? "off" : "on")
-            def thermostatMode = "cool"
-            def thermostatOperatingState = "cooling"
-            if (state.lastOpMode == 0) {
-                thermostatMode = "cool"
-                thermostatOperatingState = "cooling"
-            } else if (state.lastOpMode == 4) {
-                thermostatMode = "heat"
-                thermostatOperatingState = "heating"
-            }
-            if (report["airState.operation"] == 0) {
-                thermostatOperatingState = "idle"
-                thermostatMode = "off"
-            }
-
-            sendEvent(name: "thermostatOperatingState", value: thermostatOperatingState)
-            sendEvent(name: "thermostatMode", value: thermostatMode)
-
-        }
-
-        if (report["airState.opMode"] != null) {
-            state.lastOpMode = report["airState.opMode"]
-
-            //sendEvent(name: "mode", value: OP_MODE_VALUE[report["airState.opMode"]]["str"][language])
-            //sendEvent(name: "airConditionerMode", value: OP_MODE_VALUE[report["airState.opMode"]]["str"]["EN"])
-
-            if (device.currentValue("switch") == "on") {
-                switch (report["airState.opMode"]) {
-                    case 0:
-                        sendEvent(name: "thermostatOperatingState", value: "cooling")
-                        sendEvent(name: "thermostatMode", value: "cool")
-                        break
-                    case 4:
-                        sendEvent(name: "thermostatOperatingState", value: "heating")
-                        sendEvent(name: "thermostatMode", value: "heat")
-                        break
-                }
-            } else {
-                sendEvent(name: "thermostatOperatingState", value: "idle")
-                sendEvent(name: "thermostatMode", value: "off")
-            }
-        }
-
-        if (report["airState.tempState.current"] != null) {
-            sendEvent(name: "temperature", value: report["airState.tempState.current"], unit: "C", displayed: false)
-        }
-
-        if (report["airState.tempState.target"] != null) {
-            sendEvent(name: "coolingSetpoint", value: report["airState.tempState.target"])
-        }
-
-        if (report["airState.windStrength"] != null) {
-            //sendEvent(name: "wind", value: WIND_VALUE[report["airState.windStrength"]]["str"])
-        }
-        if (report["airState.humidity.current"] != null) {
-            sendEvent(name: "humidity", value: (report["airState.humidity.current"] / 10), displayed: false)
-        }
-
-
-        if (report["airState.quality.PM1"] != null) {
-            sendEvent(name: "pm1", value: report["airState.quality.PM1"], displayed: false)
-        }
-        if (report["airState.quality.PM10"] != null) {
-            sendEvent(name: "dustLevel", value: report["airState.quality.PM10"], displayed: false)
-        }
-        if (report["airState.quality.PM2"] != null) {
-            sendEvent(name: "fineDustLevel", value: report["airState.quality.PM2"], displayed: false)
-        }
-
-        if (report["airState.reservation.sleepTime"] != null) {
-            sendEvent(name: "sleepTime", value: report["airState.reservation.sleepTime"], displayed: false)
-        }
-
-        if (report["airState.wDir.upDown"] != null) {
-            sendEvent(name: "windUpDown", value: report["airState.wDir.upDown"] == 0 ? "off" : "on", displayed: false)
-        }
-        if (report["airState.wDir.upDown"] != null) {
-            sendEvent(name: "windUpDown", value: report["airState.wDir.upDown"] == 0 ? "off" : "on", displayed: false)
-        }
-    }
-
-    sendEvent(name: "thermostatFanMode", value: "auto")
-    updateLastTime();
-}
-
 */
