@@ -33,7 +33,7 @@ import groovy.transform.Field
 @Field currentSetCoolingSetpoint = 0
 
 metadata {
-    definition(name: "af ha153", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThings", vid: "441cc54e-752e-35ea-914c-3edfcddd7bb1", ocfDeviceType: 'oic.d.airconditioner') {
+    definition(name: "af ha153", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThings", vid: "63eefaaa-b4af-3c68-abce-24d0110d6a54", ocfDeviceType: 'oic.d.airconditioner') {
         capability "Temperature Measurement"
         capability "Thermostat Cooling Setpoint"
         capability "Thermostat Fan Mode"

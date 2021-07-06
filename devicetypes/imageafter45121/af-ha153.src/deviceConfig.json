@@ -43,6 +43,13 @@
         },
         {
             "component": "main",
+            "capability": "thermostatFanMode",
+            "version": 1,
+            "values": [],
+            "patch": []
+        },
+        {
+            "component": "main",
             "capability": "imageafter45121.colorTemperatureMoon",
             "version": 1,
             "values": [],
@@ -74,6 +81,13 @@
             },
             {
                 "component": "main",
+                "capability": "thermostatFanMode",
+                "version": 1,
+                "values": [],
+                "patch": []
+            },
+            {
+                "component": "main",
                 "capability": "imageafter45121.colorTemperatureMoon",
                 "version": 1,
                 "values": [],
@@ -98,6 +112,13 @@
             {
                 "component": "main",
                 "capability": "thermostatCoolingSetpoint",
+                "version": 1,
+                "values": [],
+                "patch": []
+            },
+            {
+                "component": "main",
+                "capability": "thermostatFanMode",
                 "version": 1,
                 "values": [],
                 "patch": []
