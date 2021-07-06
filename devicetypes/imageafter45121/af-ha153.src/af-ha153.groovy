@@ -30,12 +30,12 @@
 import groovy.json.JsonSlurper
 import groovy.transform.Field
 
-@Field currentState = [:]
+@Field Map currentState = [:]
 
 metadata {
     definition(name: "af ha153", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThings", vid: "d03db54d-7dd3-3d0a-8716-fa5ee657e561", ocfDeviceType: 'oic.d.airconditioner') {
         capability "Switch"
-		capability "Temperature Measurement"
+        capability "Temperature Measurement"
         capability "Thermostat Cooling Setpoint"
         capability "Thermostat Fan Mode"
         capability "Thermostat Mode"
@@ -82,8 +82,7 @@ def parse(String description) {
 
 def refresh() {
     log.debug "refresh"
-
-    sendGetCommand("devicestate")
+    sendCommand("/get/devicestate", callback)
 }
 
 def fanAuto() {
@@ -101,18 +100,18 @@ def fanOn() {
 // Switch
 def on() {
     log.debug "on"
-    sendControlCommand("AC_FUN_POWER/Off")
+    sendCommand("/control/AC_FUN_POWER/On")
 }
 
 def off() {
     log.debug "off"
-    sendControlCommand("AC_FUN_POWER/On")
+    sendCommand("/control/AC_FUN_POWER/Off")
 }
 
 // Thermostat Fan Mode
 def setThermostatFanMode(mode) {
     log.debug "setThermostatFanMode : $mode"
-    
+
     switch (mode) {
         case "auto":
             fanAuto()
@@ -141,24 +140,15 @@ def setCoolingSetpoint(setpoint) {
         setpoint = 30
     }
 
-    sendControlCommand("AC_FUN_TEMPSET/$setpoint")
-}
-
-def sendControlCommand(command) {
-    log.debug "sendControlCommand : $command"
-
-    def path = "/control/$command"
-    sendCommand(path)
-}
-
-def sendGetCommand(command) {
-    log.debug "sendGetCommand : $command"
-
-    def path = "/get/$command"
-    sendCommand(path)
+    sendCommand("/control/AC_FUN_TEMPSET/$setpoint")
 }
 
 def sendCommand(path) {
+    sendCommand(path, null)
+    refresh()
+}
+
+def sendCommand(path, callback) {
     log.debug "sendCommand : ${parent.getServerIP()} : ${parent.getServerPort()}${path}"
     def params = [
             "method" : "GET",
@@ -170,7 +160,7 @@ def sendCommand(path) {
     ]
 
     def myhubAction = new physicalgraph.device.HubAction(params, null, [callback: callback])
-    sendHubCommand(myhubAction)   
+    sendHubCommand(myhubAction)
 }
 
 def callback(physicalgraph.device.HubResponse hubResponse) {
@@ -179,29 +169,28 @@ def callback(physicalgraph.device.HubResponse hubResponse) {
     try {
         def msg = parseLanMessage(hubResponse.description)
         def jsonObj = new JsonSlurper().parseText(msg.body)
-		def attrCount = jsonObj.data.deviceState.device.attr.size()
+        def attrCount = jsonObj.data.deviceState.device.attr.size()
 
-for (def i = 0; i < attrCount; i++) {
-		   currentState[jsonObj.data.deviceState.device.attr[i].id] = jsonObj.data.deviceState.device.attr[i].value
-		}
+        for (def i = 0; i < attrCount; i++) {
+            currentState[jsonObj.data.deviceState.device.attr[i].id] = jsonObj.data.deviceState.device.attr[i].value
+        }
     } catch (e) {
         log.error "callback : Exception caught while parsing data: " + e
     }
 
-	log.debug "jsonMap : $currentState"
+    log.debug "jsonMap : $currentState"
     updateAttribute()
 }
 
 def updateAttribute() {
     log.debug "updateAttribute"
 
-    sendEvent(name: "switch", value: currentState[AC_FUN_POWER])
-    sendEvent(name: "temperature", value: currentState[AC_FUN_TEMPNOW], unit: "C")
-	sendEvent(name: "coolingSetpoint", value: currentState[AC_FUN_TEMPSET], unit: "C")
+    sendEvent(name: "switch", value: currentState.AC_FUN_POWER.toLowerCase())
+    sendEvent(name: "temperature", value: currentState.AC_FUN_TEMPNOW.toInteger(), unit: "C")
+    sendEvent(name: "coolingSetpoint", value: currentState.AC_FUN_TEMPSET.toInteger(), unit: "C")
+    sendEvent(name: "thermostatMode", value: "auto")
+    sendEvent(name: "thermostatFanMode", value: "auto")
 
-	sendEvent(name: "thermostatMode", value: "cool")
-  	sendEvent(name: "thermostatFanMode", value: "auto")
-	
     updateLastTime()
 }
 
