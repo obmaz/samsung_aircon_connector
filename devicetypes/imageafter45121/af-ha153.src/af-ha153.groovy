@@ -41,6 +41,7 @@ metadata {
         capability "Refresh"
         capability "imageafter45121.colorTemperatureMoon"
 
+        attribute "thermostatFanMode"
         attribute "lastCheckin", "Date"
 //		attribute "temperature", [string]
 //        command "setStatus"
@@ -65,7 +66,7 @@ def updateLastTime() {
 
 def updated() {
     log.debug "updated"
-    sendEvent(name: "supportedThermostatFanModes", value: ["auto", "circulate2", "followschedule", "on", "test"])
+    sendEvent(name: "supportedThermostatFanModes", value: ["auto", "circulate", "followschedule", "on"])
 }
 
 def installed() {
