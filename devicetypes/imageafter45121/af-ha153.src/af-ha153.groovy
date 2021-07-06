@@ -33,7 +33,8 @@ import groovy.transform.Field
 @Field currentSetCoolingSetpoint = 0
 
 metadata {
-    definition(name: "af ha153", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThings", vid: "d03db54d-7dd3-3d0a-8716-fa5ee657e561", ocfDeviceType: 'oic.d.airconditioner') {
+    definition(name: "af ha153", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThings", vid: "c65c2f90-8034-302d-826b-53d906705819", ocfDeviceType: 'oic.d.airconditioner') {
+        capability "Switch"
         capability "Temperature Measurement"
         capability "Thermostat Cooling Setpoint"
         capability "Thermostat Fan Mode"
@@ -44,8 +45,6 @@ metadata {
 
         attribute "lastCheckin", "Date"
 //		attribute "temperature", [string]
-//        command "setStatus"
-//        command "setStatusMap"
     }
 
     simulator {
@@ -66,30 +65,28 @@ def updateLastTime() {
 
 def updated() {
     log.debug "updated"
+    // Only can remove the enum, cannot add or modify due to "additionalProperties : false" in capavility definition
     sendEvent(name: "supportedThermostatFanModes", value: ["auto", "circulate", "followschedule", "on"])
-    sendEvent(name: "supportedThermostatModes", value: ["auto", "eco", "rush our", "cool", "emergency heat", "heat", "off"])
+    sendEvent(name: "supportedThermostatModes", value: ["auto", "eco", "rush our", "cool", "off"])
 }
 
 def installed() {
     log.debug "installed"
-
-//    sendEvent(name: "supportedThermostatModes", value: ["auto", "cool", "heat", "off"])
 }
 
 def parse(String description) {
     log.debug "parse : $description"
+    updateLastTime();
 }
 
 def refresh() {
     log.debug "refresh"
 
     sendGetCommand("devicestate")
-    updateLastTime()
 }
 
 def fanAuto() {
     log.debug "fanAuto"
-
 }
 
 def fanCirculate() {
@@ -100,12 +97,38 @@ def fanOn() {
     log.debug "fanOn"
 }
 
-def setThermostatFanMode(mode) {
-    log.debug "setThermostatFanMode : $mode"
+
+// Switch
+def on() {
+    log.debug "on"
+    sendControlCommand("AC_FUN_POWER/Off")
 }
 
-def setThermostatMode(mode) {
+def off() {
+    log.debug "off"
+    sendControlCommand("AC_FUN_POWER/On")
+}
+
+// Thermostat Fan Mode
+def setThermostatFanMode(mode) {
     log.debug "setThermostatFanMode : $mode"
+
+    switch (mode) {
+        case "auto":
+            fanAuto()
+            break
+        case "circulate":
+            fanCirculate()
+            break
+        case "on":
+            fanOn()
+            break
+    }
+}
+
+// Thermostat Mode
+def setThermostatMode(mode) {
+    log.debug "setThermostatMode : $mode"
 }
 
 // Thermostat Cooling Setpoint
@@ -118,7 +141,7 @@ def setCoolingSetpoint(setpoint) {
         setpoint = 30
     }
 
-    sendEvent(name: "coolingSetpoint", value: setpoint)
+    //sendEvent(name: "coolingSetpoint", value: setpoint, unit: "C")
     sendControlCommand("AC_FUN_TEMPSET/$setpoint")
 }
 
@@ -179,9 +202,9 @@ AC_FUN_OPMODE/Dry
 AC_FUN_OPMODE/Wind
 AC_FUN_OPMODE/Heat
 
-AC_FUN_POWER/Off
-AC_FUN_POWER/On
-AC_FUN_POWER/Toggle
+	AC_FUN_POWER/Off
+	AC_FUN_POWER/On
+	AC_FUN_POWER/Toggle
 	AC_FUN_TEMPSET/{number}
 	AC_FUN_TEMPSET/Up
 	AC_FUN_TEMPSET/Down
@@ -313,27 +336,4 @@ def setStatus(data) {
     updateLastTime();
 }
 
-
-def fanOn() {
-    wind1()
-}
-
-def fanAuto() {
-    wind2()
-}
-
-def setThermostatMode(mode) {
-    log.debug "setThermostatMode " + mode
-    switch (mode) {
-        case "off":
-            off()
-            break
-        case "cool":
-            cool()
-            break
-        case "heat":
-            heat()
-            break
-    }
-}
 */
