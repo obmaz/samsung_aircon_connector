@@ -30,7 +30,7 @@
 import groovy.json.JsonSlurper
 import groovy.transform.Field
 
-@Field currentSetCoolingSetpoint = 0
+@Field currentState = [:]
 
 metadata {
     definition(name: "af ha153", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThings", vid: "d03db54d-7dd3-3d0a-8716-fa5ee657e561", ocfDeviceType: 'oic.d.airconditioner') {
@@ -74,9 +74,10 @@ def installed() {
     log.debug "installed"
 }
 
+// To use parse when hubaction should call with DNI that is MAC of server
+// It is too complicate and mess way since user should know MAC address
 def parse(String description) {
-    log.debug "parse : $description"
-    updateLastTime();
+    log.debug "parse"
 }
 
 def refresh() {
@@ -96,7 +97,6 @@ def fanCirculate() {
 def fanOn() {
     log.debug "fanOn"
 }
-
 
 // Switch
 def on() {
@@ -141,7 +141,6 @@ def setCoolingSetpoint(setpoint) {
         setpoint = 30
     }
 
-    //sendEvent(name: "coolingSetpoint", value: setpoint, unit: "C")
     sendControlCommand("AC_FUN_TEMPSET/$setpoint")
 }
 
@@ -160,31 +159,51 @@ def sendGetCommand(command) {
 }
 
 def sendCommand(path) {
-    log.debug "sendCommand : " + parent.getServerIP() + ":" + parent.getServerPort() + path
-    def options = [
+    log.debug "sendCommand : ${parent.getServerIP()} : ${parent.getServerPort()}${path}"
+    def params = [
             "method" : "GET",
             "path"   : path,
             "headers": [
                     "HOST"        : parent.getServerIP() + ":" + parent.getServerPort(),
                     "Content-Type": "application/json"
-            ],
+            ]
     ]
 
-    def myhubAction = new physicalgraph.device.HubAction(options, null, [callback: callback])
-    sendHubCommand(myhubAction)
+    def myhubAction = new physicalgraph.device.HubAction(params, null, [callback: callback])
+    sendHubCommand(myhubAction)   
 }
 
 def callback(physicalgraph.device.HubResponse hubResponse) {
-    def msg, json, status
+    log.debug "callback"
+
     try {
-        msg = parseLanMessage(hubResponse.description)
+        def msg = parseLanMessage(hubResponse.description)
         def jsonObj = new JsonSlurper().parseText(msg.body)
-        log.debug "callback : " + jsonObj
+		def attrCount = jsonObj.data.deviceState.device.attr.size()
+
+for (def i = 0; i < attrCount; i++) {
+		   currentState[jsonObj.data.deviceState.device.attr[i].id] = jsonObj.data.deviceState.device.attr[i].value
+		}
     } catch (e) {
         log.error "callback : Exception caught while parsing data: " + e
     }
+
+	log.debug "jsonMap : $currentState"
+    updateAttribute()
 }
 
+def updateAttribute() {
+    log.debug "updateAttribute"
+
+    sendEvent(name: "switch", value: currentState[AC_FUN_POWER])
+    sendEvent(name: "temperature", value: currentState[AC_FUN_TEMPNOW], unit: "C")
+	sendEvent(name: "coolingSetpoint", value: currentState[AC_FUN_TEMPSET], unit: "C")
+
+	sendEvent(name: "thermostatMode", value: "cool")
+  	sendEvent(name: "thermostatFanMode", value: "auto")
+	
+    updateLastTime()
+}
 
 /*
 AC_ADD_AUTOCLEAN/On
