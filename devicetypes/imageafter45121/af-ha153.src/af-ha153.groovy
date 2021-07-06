@@ -37,6 +37,7 @@ metadata {
         capability "Temperature Measurement"
         capability "Thermostat Cooling Setpoint"
         capability "Thermostat Fan Mode"
+        capability "Thermostat Mode"
 
         capability "Refresh"
         capability "imageafter45121.colorTemperatureMoon"
@@ -66,6 +67,7 @@ def updateLastTime() {
 def updated() {
     log.debug "updated"
     sendEvent(name: "supportedThermostatFanModes", value: ["auto", "circulate", "followschedule", "on"])
+    sendEvent(name: "supportedThermostatModes", value: ["auto", "eco", "rush our", "cool", "emergency heat", "heat", "off"])
 }
 
 def installed() {
@@ -99,6 +101,10 @@ def fanOn() {
 }
 
 def setThermostatFanMode(mode) {
+    log.debug "setThermostatFanMode : $mode"
+}
+
+def setThermostatMode(mode) {
     log.debug "setThermostatFanMode : $mode"
 }
 
