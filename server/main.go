@@ -90,7 +90,6 @@ func requestConfigHandler(ctx *gin.Context) {
 	case "close":
 		if conn != nil {
 			disconnect()
-
 		}
 
 		makeResponse(ctx, response, nil)
@@ -118,32 +117,22 @@ func requestControlHandler(ctx *gin.Context) {
 			}
 		}
 	case "AC_FUN_TEMPSET":
+        tempValueStr := getValueFromID(ctx, "AC_FUN_TEMPSET")
+		tempValue, _ := strconv.Atoi(tempValueStr)
+
 		if value == "Up" {
-			tempValueStr := getValueFromID(ctx, "AC_FUN_TEMPSET")
-			tempValue, _ := strconv.Atoi(tempValueStr)
 			tempValue++
-
-			if tempValue <= 20 {
-				tempValue = 20
-			} else if tempValue >= 28 {
-				tempValue = 28
-			}
-			value = strconv.Itoa(tempValue)
 		} else if value == "Down" {
-			tempValueStr := getValueFromID(ctx, "AC_FUN_TEMPSET")
-			tempValue, _ := strconv.Atoi(tempValueStr)
 			tempValue--
-
-			if tempValue <= 20 {
-				tempValue = 20
-			} else if tempValue >= 28 {
-				tempValue = 28
-			}
-			value = strconv.Itoa(tempValue)
 		}
+
+        if tempValue < 18 {
+                tempValue = 18
+            } else if tempValue > 30  {
+                tempValue = 30
+        }
+        value = strconv.Itoa(tempValue)
 	default:
-		// 404 error
-		return
 	}
 	message, err := deviceContorl(command, value)
 	response.Data = message
