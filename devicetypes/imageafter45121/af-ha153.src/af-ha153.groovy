@@ -41,7 +41,6 @@ metadata {
         capability "Refresh"
         capability "imageafter45121.colorTemperatureMoon"
 
-        attribute "thermostatFanMode"
         attribute "lastCheckin", "Date"
 //		attribute "temperature", [string]
 //        command "setStatus"
