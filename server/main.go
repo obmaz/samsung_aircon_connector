@@ -13,6 +13,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/davecgh/go-spew/spew"
 	"github.com/gin-gonic/gin"
 	"gopkg.in/yaml.v2"
 )
@@ -46,12 +47,7 @@ func loadConfig() {
 			log.Fatalf("Config Unmarshal Error : %s", err.Error())
 		}
 	}
-
-	log.Println("ServerPort : ", config.ServerPort)
-	log.Println("AirconIP : ", config.AirconIP)
-	log.Println("AirconPort: ", config.AirconPort)
-	log.Println("Token : ", config.Token)
-	log.Println("DUID : ", config.DUID)
+	spew.Dump(config)
 }
 
 func main() {
