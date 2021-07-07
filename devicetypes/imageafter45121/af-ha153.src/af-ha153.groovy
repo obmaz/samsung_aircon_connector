@@ -45,7 +45,6 @@ metadata {
         capability "Thermostat Mode"
 
         capability "Refresh"
-        capability "imageafter45121.colorTemperatureMoon"
 
         attribute "lastCheckin", "Date"
 //		attribute "temperature", [string]
