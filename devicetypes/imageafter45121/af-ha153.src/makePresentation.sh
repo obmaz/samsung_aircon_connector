@@ -28,9 +28,9 @@
 # ./smartthings capabilities:presentation:update imageafter45121.thermostatCoolingSetpoint 1 -j -i=coolingSetpoint.json
 ######################################################################################
 # Create deviceConfig.json
-# The dth uid can be found on groovy ide url / af ha153 dth key : b2bb3390-53d6-4f21-9637-99df925e52fe
+# The dth uid can be found on groovy ide url / af ha153 dth key : 604b033e-3a68-494f-8871-bccf303f7a3c
 # It makes the deviceConfig.json based on dth
-#./smartthings presentation:device-config:generate b2bb3390-53d6-4f21-9637-99df925e52fe --dth -o=deviceConfig.json -j
+#./smartthings presentation:device-config:generate 604b033e-3a68-494f-8871-bccf303f7a3c --dth -o=deviceConfig.json -j
 ######################################################################################
 # Create VID
 # it makes the vid based on deviceConfig.json

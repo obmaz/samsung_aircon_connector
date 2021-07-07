@@ -167,7 +167,7 @@ def sendCommand(path, callback) {
     sendHubCommand(myhubAction)
 }
 
-def refreshCallback (physicalgraph.device.HubResponse hubResponse) {
+def refreshCallback(physicalgraph.device.HubResponse hubResponse) {
     log.debug "refreshCallback"
 
     try {
