@@ -184,43 +184,43 @@ Please use it if connection problem happens.
 You can find more detail in type attribute of "devicestate" response  
   
 ```
-AC_FUN_WINDLEVEL/Auto
-AC_FUN_WINDLEVEL/Mid
-AC_FUN_WINDLEVEL/High
-AC_FUN_WINDLEVEL/Turbo
+AC_FUN_COMODE/Off
+AC_FUN_COMODE/Quiet //Silent Mode
+AC_FUN_COMODE/Smart //Smart Sensor Mode based on Camera 
+AC_FUN_COMODE/Speed //Temporary Speed up
 AC_FUN_DIRECTION/Off
 AC_FUN_DIRECTION/Center
 AC_FUN_DIRECTION/Wide
 AC_FUN_DIRECTION/Long
 AC_FUN_DIRECTION/Left
 AC_FUN_DIRECTION/Right
-AC_FUN_COMODE/Off
-AC_FUN_COMODE/Quiet //Silent Mode
-AC_FUN_COMODE/Smart //Smart Sensor Mode based on Camera 
-AC_FUN_COMODE/Speed //Temporary Speed up
-AC_FUN_POWER/Off
-AC_FUN_POWER/On
-AC_FUN_POWER/Toggle
+AC_FUN_OPERATION/Family
+AC_FUN_OPERATION/Solo
 AC_FUN_OPMODE/Auto
 AC_FUN_OPMODE/Wind
 AC_FUN_OPMODE/Cool
 AC_FUN_OPMODE/Dry
 AC_FUN_OPMODE/DryClean
 AC_FUN_OPMODE/CoolClean
+AC_FUN_POWER/Off
+AC_FUN_POWER/On
+AC_FUN_POWER/Toggle
 AC_FUN_TEMPSET/{number}
 AC_FUN_TEMPSET/Up
 AC_FUN_TEMPSET/Down
-AC_FUN_OPERATION/Family
-AC_FUN_OPERATION/Solo
+AC_FUN_WINDLEVEL/Auto
+AC_FUN_WINDLEVEL/Mid
+AC_FUN_WINDLEVEL/High
+AC_FUN_WINDLEVEL/Turbo
 
+AC_ADD_AUTOCLEAN/On
+AC_ADD_AUTOCLEAN/Off
 AC_ADD_SMARTON/Off // Lock off Official App
 AC_ADD_SMARTON/On  // Lock on Official App
 AC_ADD_VOLUME/Mute
 AC_ADD_VOLUME/33
 AC_ADD_VOLUME/66
 AC_ADD_VOLUME/100
-AC_ADD_AUTOCLEAN/On
-AC_ADD_AUTOCLEAN/Off
 ```
 
 #### Get Device State
