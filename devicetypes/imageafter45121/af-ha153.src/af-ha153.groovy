@@ -71,11 +71,12 @@ def updated() {
 
 def installed() {
     log.debug "installed"
-    runEvery1Minute(refresh)
-    // Only can remove the enum, cannot add or modify due to "additionalProperties : false" in capavility definition
 
+    // Only can remove the enum, cannot add or modify due to "additionalProperties : false" in capavility definition
     sendEvent(name: "supportedThermostatFanModes", value: ["auto", "circulate", "followschedule", "on"])
     sendEvent(name: "supportedThermostatModes", value: ["auto", "eco", "rush our", "cool", "off"])
+
+    runEvery1Minute(refresh)
 }
 
 // To use parse when hubaction should call with DNI that is MAC of server
@@ -218,7 +219,6 @@ def updateAttribute() {
     if (currentState.AC_ADD_VOLUME != null) {
 
     }
-
 }
 
 /*
