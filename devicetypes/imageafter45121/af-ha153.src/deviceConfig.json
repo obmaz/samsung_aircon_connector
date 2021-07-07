@@ -2,60 +2,177 @@
     "dashboard": {
         "states": [
             {
-                "label": "{{coolingSetpoint.value}} {{coolingSetpoint.unit}}"
+                "component": "main",
+                "capability": "temperatureMeasurement",
+                "version": 1,
+                "values": [],
+                "patch": []
             }
         ],
-        "actions": [],
-        "basicPlus": []
+        "actions": [
+            {
+                "component": "main",
+                "capability": "temperatureMeasurement",
+                "version": 1,
+                "values": [],
+                "patch": []
+            }
+        ]
     },
     "detailView": [
         {
-            "label": "Cooling Detail View",
-            "displayType": "slider",
-            "slider": {
-                "range": [
-                    18,
-                    30
-                ],
-                "step": 1,
-                "command": "setCoolingSetpoint",
-                "unit": "coolingSetpoint.unit",
-                "value": "coolingSetpoint.value"
-            }
+            "component": "main",
+            "capability": "temperatureMeasurement",
+            "version": 1,
+            "values": [],
+            "patch": []
+        },
+        {
+            "component": "main",
+            "capability": "switch",
+            "version": 1,
+            "values": [],
+            "patch": []
+        },
+        {
+            "component": "main",
+            "capability": "refresh",
+            "version": 1,
+            "values": [],
+            "patch": []
+        },
+        {
+            "component": "main",
+            "capability": "thermostatCoolingSetpoint",
+            "version": 1,
+            "values": [],
+            "patch": []
+        },
+        {
+            "component": "main",
+            "capability": "thermostatMode",
+            "version": 1,
+            "values": [],
+            "patch": []
+        },
+        {
+            "component": "main",
+            "capability": "thermostatFanMode",
+            "version": 1,
+            "values": [],
+            "patch": []
+        },
+        {
+            "component": "main",
+            "capability": "imageafter45121.colorTemperatureMoon",
+            "version": 1,
+            "values": [],
+            "patch": []
         }
     ],
     "automation": {
         "conditions": [
             {
-                "label": "Cooling Automation",
-                "displayType": "slider",
-                "slider": {
-                    "range": [
-                        18,
-                        30
-                    ],
-                    "step": 1,
-                    "unit": "coolingSetpoint.unit",
-                    "value": "coolingSetpoint.value"
-                }
+                "component": "main",
+                "capability": "temperatureMeasurement",
+                "version": 1,
+                "values": [],
+                "patch": []
+            },
+            {
+                "component": "main",
+                "capability": "switch",
+                "version": 1,
+                "values": [],
+                "patch": []
+            },
+            {
+                "component": "main",
+                "capability": "refresh",
+                "version": 1,
+                "values": [],
+                "patch": []
+            },
+            {
+                "component": "main",
+                "capability": "thermostatCoolingSetpoint",
+                "version": 1,
+                "values": [],
+                "patch": []
+            },
+            {
+                "component": "main",
+                "capability": "thermostatMode",
+                "version": 1,
+                "values": [],
+                "patch": []
+            },
+            {
+                "component": "main",
+                "capability": "thermostatFanMode",
+                "version": 1,
+                "values": [],
+                "patch": []
+            },
+            {
+                "component": "main",
+                "capability": "imageafter45121.colorTemperatureMoon",
+                "version": 1,
+                "values": [],
+                "patch": []
             }
         ],
         "actions": [
             {
-                "label": "Cooling Action Temperature",
-                "displayType": "slider",
-                "slider": {
-                    "range": [
-                        18,
-                        30
-                    ],
-                    "step": 1,
-                    "unit": "coolingSetpoint.unit",
-                    "value": "coolingSetpoint.value"
-                }
+                "component": "main",
+                "capability": "temperatureMeasurement",
+                "version": 1,
+                "values": [],
+                "patch": []
+            },
+            {
+                "component": "main",
+                "capability": "switch",
+                "version": 1,
+                "values": [],
+                "patch": []
+            },
+            {
+                "component": "main",
+                "capability": "refresh",
+                "version": 1,
+                "values": [],
+                "patch": []
+            },
+            {
+                "component": "main",
+                "capability": "thermostatCoolingSetpoint",
+                "version": 1,
+                "values": [],
+                "patch": []
+            },
+            {
+                "component": "main",
+                "capability": "thermostatMode",
+                "version": 1,
+                "values": [],
+                "patch": []
+            },
+            {
+                "component": "main",
+                "capability": "thermostatFanMode",
+                "version": 1,
+                "values": [],
+                "patch": []
+            },
+            {
+                "component": "main",
+                "capability": "imageafter45121.colorTemperatureMoon",
+                "version": 1,
+                "values": [],
+                "patch": []
             }
         ]
     },
-    "id": "<XXXXXX YOUR NAMESPACE XXXXXXX>.colorTemperature",
-    "version": 1
+    "type": "dth"
 }

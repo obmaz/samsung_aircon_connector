@@ -33,7 +33,7 @@ import groovy.transform.Field
 @Field Map currentState = [:]
 
 metadata {
-    definition(name: "af ha153", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThings", vid: "d03db54d-7dd3-3d0a-8716-fa5ee657e561", ocfDeviceType: 'oic.d.airconditioner') {
+    definition(name: "af ha153", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThings", vid: "c65c2f90-8034-302d-826b-53d906705819", ocfDeviceType: 'oic.d.airconditioner') {
         capability "Switch"
         capability "Temperature Measurement"
         capability "Thermostat Cooling Setpoint"
