@@ -42,6 +42,8 @@ metadata {
         capability "Thermostat Fan Mode"
         capability "Thermostat Mode"
 
+        capability "Button"
+
         capability "Refresh"
 
         attribute "lastCheckin", "Date"
