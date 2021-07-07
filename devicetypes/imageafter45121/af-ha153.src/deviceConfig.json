@@ -64,7 +64,7 @@
         },
         {
             "component": "main",
-            "capability": "imageafter45121.colorTemperatureMoon",
+            "capability": "imageafter45121.thermostatCoolingSetpoint",
             "version": 1,
             "values": [],
             "patch": []
@@ -116,7 +116,7 @@
             },
             {
                 "component": "main",
-                "capability": "imageafter45121.colorTemperatureMoon",
+                "capability": "imageafter45121.thermostatCoolingSetpoint",
                 "version": 1,
                 "values": [],
                 "patch": []
@@ -167,7 +167,7 @@
             },
             {
                 "component": "main",
-                "capability": "imageafter45121.colorTemperatureMoon",
+                "capability": "imageafter45121.thermostatCoolingSetpoint",
                 "version": 1,
                 "values": [],
                 "patch": []
