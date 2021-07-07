@@ -2,7 +2,7 @@
 # Smartthings CLI        : https://github.com/SmartThingsCommunity/smartthings-cli
 # Capabilities Reference : https://smartthings.developer.samsung.com/docs/api-ref/capabilities.html
 # Community              : https://community.smartthings.com/t/custom-capability-and-cli-developer-preview/197296
-# Presentation check     : https://api.smartthings.com/v1/capabilities/imageafter45121.coolingSetpoint/1/presentation
+# Presentation check     : https://api.smartthings.com/v1/capabilities/imageafter45121.thermostatCoolingSetpoint/1/presentation
 ######################################################################################
 # Custom Capability  : Create Capability -> Create Presentation
 # Custom VID         : Create deviceConfig.json -> Create VID -> Updata VID to DTH
