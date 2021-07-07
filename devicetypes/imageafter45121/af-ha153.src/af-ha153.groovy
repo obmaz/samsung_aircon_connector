@@ -36,7 +36,7 @@ metadata {
     definition(name: "af ha153", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThings", vid: "44ec8ad5-b798-3c35-8067-e265f425772b", ocfDeviceType: 'oic.d.airconditioner') {
         capability "Switch"
         capability "Temperature Measurement"
-        capability "Thermostat Cooling Setpoint"
+        //capability "Thermostat Cooling Setpoint"
         capability "imageafter45121.thermostatCoolingSetpoint"
 
         capability "Thermostat Fan Mode"
@@ -66,15 +66,16 @@ def updateLastTime() {
 
 def updated() {
     log.debug "updated"
-    // Only can remove the enum, cannot add or modify due to "additionalProperties : false" in capavility definition
-    sendEvent(name: "supportedThermostatFanModes", value: ["auto", "circulate", "followschedule", "on"])
-    sendEvent(name: "supportedThermostatModes", value: ["auto", "eco", "rush our", "cool", "off"])
-
-    runEvery1Minute(refresh)
-}
+   
+   }
 
 def installed() {
     log.debug "installed"
+    runEvery1Minute(refresh)
+   // Only can remove the enum, cannot add or modify due to "additionalProperties : false" in capavility definition
+   
+    sendEvent(name: "supportedThermostatFanModes", value: ["auto", "circulate", "followschedule", "on"])
+    sendEvent(name: "supportedThermostatModes", value: ["auto", "eco", "rush our", "cool", "off"])
 }
 
 // To use parse when hubaction should call with DNI that is MAC of server
