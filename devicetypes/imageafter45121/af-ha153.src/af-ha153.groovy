@@ -37,6 +37,10 @@ metadata {
         capability "Switch"
         capability "Temperature Measurement"
         capability "Thermostat Cooling Setpoint"
+        capability "imageafter45121.thermostatCoolingSetpoint"
+
+        capability "imageafter45121.colortemperature"
+
         capability "Thermostat Fan Mode"
         capability "Thermostat Mode"
 

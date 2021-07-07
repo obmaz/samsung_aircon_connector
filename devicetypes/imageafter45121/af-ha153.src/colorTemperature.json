@@ -10,12 +10,12 @@
   },
   "detailView": [
     {
-      "label": "Color Temperature Moon",
+      "label": "Color Temperature",
       "displayType": "slider",
       "slider": {
         "range": [
           2200,
-          7000
+          6000
         ],
         "step": 1,
         "command": "setColorTemperature",
@@ -32,7 +32,7 @@
         "slider": {
           "range": [
             2200,
-            7000
+            6000
           ],
           "step": 1,
           "value": "colorTemperature.value",
@@ -47,7 +47,7 @@
         "slider": {
           "range": [
             2200,
-            7000
+            6000
           ],
           "step": 1,
           "command": "setColorTemperature",
@@ -56,6 +56,6 @@
       }
     ]
   },
-  "id": "imageafter45121.colorTemperatureMoon",
+  "id": "imageafter45121.colortemperature",
   "version": 1
 }

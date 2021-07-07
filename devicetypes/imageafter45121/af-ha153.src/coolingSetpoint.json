@@ -1,0 +1,61 @@
+{
+  "dashboard": {
+    "states": [
+      {
+        "label": "{{coolingSetpoint.value}} {{coolingSetpoint.unit}}"
+      }
+    ],
+    "actions": [],
+    "basicPlus": []
+  },
+  "detailView": [
+    {
+      "label": "coolingSetpoint detail",
+      "displayType": "slider",
+      "slider": {
+        "range": [
+          18,
+          30
+        ],
+        "step": 1,
+        "command": "setCoolingSetpoint",
+        "unit": "coolingSetpoint.unit",
+        "value": "coolingSetpoint.value"
+      }
+    }
+  ],
+  "automation": {
+    "conditions": [
+      {
+        "label": "coolingSetpoint automa",
+        "displayType": "slider",
+        "slider": {
+          "range": [
+            18,
+            30
+          ],
+          "step": 1,
+          "value": "coolingSetpoint.value",
+          "unit": "coolingSetpoint.unit"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "label": "coolingSetpoint action",
+        "displayType": "slider",
+        "slider": {
+          "range": [
+            18,
+            30
+          ],
+          "step": 1,
+          "command": "setCoolingSetpoint",
+          "unit": "coolingSetpoint.unit"
+        }
+      }
+    ]
+  },
+  "id": "imageafter45121.thermostatCoolingSetpoint",
+  "version": 1
+}
