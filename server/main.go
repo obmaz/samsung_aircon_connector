@@ -117,29 +117,32 @@ func requestControlHandler(ctx *gin.Context) {
 			}
 		}
 	case "AC_FUN_TEMPSET":
-        var targetTemp String
-        if value == "Up" || value == "Down" {
-            currentTempValueStr := getValueFromID(ctx, "AC_FUN_TEMPSET")
-            currentTempValue, _ := strconv.Atoi(currentTempValueStr)
+		var targetTemp int = 18
 
-            if value == "Up" {
-                currentTempValue++
-            } else if value == "Down" {
-                currentTempValue--
-            }
-            targetTemp = currentTempValue
-        } else {
-            targetTemp, _ = strconv.Atoi(value)
-        }
+		if value == "Up" || value == "Down" {
+			currentTempValueStr := getValueFromID(ctx, "AC_FUN_TEMPSET")
+			currentTempValue, _ := strconv.Atoi(currentTempValueStr)
 
-        if targetTemp < 18 {
-                targetTemp = 18
-            } else if targetTemp > 30  {
-                targetTemp = 30
-        }
-        value = strconv.Itoa(tempValue2)
+			if value == "Up" {
+				currentTempValue++
+			} else if value == "Down" {
+				currentTempValue--
+			}
+			targetTemp = currentTempValue
+		} else {
+			targetTemp, _ = strconv.Atoi(value)
+		}
+
+		if targetTemp < 18 {
+			targetTemp = 18
+		} else if targetTemp > 30 {
+			targetTemp = 30
+		}
+		value = strconv.Itoa(targetTemp)
+
 	default:
 	}
+
 	message, err := deviceContorl(command, value)
 	response.Data = message
 	makeResponse(ctx, response, err)
