@@ -154,7 +154,7 @@ def sendCommand(path) {
 }
 
 def sendCommand(path, callback) {
-    log.debug "sendCommand : ${parent.getServerIP()} : ${parent.getServerPort()}${path}"
+    log.debug "sendCommand : ${parent.getServerIP()}:${parent.getServerPort()}${path}"
     def params = [
             "method" : "GET",
             "path"   : path,
