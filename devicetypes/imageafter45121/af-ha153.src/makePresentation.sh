@@ -4,13 +4,11 @@
 # Community              : https://community.smartthings.com/t/custom-capability-and-cli-developer-preview/197296
 # Presentation check     : https://api.smartthings.com/v1/capabilities/imageafter45121.thermostatCoolingSetpoint/1/presentation
 ######################################################################################
-# Custom Capability  : Create Capability -> Create Presentation
-# Custom VID         : Create deviceConfig.json -> Create VID -> Updata VID to DTH
-#  Capability is device definition
-#  Presentation is control definition of capability
-#  VID is a set of capavilites
+# Capability is device definition
+# Presentation is control definition of capability
+# VID is a set of capavilites
 ######################################################################################
-# Create custom capabilitiy
+# Creating Custom Capabilities
 # It generates the uid like "imageafter45121.coolingSetpoint"
 # ./smartthings capabilities:create -n imageafter45121
 #-------------------------------------------------------------------------------------
@@ -20,17 +18,21 @@
 # Delete capability
 # ./smartthings capabilities:delete {id}
 ######################################################################################
-# Create Presentation custom capability
+# Creating Capabilities Presentations
 # it might register custom capavilitiy to smartthings server
 # ./smartthings capabilities:presentation:create imageafter45121.thermostatCoolingSetpoint 1 -j -i=coolingSetpoint.json
 #-------------------------------------------------------------------------------------
 # Update Presentation custom capability
 # ./smartthings capabilities:presentation:update imageafter45121.thermostatCoolingSetpoint 1 -j -i=coolingSetpoint.json
 ######################################################################################
-# Create deviceConfig.json
+# Updating DTH to use Custom Capabilities
+# Go to Groovy IDE and use custom capability
+######################################################################################
+# Generate / Post Device Configuration
 # The dth uid can be found on groovy ide url / af ha153 dth key : 604b033e-3a68-494f-8871-bccf303f7a3c
 # It makes the deviceConfig.json based on dth
-#./smartthings presentation:device-config:generate 604b033e-3a68-494f-8871-bccf303f7a3c --dth -o=deviceConfig.json -j
+# ./smartthings presentation:device-config:generate 604b033e-3a68-494f-8871-bccf303f7a3c --dth -o=deviceConfig.json -j
+# ./smartthings presentation:device-config:create -j -i deviceConfig.json
 ######################################################################################
 # Create VID
 # it makes the vid based on deviceConfig.json
@@ -39,6 +41,6 @@
 #    "mnmn": "SmartThingsCommunity",
 # ./smartthings presentation:device-config:create -j -i deviceConfig.json
 ######################################################################################
-# Update DTH
-# Use mnmn and vid to DTH
+# Publish DTH with updated display keys
+# Go to Groovy IDE and update VID in DTH
 ######################################################################################
