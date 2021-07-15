@@ -10,16 +10,44 @@
   },
   "detailView": [
     {
-      "label": "설정 온도",
-      "displayType": "slider",
-      "slider": {
-        "range": [
-          18,
-          30
-        ],
-        "step": 1,
-        "command": "setThermostatFanMode",
-        "value": "thermostatFanMode.value"
+      "label": "모드",
+      "displayType": "list",
+      "list": {
+        "command": {
+          "name": "setThermostatFanMode",
+          "alternatives": [
+            {
+              "key": "AAA",
+              "value": "Heat mode"
+            },
+            {
+              "key": "BBB",
+              "value": "Cool mode"
+            },
+            {
+              "key": "CCC",
+              "value": "Fan mode"
+            }
+          ],
+          "supportedValues": "supportedThermostatModes.value"
+        },
+        "state": {
+          "value": "thermostatMode.value",
+          "alternatives": [
+            {
+              "key": "AAA",
+              "value": "Heat mode"
+            },
+            {
+              "key": "BBB",
+              "value": "Cool mode"
+            },
+            {
+              "key": "CCC",
+              "value": "Fan mode"
+            }
+          ]
+        }
       }
     }
   ],
@@ -27,28 +55,47 @@
     "conditions": [
       {
         "label": "thermostatFanMode automa",
-        "displayType": "slider",
-        "slider": {
-          "range": [
-            18,
-            30
-          ],
-          "step": 1,
-          "value": "thermostatFanMode.value"
+        "displayType": "list",
+        "list": {
+          "value": "thermostatMode.value",
+          "alternatives": [
+            {
+              "key": "AAA",
+              "value": "Heat mode"
+            },
+            {
+              "key": "BBB",
+              "value": "Cool mode"
+            },
+            {
+              "key": "CCC",
+              "value": "Fan mode"
+            }
+          ]
         }
       }
     ],
     "actions": [
       {
         "label": "thermostatFanMode action",
-        "displayType": "slider",
-        "slider": {
-          "range": [
-            18,
-            30
+        "displayType": "list",
+        "list": {
+          "command": "setThermostatFanMode",
+          "alternatives": [
+            {
+              "key": "AAA",
+              "value": "Heat mode"
+            },
+            {
+              "key": "BBB",
+              "value": "Cool mode"
+            },
+            {
+              "key": "CCC",
+              "value": "Fan mode"
+            }
           ],
-          "step": 1,
-          "command": "setThermostatFanMode"
+          "supportedValues": "supportedThermostatModes.value"
         }
       }
     ]

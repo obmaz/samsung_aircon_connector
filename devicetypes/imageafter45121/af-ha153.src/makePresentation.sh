@@ -1,6 +1,7 @@
 ######################################################################################
 # Smartthings CLI        : https://github.com/SmartThingsCommunity/smartthings-cli
 # Capabilities Reference : https://smartthings.developer.samsung.com/docs/api-ref/capabilities.html
+# Custom Capabilities    : https://smartthings.developer.samsung.com/docs/Capabilities/custom-capabilities.html
 # Community              : https://community.smartthings.com/t/custom-capability-and-cli-developer-preview/197296
 # Presentation check     : https://api.smartthings.com/v1/capabilities/imageafter45121.thermostatCoolingSetpoint/1/presentation
 ######################################################################################
@@ -32,7 +33,6 @@
 # The dth uid can be found on groovy ide url / af ha153 dth key : 604b033e-3a68-494f-8871-bccf303f7a3c
 # It makes the deviceConfig.json based on dth
 # ./smartthings presentation:device-config:generate 604b033e-3a68-494f-8871-bccf303f7a3c --dth -o=deviceConfig.json -j
-# ./smartthings presentation:device-config:create -j -i deviceConfig.json
 ######################################################################################
 # Create VID
 # it makes the vid based on deviceConfig.json

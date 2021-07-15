@@ -11,32 +11,25 @@
   "detailView": [
     {
       "label": "설정 온도",
-      "displayType": "slider",
-      "slider": {
-        "range": [
-          18,
-          30
-        ],
+      "displayType": "stepper",
+      "stepper": {
+        "command": { "name": "setCoolingSetpoint"},
+        "value": "coolingSetpoint.value",
         "step": 1,
-        "command": "setCoolingSetpoint",
-        "unit": "coolingSetpoint.unit",
-        "value": "coolingSetpoint.value"
+        "range": [18, 30]
       }
     }
   ],
   "automation": {
     "conditions": [
       {
-        "label": "coolingSetpoint automa",
+        "label": "설정 온도 자동화",
         "displayType": "slider",
         "slider": {
-          "range": [
-            18,
-            30
-          ],
-          "step": 1,
           "value": "coolingSetpoint.value",
-          "unit": "coolingSetpoint.unit"
+          "unit": "coolingSetpoint.unit",
+          "step": 1,
+          "range": [18, 30]
         }
       }
     ],
@@ -45,17 +38,14 @@
         "label": "coolingSetpoint action",
         "displayType": "slider",
         "slider": {
-          "range": [
-            18,
-            30
-          ],
-          "step": 1,
           "command": "setCoolingSetpoint",
-          "unit": "coolingSetpoint.unit"
+          "unit": "coolingSetpoint.unit",
+          "step": 1,
+          "range": [18, 30]
         }
       }
     ]
   },
-  "id": "imageafter45121.thermostatCoolingSetpoint",
+  "id": "imageafter45121.thermostCoolingSetpoint",
   "version": 1
 }

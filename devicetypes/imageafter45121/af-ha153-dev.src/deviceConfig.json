@@ -12,7 +12,7 @@
         "actions": [
             {
                 "component": "main",
-                "capability": "temperatureMeasurement",
+                "capability": "switch",
                 "version": 1,
                 "values": [],
                 "patch": []
