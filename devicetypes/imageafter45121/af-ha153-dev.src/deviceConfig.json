@@ -50,13 +50,6 @@
         },
         {
             "component": "main",
-            "capability": "thermostatFanMode",
-            "version": 1,
-            "values": [],
-            "patch": []
-        },
-        {
-            "component": "main",
             "capability": "imageafter45121.thermostatCoolingSetpoint",
             "version": 1,
             "values": [],
@@ -64,7 +57,7 @@
         },
         {
             "component": "main",
-            "capability": "imageafter45121.colorTemperature",
+            "capability": "imageafter45121.thermostatFanMode",
             "version": 1,
             "values": [],
             "patch": []
@@ -102,13 +95,6 @@
             },
             {
                 "component": "main",
-                "capability": "thermostatFanMode",
-                "version": 1,
-                "values": [],
-                "patch": []
-            },
-            {
-                "component": "main",
                 "capability": "imageafter45121.thermostatCoolingSetpoint",
                 "version": 1,
                 "values": [],
@@ -116,7 +102,7 @@
             },
             {
                 "component": "main",
-                "capability": "imageafter45121.colorTemperature",
+                "capability": "imageafter45121.thermostatFanMode",
                 "version": 1,
                 "values": [],
                 "patch": []
@@ -153,13 +139,6 @@
             },
             {
                 "component": "main",
-                "capability": "thermostatFanMode",
-                "version": 1,
-                "values": [],
-                "patch": []
-            },
-            {
-                "component": "main",
                 "capability": "imageafter45121.thermostatCoolingSetpoint",
                 "version": 1,
                 "values": [],
@@ -167,7 +146,7 @@
             },
             {
                 "component": "main",
-                "capability": "imageafter45121.colorTemperature",
+                "capability": "imageafter45121.thermostatFanMode",
                 "version": 1,
                 "values": [],
                 "patch": []
