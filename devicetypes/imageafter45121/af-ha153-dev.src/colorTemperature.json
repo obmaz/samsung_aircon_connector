@@ -1,0 +1,61 @@
+{
+    "dashboard": {
+        "states": [
+            {
+                "label": "{{colorTemperature.value}} {{colorTemperature.unit}}"
+            }
+        ],
+        "actions": [],
+        "basicPlus": []
+    },
+    "detailView": [
+        {
+            "label": "Color Temperature",
+            "displayType": "slider",
+            "slider": {
+                "range": [
+                    2200,
+                    7000
+                ],
+                "step": 1,
+                "command": "setColorTemperature",
+                "unit": "colorTemperature.unit",
+                "value": "colorTemperature.value"
+            }
+        }
+    ],
+    "automation": {
+        "conditions": [
+            {
+                "label": "Color Temperature",
+                "displayType": "slider",
+                "slider": {
+                    "range": [
+                        2200,
+                        7000
+                    ],
+                    "step": 1,
+                    "value": "colorTemperature.value",
+                    "unit": "colorTemperature.unit"
+                }
+            }
+        ],
+        "actions": [
+            {
+                "label": "Color Temperature",
+                "displayType": "slider",
+                "slider": {
+                    "range": [
+                        2200,
+                        7000
+                    ],
+                    "step": 1,
+                    "command": "setColorTemperature",
+                    "unit": "colorTemperature.unit"
+                }
+            }
+        ]
+    },
+    "id": "imageafter45121.colorTemperature",
+    "version": 1
+}
