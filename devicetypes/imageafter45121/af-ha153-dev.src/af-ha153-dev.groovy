@@ -36,9 +36,7 @@ metadata {
     definition(name: "af ha153 dev", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThingsCommunity", vid: "e79a3ee2-0c8a-3ef5-a1fb-f8c69fda5960", ocfDeviceType: 'oic.d.airconditioner') {
         capability "Switch"
         capability "Temperature Measurement"
-//        capability "Thermostat Cooling Setpoint"
         capability "imageafter45121.thermostatCoolingSetpoint"
-        capability "imageafter45121.colorTemperature"
         capability "Thermostat Fan Mode"
         capability "Thermostat Mode"
 

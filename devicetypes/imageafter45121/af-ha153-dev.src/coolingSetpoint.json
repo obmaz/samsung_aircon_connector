@@ -10,7 +10,7 @@
   },
   "detailView": [
     {
-      "label": "coolingSetpoint detail",
+      "label": "설정 온도",
       "displayType": "slider",
       "slider": {
         "range": [
