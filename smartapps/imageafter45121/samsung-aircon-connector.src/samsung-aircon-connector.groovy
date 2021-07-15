@@ -66,7 +66,7 @@ def firstPage() {
         }
         
         section("Device") {
-            input "deviceName", "text", title: "Device Name", required: true, description: "ex) My Airconditioner"
+            input "deviceName", "text", title: "Device Name", required: true, description: "ex) My Air Conditioner"
         }
     }
 }
