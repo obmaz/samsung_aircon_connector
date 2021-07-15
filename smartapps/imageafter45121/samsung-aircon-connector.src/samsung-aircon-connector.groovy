@@ -47,7 +47,7 @@ preferences {
 
 def firstPage() {
     // If it does not use page, "location.hubs.size" will make error "java.lang.NullPointerException: Cannot get property 'physicalHubs' on null object"
-    dynamicPage(name: "firstPage", title: "Setting", uninstall: true, install: true) {
+    dynamicPage(name: "firstPage", title: "Setting", install: true) {
         if (location.hubs.size() < 1) {
             section() {
                 paragraph "[ERROR]\nSmartThings Hub not found.\nYou need a SmartThings Hub to use Samsung Aircon Connector."
