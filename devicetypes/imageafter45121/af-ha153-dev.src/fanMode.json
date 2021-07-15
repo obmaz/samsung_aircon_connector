@@ -1,0 +1,58 @@
+{
+  "dashboard": {
+    "states": [
+      {
+        "label": "{{thermostatFanMode.value}}"
+      }
+    ],
+    "actions": [],
+    "basicPlus": []
+  },
+  "detailView": [
+    {
+      "label": "설정 온도",
+      "displayType": "slider",
+      "slider": {
+        "range": [
+          18,
+          30
+        ],
+        "step": 1,
+        "command": "setThermostatFanMode",
+        "value": "thermostatFanMode.value"
+      }
+    }
+  ],
+  "automation": {
+    "conditions": [
+      {
+        "label": "thermostatFanMode automa",
+        "displayType": "slider",
+        "slider": {
+          "range": [
+            18,
+            30
+          ],
+          "step": 1,
+          "value": "thermostatFanMode.value"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "label": "thermostatFanMode action",
+        "displayType": "slider",
+        "slider": {
+          "range": [
+            18,
+            30
+          ],
+          "step": 1,
+          "command": "setThermostatFanMode"
+        }
+      }
+    ]
+  },
+  "id": "imageafter45121.thermostatFanMode",
+  "version": 1
+}
