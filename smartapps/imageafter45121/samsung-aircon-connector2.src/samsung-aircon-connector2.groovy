@@ -32,10 +32,10 @@ import groovy.transform.Field
 @Field nameSpace = 'imageafter45121'
 
 definition(
-        name: "Samsung Aircon Connector Dev",
+        name: "Samsung Aircon Connector2",
         namespace: nameSpace,
         author: "obmaz",
-        description: "Samsung Aircon Connector Dev",
+        description: "Samsung Aircon Connector2",
         category: "My Apps",
         iconUrl: "http://baldeagle072.github.io/icons/standard-tile@1x.png",
         iconX2Url: "http://baldeagle072.github.io/icons/standard-tile@2x.png",
