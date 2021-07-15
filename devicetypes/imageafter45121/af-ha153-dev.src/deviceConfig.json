@@ -43,13 +43,6 @@
         },
         {
             "component": "main",
-            "capability": "thermostatCoolingSetpoint",
-            "version": 1,
-            "values": [],
-            "patch": []
-        },
-        {
-            "component": "main",
             "capability": "thermostatMode",
             "version": 1,
             "values": [],
@@ -65,6 +58,13 @@
         {
             "component": "main",
             "capability": "imageafter45121.thermostatCoolingSetpoint",
+            "version": 1,
+            "values": [],
+            "patch": []
+        },
+        {
+            "component": "main",
+            "capability": "imageafter45121.colorTemperature",
             "version": 1,
             "values": [],
             "patch": []
@@ -95,13 +95,6 @@
             },
             {
                 "component": "main",
-                "capability": "thermostatCoolingSetpoint",
-                "version": 1,
-                "values": [],
-                "patch": []
-            },
-            {
-                "component": "main",
                 "capability": "thermostatMode",
                 "version": 1,
                 "values": [],
@@ -117,6 +110,13 @@
             {
                 "component": "main",
                 "capability": "imageafter45121.thermostatCoolingSetpoint",
+                "version": 1,
+                "values": [],
+                "patch": []
+            },
+            {
+                "component": "main",
+                "capability": "imageafter45121.colorTemperature",
                 "version": 1,
                 "values": [],
                 "patch": []
@@ -146,13 +146,6 @@
             },
             {
                 "component": "main",
-                "capability": "thermostatCoolingSetpoint",
-                "version": 1,
-                "values": [],
-                "patch": []
-            },
-            {
-                "component": "main",
                 "capability": "thermostatMode",
                 "version": 1,
                 "values": [],
@@ -168,6 +161,13 @@
             {
                 "component": "main",
                 "capability": "imageafter45121.thermostatCoolingSetpoint",
+                "version": 1,
+                "values": [],
+                "patch": []
+            },
+            {
+                "component": "main",
+                "capability": "imageafter45121.colorTemperature",
                 "version": 1,
                 "values": [],
                 "patch": []
