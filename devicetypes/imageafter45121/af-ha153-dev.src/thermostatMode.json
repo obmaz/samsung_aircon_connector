@@ -2,7 +2,7 @@
   "dashboard": {
     "states": [
       {
-        "label": "{{thermostatFanMode.value}}"
+        "label": "{{thermostatMode.value}}"
       }
     ],
     "actions": [],
@@ -10,11 +10,11 @@
   },
   "detailView": [
     {
-      "label": "모드",
+      "label": "냉방 모드",
       "displayType": "list",
       "list": {
         "command": {
-          "name": "setThermostatFanMode",
+          "name": "setThermostatMode",
           "alternatives": [
             {
               "key": "AAA",
@@ -54,7 +54,7 @@
   "automation": {
     "conditions": [
       {
-        "label": "thermostatFanMode automa",
+        "label": "thermostatMode automa",
         "displayType": "list",
         "list": {
           "value": "thermostatMode.value",
@@ -77,10 +77,10 @@
     ],
     "actions": [
       {
-        "label": "thermostatFanMode action",
+        "label": "thermostatMode action",
         "displayType": "list",
         "list": {
-          "command": "setThermostatFanMode",
+          "command": "setThermostatMode",
           "alternatives": [
             {
               "key": "AAA",
@@ -100,6 +100,6 @@
       }
     ]
   },
-  "id": "imageafter45121.thermostatFanMode",
+  "id": "imageafter45121.thermostatMode",
   "version": 1
 }

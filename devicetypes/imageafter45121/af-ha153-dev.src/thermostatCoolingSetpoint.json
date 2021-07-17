@@ -1,0 +1,49 @@
+{
+  "dashboard": {
+    "states": [
+      {
+        "label": "{{thermostatCoolingSetpoint.value}} {{thermostatCoolingSetpoint.unit}}"
+      }
+    ],
+    "actions": [],
+    "basicPlus": []
+  },
+  "detailView": [
+    {
+      "label": "설정 온도",
+      "displayType": "stepper",
+      "stepper": {
+        "command": { "name": "setThermostatCoolingSetpoint"},
+        "value": "thermostatCoolingSetpoint.value",
+        "step": 1,
+        "range": [18, 30]
+      }
+    }
+  ],
+  "automation": {
+    "conditions": [
+      {
+        "label": "설정 온도 자동화",
+        "displayType": "numberField",
+        "numberField": {
+          "value": "thermostatCoolingSetpoint.value",
+          "unit": "thermostatCoolingSetpoint.unit",
+          "range": [18, 30]
+        }
+      }
+    ],
+    "actions": [
+      {
+        "label": "thermostatCoolingSetpoint action",
+        "displayType": "numberField",
+        "numberField": {
+          "command": "setThermostatCoolingSetpoint",
+          "unit": "thermostatCoolingSetpoint.unit",
+          "range": [18, 30]
+        }
+      }
+    ]
+  },
+  "id": "imageafter45121.thermostatCoolingSetpoint",
+  "version": 1
+}
