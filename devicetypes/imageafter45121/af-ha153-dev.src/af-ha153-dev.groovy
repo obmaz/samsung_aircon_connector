@@ -70,8 +70,8 @@ def installed() {
     log.debug "installed"
 
     // Only can remove the enum, cannot add or modify due to "additionalProperties : false" in capavility definition
-    sendEvent(name: "supportedThermostatFanModes", value: ["auto", "circulate", "followschedule", "on"])
-    sendEvent(name: "supportedThermostatModes", value: ["auto", "eco", "rush our", "cool", "off"])
+    //sendEvent(name: "supportedThermostatFanModes", value: ["auto", "circulate", "followschedule", "on"])
+    //sendEvent(name: "supportedThermostatModes", value: ["auto", "eco", "rush our", "cool", "off"])
 
     runEvery1Minute(refresh)
 }
