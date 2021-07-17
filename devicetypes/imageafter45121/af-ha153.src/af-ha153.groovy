@@ -134,7 +134,7 @@ def setThermostatMode(mode) {
 
 // Thermostat Cooling Setpoint
 def setThermostatCoolingSetpoint(setpoint) {
-    log.debug "setCoolingSetpoint : $setpoint"
+    log.debug "setThermostatCoolingSetpoint : $setpoint"
 
     if (setpoint < 18) {
         setpoint = 18
