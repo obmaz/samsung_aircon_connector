@@ -43,13 +43,6 @@
         },
         {
             "component": "main",
-            "capability": "thermostatMode",
-            "version": 1,
-            "values": [],
-            "patch": []
-        },
-        {
-            "component": "main",
             "capability": "imageafter45121.thermostatCoolingSetpoint",
             "version": 1,
             "values": [],
@@ -58,6 +51,13 @@
         {
             "component": "main",
             "capability": "imageafter45121.thermostatFanMode",
+            "version": 1,
+            "values": [],
+            "patch": []
+        },
+        {
+            "component": "main",
+            "capability": "imageafter45121.thermostatMode",
             "version": 1,
             "values": [],
             "patch": []
@@ -88,13 +88,6 @@
             },
             {
                 "component": "main",
-                "capability": "thermostatMode",
-                "version": 1,
-                "values": [],
-                "patch": []
-            },
-            {
-                "component": "main",
                 "capability": "imageafter45121.thermostatCoolingSetpoint",
                 "version": 1,
                 "values": [],
@@ -103,6 +96,13 @@
             {
                 "component": "main",
                 "capability": "imageafter45121.thermostatFanMode",
+                "version": 1,
+                "values": [],
+                "patch": []
+            },
+            {
+                "component": "main",
+                "capability": "imageafter45121.thermostatMode",
                 "version": 1,
                 "values": [],
                 "patch": []
@@ -132,13 +132,6 @@
             },
             {
                 "component": "main",
-                "capability": "thermostatMode",
-                "version": 1,
-                "values": [],
-                "patch": []
-            },
-            {
-                "component": "main",
                 "capability": "imageafter45121.thermostatCoolingSetpoint",
                 "version": 1,
                 "values": [],
@@ -147,6 +140,13 @@
             {
                 "component": "main",
                 "capability": "imageafter45121.thermostatFanMode",
+                "version": 1,
+                "values": [],
+                "patch": []
+            },
+            {
+                "component": "main",
+                "capability": "imageafter45121.thermostatMode",
                 "version": 1,
                 "values": [],
                 "patch": []
