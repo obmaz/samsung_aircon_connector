@@ -36,10 +36,9 @@ metadata {
     definition(name: "af ha153", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThingsCommunity", vid: "44ec8ad5-b798-3c35-8067-e265f425772b", ocfDeviceType: 'oic.d.airconditioner') {
         capability "Switch"
         capability "Temperature Measurement"
-        capability "Thermostat Cooling Setpoint"
+        capability "imageafter45121.thermostatCoolingSetpoint"
         capability "imageafter45121.thermostatFanMode"
-
-        capability "Thermostat Mode"
+        capability "imageafter45121.thermostatMode"
         capability "Refresh"
 
         attribute "lastCheckin", "Date"
@@ -134,7 +133,7 @@ def setThermostatMode(mode) {
 }
 
 // Thermostat Cooling Setpoint
-def setCoolingSetpoint(setpoint) {
+def setThermostatCoolingSetpoint(setpoint) {
     log.debug "setCoolingSetpoint : $setpoint"
 
     if (setpoint < 18) {
