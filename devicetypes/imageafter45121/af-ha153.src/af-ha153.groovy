@@ -37,11 +37,9 @@ metadata {
         capability "Switch"
         capability "Temperature Measurement"
         capability "Thermostat Cooling Setpoint"
-        capability "imageafter45121.thermostatCoolingSetpoint"
+        capability "imageafter45121.thermostatFanMode"
 
-        capability "Thermostat Fan Mode"
         capability "Thermostat Mode"
-
         capability "Refresh"
 
         attribute "lastCheckin", "Date"

@@ -36,11 +36,10 @@ metadata {
     definition(name: "af ha153 dev", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThingsCommunity", vid: "66b8f0e7-f6d0-32e8-9b5d-6c2be91368ca", ocfDeviceType: 'oic.d.airconditioner') {
         capability "Switch"
         capability "Temperature Measurement"
-        capability "imageafter45121.thermostatCoolingSetpoint"
+        capability "Thermostat Cooling Setpoint"
         capability "imageafter45121.thermostatFanMode"
 
         capability "Thermostat Mode"
-
         capability "Refresh"
 
         attribute "lastCheckin", "Date"
