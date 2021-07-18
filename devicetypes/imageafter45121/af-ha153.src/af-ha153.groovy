@@ -175,7 +175,7 @@ def updateAttribute() {
     }
     if (currentState.AC_FUN_TEMPSET != null) {
         sendEvent(name: "coolingSetpoint", value: currentState.AC_FUN_TEMPSET.toInteger(), unit: "C")
-        sendEvent(name: "test", value: currentState.AC_FUN_TEMPSET.toInteger(), unit: "C")
+        sendEvent(name: "test", value: currentState.AC_FUN_TEMPSET, unit: "C")
     }
     if (currentState.AC_FUN_WINDLEVEL != null) {
         sendEvent(name: "thermostatFanMode", value: currentState.AC_FUN_WINDLEVEL)
