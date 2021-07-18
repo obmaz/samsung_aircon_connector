@@ -94,8 +94,8 @@ def off() {
 
 // Test Attribute
 def setTest(mode) {
-    log.debug "setCoolingSetpoint : $setpoint"
-    sendCommand("/control/AC_FUN_TEMPSET/$setpoint")
+    log.debug "setTest : $mode"
+    sendCommand("/control/AC_FUN_TEMPSET/$mode")
 }
 
 // Thermostat Fan Mode
