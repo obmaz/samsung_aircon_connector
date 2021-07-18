@@ -65,15 +65,16 @@ func main() {
 func requestGetHandler(ctx *gin.Context) {
 	command := ctx.Param("command")
 	response := responseBuilder(command)
+	command = strings.ToLower(command)
 
 	switch command {
-	case "Ping":
+	case "ping":
 		makeResponse(ctx, response, nil)
-	case "Token":
+	case "token":
 		message, err := getToken()
 		response.Data = message
 		makeResponse(ctx, response, err)
-	case "Devicestate":
+	case "devicestate":
 		message, err := deviceState()
 		response.Data = message
 		makeResponse(ctx, response, err)
