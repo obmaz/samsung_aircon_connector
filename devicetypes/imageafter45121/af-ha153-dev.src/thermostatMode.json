@@ -17,16 +17,28 @@
           "name": "setThermostatMode",
           "alternatives": [
             {
-              "key": "AAA",
-              "value": "Heat mode"
+              "key": "Auto",
+              "value": "자동"
             },
             {
-              "key": "BBB",
-              "value": "Cool mode"
+              "key": "Wind",
+              "value": "송풍"
             },
             {
-              "key": "CCC",
-              "value": "Fan mode"
+              "key": "Cool",
+              "value": "냉방"
+            },
+            {
+              "key": "Dry",
+              "value": "제습"
+            },
+            {
+              "key": "DryClean",
+              "value": "청정 제습"
+            },
+            {
+              "key": "CoolClean",
+              "value": "청정 냉방"
             }
           ],
           "supportedValues": "supportedThermostatModes.value"
@@ -35,16 +47,28 @@
           "value": "thermostatMode.value",
           "alternatives": [
             {
-              "key": "AAA",
-              "value": "Heat mode"
+              "key": "Auto",
+              "value": "자동"
             },
             {
-              "key": "BBB",
-              "value": "Cool mode"
+              "key": "Wind",
+              "value": "송풍"
             },
             {
-              "key": "CCC",
-              "value": "Fan mode"
+              "key": "Cool",
+              "value": "냉방"
+            },
+            {
+              "key": "Dry",
+              "value": "제습"
+            },
+            {
+              "key": "DryClean",
+              "value": "청정 제습"
+            },
+            {
+              "key": "CoolClean",
+              "value": "청정 냉방"
             }
           ]
         }
@@ -54,22 +78,34 @@
   "automation": {
     "conditions": [
       {
-        "label": "thermostatMode automa",
+        "label": "냉방 모드",
         "displayType": "list",
         "list": {
           "value": "thermostatMode.value",
           "alternatives": [
             {
-              "key": "AAA",
-              "value": "Heat mode"
+              "key": "Auto",
+              "value": "자동"
             },
             {
-              "key": "BBB",
-              "value": "Cool mode"
+              "key": "Wind",
+              "value": "송풍"
             },
             {
-              "key": "CCC",
-              "value": "Fan mode"
+              "key": "Cool",
+              "value": "냉방"
+            },
+            {
+              "key": "Dry",
+              "value": "제습"
+            },
+            {
+              "key": "DryClean",
+              "value": "청정 제습"
+            },
+            {
+              "key": "CoolClean",
+              "value": "청정 냉방"
             }
           ]
         }
@@ -77,22 +113,34 @@
     ],
     "actions": [
       {
-        "label": "thermostatMode action",
+        "label": "냉방 모드",
         "displayType": "list",
         "list": {
           "command": "setThermostatMode",
           "alternatives": [
             {
-              "key": "AAA",
-              "value": "Heat mode"
+              "key": "Auto",
+              "value": "자동"
             },
             {
-              "key": "BBB",
-              "value": "Cool mode"
+              "key": "Wind",
+              "value": "송풍"
             },
             {
-              "key": "CCC",
-              "value": "Fan mode"
+              "key": "Cool",
+              "value": "냉방"
+            },
+            {
+              "key": "Dry",
+              "value": "제습"
+            },
+            {
+              "key": "DryClean",
+              "value": "청정 제습"
+            },
+            {
+              "key": "CoolClean",
+              "value": "청정 냉방"
             }
           ],
           "supportedValues": "supportedThermostatModes.value"

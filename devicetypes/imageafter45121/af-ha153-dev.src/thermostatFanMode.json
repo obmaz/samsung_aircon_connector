@@ -10,23 +10,27 @@
   },
   "detailView": [
     {
-      "label": "팬 모드",
+      "label": "풍량 세기",
       "displayType": "list",
       "list": {
         "command": {
           "name": "setThermostatFanMode",
           "alternatives": [
             {
-              "key": "AAA",
-              "value": "Heat mode"
+              "key": "Auto",
+              "value": "자동"
             },
             {
-              "key": "BBB",
-              "value": "Cool mode"
+              "key": "Mid",
+              "value": "보통"
             },
             {
-              "key": "CCC",
-              "value": "Fan mode"
+              "key": "High",
+              "value": "강하게"
+            },
+            {
+              "key": "Turbo",
+              "value": "터보"
             }
           ],
           "supportedValues": "supportedThermostatFanModes.value"
@@ -54,7 +58,7 @@
   "automation": {
     "conditions": [
       {
-        "label": "thermostatFanMode automa",
+        "label": "풍량 세기",
         "displayType": "list",
         "list": {
           "value": "thermostatFanMode.value",
@@ -77,7 +81,7 @@
     ],
     "actions": [
       {
-        "label": "thermostatFanMode action",
+        "label": "풍량 세기",
         "displayType": "list",
         "list": {
           "command": "setThermostatFanMode",

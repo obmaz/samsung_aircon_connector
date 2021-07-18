@@ -64,7 +64,6 @@ func main() {
 
 func requestGetHandler(ctx *gin.Context) {
 	command := ctx.Param("command")
-	command = strings.Title(command)
 	response := responseBuilder(command)
 
 	switch command {
@@ -105,7 +104,6 @@ func requestControlHandler(ctx *gin.Context) {
 	response := responseBuilder(command)
 
 	value := ctx.Param("value")
-	value = strings.Title(value)
 
 	switch command {
 	case "AC_FUN_POWER":
@@ -139,7 +137,6 @@ func requestControlHandler(ctx *gin.Context) {
 			targetTemp = 30
 		}
 		value = strconv.Itoa(targetTemp)
-
 	default:
 	}
 

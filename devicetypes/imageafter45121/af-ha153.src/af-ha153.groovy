@@ -113,35 +113,18 @@ def off() {
 // Thermostat Fan Mode
 def setThermostatFanMode(mode) {
     log.debug "setThermostatFanMode : $mode"
-
-    switch (mode) {
-        case "auto":
-            fanAuto()
-            break
-        case "circulate":
-            fanCirculate()
-            break
-        case "on":
-            fanOn()
-            break
-    }
+    sendCommand("/control/AC_FUN_WINDLEVEL/$mode")
 }
 
 // Thermostat Mode
 def setThermostatMode(mode) {
     log.debug "setThermostatMode : $mode"
+    sendCommand("/control/AC_FUN_OPMODE/$mode")
 }
 
 // Thermostat Cooling Setpoint
-def setThermostatCoolingSetpoint(setpoint) {
-    log.debug "setThermostatCoolingSetpoint : $setpoint"
-
-    if (setpoint < 18) {
-        setpoint = 18
-    } else if (setpoint > 30) {
-        setpoint = 30
-    }
-
+def setCoolingSetpoint(setpoint) {
+    log.debug "setCoolingSetpoint : $setpoint"
     sendCommand("/control/AC_FUN_TEMPSET/$setpoint")
 }
 
@@ -185,37 +168,25 @@ def refreshCallback(physicalgraph.device.HubResponse hubResponse) {
 
 def updateAttribute() {
     log.debug "updateAttribute"
-
-    if (currentState.AC_FUN_COMODE != null) {
-        sendEvent(name: "thermostatMode", value: "auto")
-    }
     if (currentState.AC_FUN_DIRECTION != null) {
-        sendEvent(name: "thermostatFanMode", value: "auto")
-    }
-    if (currentState.AC_FUN_OPERATION != null) {
 
     }
     if (currentState.AC_FUN_OPMODE != null) {
-
+        sendEvent(name: "thermostatMode", value: currentState.AC_FUN_OPMODE)
     }
     if (currentState.AC_FUN_POWER != null) {
-        sendEvent(name: "switch", value: currentState.AC_FUN_POWER.toLowerCase())
-    }
-    if (currentState.AC_FUN_TEMPSET != null) {
-        sendEvent(name: "thermostatCoolingSetpoint", value: currentState.AC_FUN_TEMPSET.toInteger(), unit: "C")
+        sendEvent(name: "switch", value: currentState.AC_FUN_POWER)
     }
     if (currentState.AC_FUN_TEMPNOW != null) {
         sendEvent(name: "temperature", value: currentState.AC_FUN_TEMPNOW.toInteger(), unit: "C")
     }
+    if (currentState.AC_FUN_TEMPSET != null) {
+        sendEvent(name: "coolingSetpoint", value: currentState.AC_FUN_TEMPSET.toInteger(), unit: "C")
+    }
     if (currentState.AC_FUN_WINDLEVEL != null) {
-
+        sendEvent(name: "thermostatFanMode", value: currentState.AC_FUN_WINDLEVEL)
     }
-    if (currentState.AC_ADD_AUTOCLEAN != null) {
 
-    }
-    if (currentState.AC_ADD_VOLUME != null) {
-
-    }
 }
 
 /*
