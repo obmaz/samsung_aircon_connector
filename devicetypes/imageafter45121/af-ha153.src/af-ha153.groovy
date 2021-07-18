@@ -35,7 +35,6 @@ import groovy.transform.Field
 metadata {
     definition(name: "af ha153", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThingsCommunity", vid: "1c1937c1-9c9d-372d-9585-522f495fa13a", ocfDeviceType: 'oic.d.airconditioner') {
         capability "Switch"
-        capability "Switch Level"
         capability "Temperature Measurement"
         capability "imageafter45121.thermostatCoolingSetpoint"
         capability "imageafter45121.thermostatFanMode"
