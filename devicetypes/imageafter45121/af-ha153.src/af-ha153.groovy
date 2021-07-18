@@ -35,6 +35,8 @@ import groovy.transform.Field
 metadata {
     definition(name: "af ha153", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThingsCommunity", vid: "ded6a274-a272-383b-9559-05a615be8894", ocfDeviceType: 'oic.d.airconditioner') {
         capability "Switch"
+        capability "imageafter45121.test"
+
         capability "Temperature Measurement"
         capability "imageafter45121.thermostatCoolingSetpoint"
         capability "imageafter45121.thermostatFanMode"
@@ -93,6 +95,12 @@ def on() {
 def off() {
     log.debug "off"
     sendCommand("/control/AC_FUN_POWER/Off")
+}
+
+// Test Attribute
+def setTest(mode) {
+    log.debug "setCoolingSetpoint : $setpoint"
+    sendCommand("/control/AC_FUN_TEMPSET/$setpoint")
 }
 
 // Thermostat Fan Mode
@@ -167,6 +175,7 @@ def updateAttribute() {
     }
     if (currentState.AC_FUN_TEMPSET != null) {
         sendEvent(name: "coolingSetpoint", value: currentState.AC_FUN_TEMPSET.toInteger(), unit: "C")
+        sendEvent(name: "test", value: currentState.AC_FUN_TEMPSET.toInteger(), unit: "C")
     }
     if (currentState.AC_FUN_WINDLEVEL != null) {
         sendEvent(name: "thermostatFanMode", value: currentState.AC_FUN_WINDLEVEL)
