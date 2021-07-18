@@ -78,13 +78,17 @@ func requestGetHandler(ctx *gin.Context) {
 		message, err := deviceState()
 		response.Data = message
 		makeResponse(ctx, response, err)
+	default:
+		err := errors.New("Unsupported Command")
+		makeResponse(ctx, response, err)
+		return
 	}
 }
 
 func requestConfigHandler(ctx *gin.Context) {
 	command := ctx.Param("command")
-	command = strings.ToLower(command)
 	response := responseBuilder(command)
+	command = strings.ToLower(command)
 
 	switch command {
 	case "close":
@@ -94,19 +98,28 @@ func requestConfigHandler(ctx *gin.Context) {
 
 		makeResponse(ctx, response, nil)
 	default:
-		// 404 error
+		err := errors.New("Unsupported Command")
+		makeResponse(ctx, response, err)
 		return
 	}
 }
 
 func requestControlHandler(ctx *gin.Context) {
 	command := ctx.Param("command")
-	command = strings.ToUpper(command)
 	response := responseBuilder(command)
+	command = strings.ToUpper(command)
 
 	value := ctx.Param("value")
 
 	switch command {
+	case "AC_FUN_COMODE":
+	case "AC_FUN_DIRECTION":
+	case "AC_FUN_OPERATION":
+	case "AC_FUN_OPMODE":
+	case "AC_FUN_WINDLEVEL":
+	case "AC_ADD_AUTOCLEAN":
+	case "AC_ADD_SMARTON":
+	case "AC_ADD_VOLUME":
 	case "AC_FUN_POWER":
 		if value == "Toggle" {
 			if getValueFromID(ctx, command) == "On" {
@@ -139,6 +152,9 @@ func requestControlHandler(ctx *gin.Context) {
 		}
 		value = strconv.Itoa(targetTemp)
 	default:
+		err := errors.New("Unsupported Command")
+		makeResponse(ctx, response, err)
+		return
 	}
 
 	message, err := deviceContorl(command, value)
