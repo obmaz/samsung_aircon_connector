@@ -22,9 +22,13 @@
 # Creating Capabilities Presentations
 # it might register custom capavilitiy to smartthings server
 # ./smartthings capabilities:presentation:create imageafter45121.thermostatCoolingSetpoint 1 -j --input=thermostatCoolingSetpoint.json
+# ./smartthings capabilities:presentation:create imageafter45121.thermostatFanMode 1 -j --input=thermostatFanMode.json
+# ./smartthings capabilities:presentation:create imageafter45121.thermostatMode 1 -j --input=thermostatMode.json
 #-------------------------------------------------------------------------------------
 # Update Presentation custom capability
 # ./smartthings capabilities:presentation:update imageafter45121.thermostatCoolingSetpoint 1 -j --input=thermostatCoolingSetpoint.json
+# ./smartthings capabilities:presentation:update imageafter45121.thermostatFanMode 1 -j --input=thermostatFanMode.json
+# ./smartthings capabilities:presentation:update imageafter45121.thermostatMode 1 -j --input=thermostatMode.json
 ######################################################################################
 # Updating DTH to use Custom Capabilities
 # Go to Groovy IDE and use custom capability
