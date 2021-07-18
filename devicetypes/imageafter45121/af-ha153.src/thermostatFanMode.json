@@ -36,19 +36,23 @@
           "supportedValues": "supportedThermostatFanModes.value"
         },
         "state": {
-          "value": "thermostatMode.value",
+          "value": "thermostatFanMode.value",
           "alternatives": [
             {
-              "key": "AAA",
-              "value": "Heat mode"
+              "key": "Auto",
+              "value": "자동"
             },
             {
-              "key": "BBB",
-              "value": "Cool mode"
+              "key": "Mid",
+              "value": "보통"
             },
             {
-              "key": "CCC",
-              "value": "Fan mode"
+              "key": "High",
+              "value": "강하게"
+            },
+            {
+              "key": "Turbo",
+              "value": "터보"
             }
           ]
         }
@@ -64,16 +68,20 @@
           "value": "thermostatFanMode.value",
           "alternatives": [
             {
-              "key": "AAA",
-              "value": "Heat mode"
+              "key": "Auto",
+              "value": "자동"
             },
             {
-              "key": "BBB",
-              "value": "Cool mode"
+              "key": "Mid",
+              "value": "보통"
             },
             {
-              "key": "CCC",
-              "value": "Fan mode"
+              "key": "High",
+              "value": "강하게"
+            },
+            {
+              "key": "Turbo",
+              "value": "터보"
             }
           ]
         }
@@ -87,16 +95,20 @@
           "command": "setThermostatFanMode",
           "alternatives": [
             {
-              "key": "AAA",
-              "value": "Heat mode"
+              "key": "Auto",
+              "value": "자동"
             },
             {
-              "key": "BBB",
-              "value": "Cool mode"
+              "key": "Mid",
+              "value": "보통"
             },
             {
-              "key": "CCC",
-              "value": "Fan mode"
+              "key": "High",
+              "value": "강하게"
+            },
+            {
+              "key": "Turbo",
+              "value": "터보"
             }
           ],
           "supportedValues": "supportedThermostatFanModes.value"
