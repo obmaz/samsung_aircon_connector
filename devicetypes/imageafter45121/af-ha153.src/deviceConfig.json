@@ -12,7 +12,7 @@
         "actions": [
             {
                 "component": "main",
-                "capability": "temperatureMeasurement",
+                "capability": "switch",
                 "version": 1,
                 "values": [],
                 "patch": []
@@ -30,13 +30,6 @@
         {
             "component": "main",
             "capability": "switch",
-            "version": 1,
-            "values": [],
-            "patch": []
-        },
-        {
-            "component": "main",
-            "capability": "switchLevel",
             "version": 1,
             "values": [],
             "patch": []
@@ -88,13 +81,6 @@
             },
             {
                 "component": "main",
-                "capability": "switchLevel",
-                "version": 1,
-                "values": [],
-                "patch": []
-            },
-            {
-                "component": "main",
                 "capability": "refresh",
                 "version": 1,
                 "values": [],
@@ -133,13 +119,6 @@
             {
                 "component": "main",
                 "capability": "switch",
-                "version": 1,
-                "values": [],
-                "patch": []
-            },
-            {
-                "component": "main",
-                "capability": "switchLevel",
                 "version": 1,
                 "values": [],
                 "patch": []
