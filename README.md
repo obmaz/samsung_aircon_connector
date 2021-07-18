@@ -184,6 +184,7 @@ Please use it if connection problem happens.
 You can find more detail in type attribute of "devicestate" response  
   
 ```
+*case sensitive
 AC_FUN_COMODE/Off
 AC_FUN_COMODE/Quiet //Silent Mode
 AC_FUN_COMODE/Smart //Smart Sensor Mode based on Camera 
