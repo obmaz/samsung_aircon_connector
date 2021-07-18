@@ -35,6 +35,7 @@ import groovy.transform.Field
 metadata {
     definition(name: "af ha153", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThingsCommunity", vid: "ded6a274-a272-383b-9559-05a615be8894", ocfDeviceType: 'oic.d.airconditioner') {
         capability "Switch"
+        capability "Switch Level"
         capability "Temperature Measurement"
         capability "imageafter45121.thermostatCoolingSetpoint"
         capability "imageafter45121.thermostatFanMode"
@@ -50,8 +51,6 @@ metadata {
 
     preferences {
         input name: "language", title: "Select a language", type: "enum", required: true, options: ["EN", "KR"], defaultValue: "KR", description: "Language for DTH"
-        input name: "powerOnValue", title: "Power On Value", type: "number", required: false, defaultValue: 257
-        input name: "powerOffValue", title: "Power Off Value", type: "number", required: false, defaultValue: 0
     }
 }
 
@@ -63,7 +62,6 @@ def updateLastTime() {
 
 def updated() {
     log.debug "updated"
-
 }
 
 def installed() {
@@ -85,18 +83,6 @@ def parse(String description) {
 def refresh() {
     log.debug "refresh"
     sendCommand("/get/devicestate", refreshCallback)
-}
-
-def fanAuto() {
-    log.debug "fanAuto"
-}
-
-def fanCirculate() {
-    log.debug "fanCirculate"
-}
-
-def fanOn() {
-    log.debug "fanOn"
 }
 
 // Switch
