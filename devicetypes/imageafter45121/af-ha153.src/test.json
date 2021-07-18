@@ -15,7 +15,6 @@
       "stepper": {
         "command": { "name": "setTest"},
         "value": "test.value",
-        "unit": "test.unit",
         "step": 1,
         "range": [18, 30]
       }
