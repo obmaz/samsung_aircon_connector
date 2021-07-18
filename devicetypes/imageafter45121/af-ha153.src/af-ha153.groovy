@@ -186,7 +186,6 @@ def updateAttribute() {
     if (currentState.AC_FUN_WINDLEVEL != null) {
         sendEvent(name: "thermostatFanMode", value: currentState.AC_FUN_WINDLEVEL)
     }
-
 }
 
 /*
