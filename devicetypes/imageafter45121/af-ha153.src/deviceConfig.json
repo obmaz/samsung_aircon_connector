@@ -61,6 +61,13 @@
             "version": 1,
             "values": [],
             "patch": []
+        },
+        {
+            "component": "main",
+            "capability": "imageafter45121.test",
+            "version": 1,
+            "values": [],
+            "patch": []
         }
     ],
     "automation": {
@@ -106,6 +113,13 @@
                 "version": 1,
                 "values": [],
                 "patch": []
+            },
+            {
+                "component": "main",
+                "capability": "imageafter45121.test",
+                "version": 1,
+                "values": [],
+                "patch": []
             }
         ],
         "actions": [
@@ -147,6 +161,13 @@
             {
                 "component": "main",
                 "capability": "imageafter45121.thermostatMode",
+                "version": 1,
+                "values": [],
+                "patch": []
+            },
+            {
+                "component": "main",
+                "capability": "imageafter45121.test",
                 "version": 1,
                 "values": [],
                 "patch": []
