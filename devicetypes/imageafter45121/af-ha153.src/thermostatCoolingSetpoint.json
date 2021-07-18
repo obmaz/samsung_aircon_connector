@@ -15,6 +15,7 @@
       "stepper": {
         "command": { "name": "setCoolingSetpoint"},
         "value": "coolingSetpoint.value",
+        "unit": "coolingSetpoint.unit",
         "step": 1,
         "range": [18, 30]
       }
