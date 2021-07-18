@@ -2,7 +2,7 @@
   "dashboard": {
     "states": [
       {
-        "label": "{{thermostatCoolingSetpoint.value}} {{thermostatCoolingSetpoint.unit}}"
+        "label": "{{coolingSetpoint.value}} {{coolingSetpoint.unit}}"
       }
     ],
     "actions": [],
@@ -13,8 +13,8 @@
       "label": "설정 온도",
       "displayType": "stepper",
       "stepper": {
-        "command": { "name": "setThermostatCoolingSetpoint"},
-        "value": "thermostatCoolingSetpoint.value",
+        "command": { "name": "setCoolingSetpoint"},
+        "value": "coolingSetpoint.value",
         "step": 1,
         "range": [18, 30]
       }
@@ -23,22 +23,22 @@
   "automation": {
     "conditions": [
       {
-        "label": "설정 온도 자동화",
+        "label": "설정 온도",
         "displayType": "numberField",
         "numberField": {
-          "value": "thermostatCoolingSetpoint.value",
-          "unit": "thermostatCoolingSetpoint.unit",
+          "value": "coolingSetpoint.value",
+          "unit": "coolingSetpoint.unit",
           "range": [18, 30]
         }
       }
     ],
     "actions": [
       {
-        "label": "thermostatCoolingSetpoint action",
+        "label": "설정 온도",
         "displayType": "numberField",
         "numberField": {
-          "command": "setThermostatCoolingSetpoint",
-          "unit": "thermostatCoolingSetpoint.unit",
+          "command": "setCoolingSetpoint",
+          "unit": "coolingSetpoint.unit",
           "range": [18, 30]
         }
       }
