@@ -62,10 +62,12 @@ def updateLastTime() {
 
 def updated() {
     log.debug "updated"
+    refresh()
 }
 
 def installed() {
     log.debug "installed"
+    refresh()
     runEvery1Minute(refresh)
 }
 
