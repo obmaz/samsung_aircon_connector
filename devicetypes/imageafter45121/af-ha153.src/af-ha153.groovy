@@ -35,12 +35,11 @@ import groovy.transform.Field
 metadata {
     definition(name: "af ha153", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThingsCommunity", vid: "2a249854-e795-3317-a1e6-df087546cc73", ocfDeviceType: 'oic.d.airconditioner') {
         capability "Switch"
-        capability "imageafter45121.test"
-
         capability "Temperature Measurement"
         capability "imageafter45121.thermostatCoolingSetpoint"
         capability "imageafter45121.thermostatFanMode"
         capability "imageafter45121.thermostatMode"
+        capability "imageafter45121.muteMode"
         capability "Refresh"
 
         attribute "lastCheckin", "Date"
@@ -92,10 +91,9 @@ def off() {
     sendCommand("/control/AC_FUN_POWER/Off")
 }
 
-// Test Attribute
-def setTest(mode) {
-    log.debug "setTest : $mode"
-    sendCommand("/control/AC_FUN_TEMPSET/$mode")
+def setMuteMode(mode) {
+    log.debug "setMuteMode : $mode"
+    sendCommand("/control/AC_ADD_VOLUME/$mode")
 }
 
 // Thermostat Fan Mode
@@ -159,6 +157,9 @@ def updateAttribute() {
     if (currentState.AC_FUN_DIRECTION != null) {
 
     }
+    if (currentState.AC_ADD_VOLUME != null) {
+        sendEvent(name: "muteMode", value: currentState.AC_ADD_VOLUME)
+    }
     if (currentState.AC_FUN_OPMODE != null) {
         sendEvent(name: "thermostatMode", value: currentState.AC_FUN_OPMODE)
     }
@@ -170,7 +171,6 @@ def updateAttribute() {
     }
     if (currentState.AC_FUN_TEMPSET != null) {
         sendEvent(name: "coolingSetpoint", value: currentState.AC_FUN_TEMPSET.toInteger(), unit: "C")
-        sendEvent(name: "test", value: currentState.AC_FUN_TEMPSET, unit: "C")
     }
     if (currentState.AC_FUN_WINDLEVEL != null) {
         sendEvent(name: "thermostatFanMode", value: currentState.AC_FUN_WINDLEVEL)
