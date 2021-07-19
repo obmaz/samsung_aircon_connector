@@ -37,9 +37,9 @@
 # Go to Groovy IDE and use custom capability
 ######################################################################################
 # Generate / Post Device Configuration
-# The dth uid can be found on groovy ide url / af ha153 dth key : 604b033e-3a68-494f-8871-bccf303f7a3c
+# The dth uid can be found on groovy ide url / af ha153 dth key : 2119f35a-94f1-4aaf-a64a-dcf0889a9d15
 # It makes the deviceConfig.json based on dth
-# ./smartthings presentation:device-config:generate 604b033e-3a68-494f-8871-bccf303f7a3c --dth --output=deviceConfig2.json -j
+# ./smartthings presentation:device-config:generate 2119f35a-94f1-4aaf-a64a-dcf0889a9d15 --dth --output=deviceConfig2.json -j
 ######################################################################################
 # Create VID
 # it makes the vid based on deviceConfig.json

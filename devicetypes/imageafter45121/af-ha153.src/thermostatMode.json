@@ -18,11 +18,11 @@
           "alternatives": [
             {
               "key": "Auto",
-              "value": "자동"
+              "value": "아열대쾌적"
             },
             {
               "key": "Wind",
-              "value": "송풍"
+              "value": "청정"
             },
             {
               "key": "Cool",
@@ -85,11 +85,11 @@
           "alternatives": [
             {
               "key": "Auto",
-              "value": "자동"
+              "value": "아열대쾌적"
             },
             {
               "key": "Wind",
-              "value": "송풍"
+              "value": "청정"
             },
             {
               "key": "Cool",
@@ -120,11 +120,11 @@
           "alternatives": [
             {
               "key": "Auto",
-              "value": "자동"
+              "value": "아열대쾌적"
             },
             {
               "key": "Wind",
-              "value": "송풍"
+              "value": "청정"
             },
             {
               "key": "Cool",
