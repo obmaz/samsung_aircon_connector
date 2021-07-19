@@ -164,7 +164,7 @@ def updateAttribute() {
         sendEvent(name: "thermostatMode", value: currentState.AC_FUN_OPMODE)
     }
     if (currentState.AC_FUN_POWER != null) {
-        sendEvent(name: "switch", value: currentState.AC_FUN_POWER)
+        sendEvent(name: "switch", value: currentState.AC_FUN_POWER.toLowerCase())
     }
     if (currentState.AC_FUN_TEMPNOW != null) {
         sendEvent(name: "temperature", value: currentState.AC_FUN_TEMPNOW.toInteger(), unit: "C")
