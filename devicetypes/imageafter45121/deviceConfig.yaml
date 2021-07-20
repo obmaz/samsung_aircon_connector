@@ -28,6 +28,11 @@ detailView:
     values: []
     patch: []
   - component: main
+    capability: tvChannel
+    version: 1
+    values: []
+    patch: []
+  - component: main
     capability: imageafter45121.acTempSet
     version: 1
     values: []
@@ -85,6 +90,11 @@ automation:
       values: []
       patch: []
     - component: main
+      capability: tvChannel
+      version: 1
+      values: []
+      patch: []
+    - component: main
       capability: imageafter45121.acTempSet
       version: 1
       values: []
@@ -137,6 +147,11 @@ automation:
       patch: []
     - component: main
       capability: refresh
+      version: 1
+      values: []
+      patch: []
+    - component: main
+      capability: tvChannel
       version: 1
       values: []
       patch: []
