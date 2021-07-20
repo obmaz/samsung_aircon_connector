@@ -1,0 +1,123 @@
+dashboard:
+  states:
+    - component: main
+      capability: temperatureMeasurement
+      version: 1
+      values: []
+      patch: []
+  actions:
+    - component: main
+      capability: temperatureMeasurement
+      version: 1
+      values: []
+      patch: []
+detailView:
+  - component: main
+    capability: temperatureMeasurement
+    version: 1
+    values: []
+    patch: []
+  - component: main
+    capability: switch
+    version: 1
+    values: []
+    patch: []
+  - component: main
+    capability: refresh
+    version: 1
+    values: []
+    patch: []
+  - component: main
+    capability: imageafter45121.acTempSet
+    version: 1
+    values: []
+    patch: []
+  - component: main
+    capability: imageafter45121.acWindLevel
+    version: 1
+    values: []
+    patch: []
+  - component: main
+    capability: imageafter45121.acOpMode
+    version: 1
+    values: []
+    patch: []
+  - component: main
+    capability: imageafter45121.acVolume
+    version: 1
+    values: []
+    patch: []
+automation:
+  conditions:
+    - component: main
+      capability: temperatureMeasurement
+      version: 1
+      values: []
+      patch: []
+    - component: main
+      capability: switch
+      version: 1
+      values: []
+      patch: []
+    - component: main
+      capability: refresh
+      version: 1
+      values: []
+      patch: []
+    - component: main
+      capability: imageafter45121.acTempSet
+      version: 1
+      values: []
+      patch: []
+    - component: main
+      capability: imageafter45121.acWindLevel
+      version: 1
+      values: []
+      patch: []
+    - component: main
+      capability: imageafter45121.acOpMode
+      version: 1
+      values: []
+      patch: []
+    - component: main
+      capability: imageafter45121.acVolume
+      version: 1
+      values: []
+      patch: []
+  actions:
+    - component: main
+      capability: temperatureMeasurement
+      version: 1
+      values: []
+      patch: []
+    - component: main
+      capability: switch
+      version: 1
+      values: []
+      patch: []
+    - component: main
+      capability: refresh
+      version: 1
+      values: []
+      patch: []
+    - component: main
+      capability: imageafter45121.acTempSet
+      version: 1
+      values: []
+      patch: []
+    - component: main
+      capability: imageafter45121.acWindLevel
+      version: 1
+      values: []
+      patch: []
+    - component: main
+      capability: imageafter45121.acOpMode
+      version: 1
+      values: []
+      patch: []
+    - component: main
+      capability: imageafter45121.acVolume
+      version: 1
+      values: []
+      patch: []
+type: dth
