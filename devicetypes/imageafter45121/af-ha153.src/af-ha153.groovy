@@ -44,6 +44,7 @@ metadata {
         capability "imageafter45121.acVolume"
         capability "imageafter45121.acOperation"
         capability "imageafter45121.acAutoClean"
+        capability "TvChannel"
         capability "Refresh"
 
         attribute "lastCheckin", "Date"
