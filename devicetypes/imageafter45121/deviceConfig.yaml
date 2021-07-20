@@ -1,13 +1,13 @@
 dashboard:
   states:
     - component: main
-      capability: temperatureMeasurement
+      capability: switch
       version: 1
       values: []
       patch: []
   actions:
     - component: main
-      capability: temperatureMeasurement
+      capability: switch
       version: 1
       values: []
       patch: []
@@ -44,6 +44,26 @@ detailView:
     patch: []
   - component: main
     capability: imageafter45121.acVolume
+    version: 1
+    values: []
+    patch: []
+  - component: main
+    capability: imageafter45121.acOperation
+    version: 1
+    values: []
+    patch: []
+  - component: main
+    capability: imageafter45121.acDirection
+    version: 1
+    values: []
+    patch: []
+  - component: main
+    capability: imageafter45121.acCoMode
+    version: 1
+    values: []
+    patch: []
+  - component: main
+    capability: imageafter45121.acAutoClean
     version: 1
     values: []
     patch: []
@@ -84,6 +104,26 @@ automation:
       version: 1
       values: []
       patch: []
+    - component: main
+      capability: imageafter45121.acOperation
+      version: 1
+      values: []
+      patch: []
+    - component: main
+      capability: imageafter45121.acDirection
+      version: 1
+      values: []
+      patch: []
+    - component: main
+      capability: imageafter45121.acCoMode
+      version: 1
+      values: []
+      patch: []
+    - component: main
+      capability: imageafter45121.acAutoClean
+      version: 1
+      values: []
+      patch: []
   actions:
     - component: main
       capability: temperatureMeasurement
@@ -117,6 +157,26 @@ automation:
       patch: []
     - component: main
       capability: imageafter45121.acVolume
+      version: 1
+      values: []
+      patch: []
+    - component: main
+      capability: imageafter45121.acOperation
+      version: 1
+      values: []
+      patch: []
+    - component: main
+      capability: imageafter45121.acDirection
+      version: 1
+      values: []
+      patch: []
+    - component: main
+      capability: imageafter45121.acCoMode
+      version: 1
+      values: []
+      patch: []
+    - component: main
+      capability: imageafter45121.acAutoClean
       version: 1
       values: []
       patch: []

@@ -1,3 +1,4 @@
+#!/bin/bash
 ######################################################################################
 # Smartthings CLI        : https://github.com/SmartThingsCommunity/smartthings-cli
 # Capabilities Reference : https://smartthings.developer.samsung.com/docs/api-ref/capabilities.html
@@ -29,7 +30,6 @@
 # $smartthings capabilities:presentation:create imageafter45121.acCoMode 1 --yaml --input=acCoMode.yaml
 # $smartthings capabilities:presentation:create imageafter45121.acDirection 1 --yaml --input=acDirection.yaml
 # $smartthings capabilities:presentation:create imageafter45121.acOperation 1 --yaml --input=acOperation.yaml
-
 #-------------------------------------------------------------------------------------
 # Update Presentation custom capability
 # $smartthings capabilities:presentation:update imageafter45121.acOpMode 1 --yaml --input=acOpMode.yaml
@@ -40,7 +40,6 @@
 # $smartthings capabilities:presentation:update imageafter45121.acCoMode 1 --yaml --input=acCoMode.yaml
 # $smartthings capabilities:presentation:update imageafter45121.acDirection 1 --yaml --input=acDirection.yaml
 # $smartthings capabilities:presentation:update imageafter45121.acOperation 1 --yaml --input=acOperation.yaml
-
 ######################################################################################
 # Updating DTH to use Custom Capabilities
 # Go to Groovy IDE and use custom capability
@@ -48,7 +47,7 @@
 # Generate / Post Device Configuration
 # The dth uid can be found on groovy ide url
 # It makes the deviceConfig.yaml based on dth
-# $smartthings presentation:device-config:generate 740e5af0-c51c-4746-9139-2b34cbd37082 --dth --output=deviceConfig2.yaml --yaml
+# $smartthings presentation:device-config:generate 740e5af0-c51c-4746-9139-2b34cbd37082 --dth --output=deviceConfig.yaml --yaml
 ######################################################################################
 # Create VID
 # it makes the vid based on deviceConfig.yaml
