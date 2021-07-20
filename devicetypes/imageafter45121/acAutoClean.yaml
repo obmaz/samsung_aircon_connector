@@ -6,23 +6,24 @@ dashboard:
   basicPlus: []
 detailView:
   - label: 자동 청소
-    displayType: list
-    list:
+    displayType: toggleSwitch
+    toggleSwitch:
       command:
-        name: setAcAutoClean
-        alternatives:
-          - key: Off
-            value: 꺼짐
-          - key: On
-            value: 켜짐
-        supportedValues: supportedAcAutoCleans.value
+        name: 자동 청소
+        off: Off
+        on: On
       state:
         value: acAutoClean.value
+        off: Off
+        on: On
+        label: 자동 청소
         alternatives:
           - key: Off
             value: 꺼짐
+            type: inactive
           - key: On
             value: 켜짐
+            type: active
 automation:
   conditions:
     - label: 자동 청소
