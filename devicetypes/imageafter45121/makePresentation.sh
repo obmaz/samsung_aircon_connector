@@ -47,7 +47,7 @@
 # Generate / Post Device Configuration
 # The dth uid can be found on groovy ide url
 # It makes the deviceConfig.yaml based on dth
-# $smartthings presentation:device-config:generate 740e5af0-c51c-4746-9139-2b34cbd37082 --dth --output=deviceConfig.yaml --yaml
+# $smartthings presentation:device-config:generate e0f68d21-0fca-4b10-a1b5-8e92e25be3c9 --dth --output=deviceConfig.yaml --yaml
 ######################################################################################
 # Create VID
 # it makes the vid based on deviceConfig.yaml
