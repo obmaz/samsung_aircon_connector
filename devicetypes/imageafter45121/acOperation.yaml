@@ -1,0 +1,49 @@
+---
+dashboard:
+  states:
+    - label: "{{acOperation.value}}"
+  actions: []
+  basicPlus: []
+detailView:
+  - label: 운영 모드
+    displayType: list
+    list:
+      command:
+        name: setAcOperation
+        alternatives:
+          - key: Family
+            value: 패밀리
+          - key: Solo
+            value: 솔로
+        supportedValues: supportedAcOperations.value
+      state:
+        value: acOperation.value
+        alternatives:
+          - key: Family
+            value: 패밀리
+          - key: Solo
+            value: 솔로
+automation:
+  conditions:
+    - label: 운영 모드
+      displayType: list
+      list:
+        value: acOperation.value
+        alternatives:
+          - key: Family
+            value: 패밀리
+          - key: Solo
+            value: 솔로
+  actions:
+    - label: 운영 모드
+      displayType: list
+      list:
+        command: setAcOperation
+        alternatives:
+          - key: Family
+            value: 패밀리
+          - key: Solo
+            value: 솔로
+        supportedValues: supportedAcOperations.value
+id: imageafter45121.acOperation
+version: 1

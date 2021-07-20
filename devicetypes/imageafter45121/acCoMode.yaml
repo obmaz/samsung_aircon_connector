@@ -1,0 +1,65 @@
+---
+dashboard:
+  states:
+    - label: "{{acCoMode.value}}"
+  actions: []
+  basicPlus: []
+detailView:
+  - label: 추가 기능
+    displayType: list
+    list:
+      command:
+        name: setAcCoMode
+        alternatives:
+          - key: Off
+            value: 꺼짐
+          - key: Quiet
+            value: 조용히
+          - key: Smart
+            value: 스마트 (카메라 센서 활용)
+          - key: Speed
+            value: 스피드
+        supportedValues: supportedAcCoModes.value
+      state:
+        value: acCoMode.value
+        alternatives:
+          - key: Off
+            value: 꺼짐
+          - key: Quiet
+            value: 조용히
+          - key: Smart
+            value: 스마트 (카메라 센서 활용)
+          - key: Speed
+            value: 스피드
+automation:
+  conditions:
+    - label: 추가 기능
+      displayType: list
+      list:
+        value: acCoMode.value
+        alternatives:
+          - key: Off
+            value: 꺼짐
+          - key: Quiet
+            value: 조용히
+          - key: Smart
+            value: 스마트 (카메라 센서 활용)
+          - key: Speed
+            value: 스피드
+  actions:
+    - label: 추가기능
+      displayType: list
+      list:
+        command: setAcCoMode
+        alternatives:
+        - key: Off
+          value: 꺼짐
+        - key: Quiet
+          value: 조용히
+        - key: Smart
+          value: 스마트 (카메라 센서 활용)
+        - key: Speed
+          value: 스피드
+        supportedValues: supportedAcCoModes.value
+id: imageafter45121.acCoMode
+version: 1

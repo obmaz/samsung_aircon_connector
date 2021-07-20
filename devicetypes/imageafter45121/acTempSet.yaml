@@ -34,5 +34,5 @@ automation:
         range:
           - 18
           - 30
-id: imageafter45121.thermostatAcTempSet
+id: imageafter45121.acTempSet
 version: 1

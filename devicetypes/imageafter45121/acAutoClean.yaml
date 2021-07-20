@@ -1,0 +1,49 @@
+---
+dashboard:
+  states:
+    - label: "{{acAutoClean.value}}"
+  actions: []
+  basicPlus: []
+detailView:
+  - label: 자동 청소
+    displayType: list
+    list:
+      command:
+        name: setAcAutoClean
+        alternatives:
+          - key: Off
+            value: 꺼짐
+          - key: On
+            value: 켜짐
+        supportedValues: supportedAcAutoCleans.value
+      state:
+        value: acAutoClean.value
+        alternatives:
+          - key: Off
+            value: 꺼짐
+          - key: On
+            value: 켜짐
+automation:
+  conditions:
+    - label: 자동 청소
+      displayType: list
+      list:
+        value: acAutoClean.value
+        alternatives:
+          - key: Off
+            value: 꺼짐
+          - key: On
+            value: 켜짐
+  actions:
+    - label: 자동 청소
+      displayType: list
+      list:
+        command: setAcAutoClean
+        alternatives:
+          - key: Off
+            value: 꺼짐
+          - key: On
+            value: 켜짐
+        supportedValues: supportedAcAutoCleans.value
+id: imageafter45121.acAutoClean
+version: 1

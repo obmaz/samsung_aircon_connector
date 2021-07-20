@@ -14,9 +14,9 @@ detailView:
           - key: Auto
             value: 자동
           - key: Mid
-            value: 보통
+            value: 약풍
           - key: High
-            value: 강하게
+            value: 강풍
           - key: Turbo
             value: 터보
         supportedValues: supportedAcWindLevels.value
@@ -26,9 +26,9 @@ detailView:
           - key: Auto
             value: 자동
           - key: Mid
-            value: 보통
+            value: 약풍
           - key: High
-            value: 강하게
+            value: 강풍
           - key: Turbo
             value: 터보
 automation:
@@ -41,9 +41,9 @@ automation:
           - key: Auto
             value: 자동
           - key: Mid
-            value: 보통
+            value: 약풍
           - key: High
-            value: 강하게
+            value: 강풍
           - key: Turbo
             value: 터보
   actions:

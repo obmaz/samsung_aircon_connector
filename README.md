@@ -180,7 +180,7 @@ Please use it if connection problem happens.
 }
 ```
 
-* Command List (AH-HA153KR)
+* Command List (AH-HA153KR)  
 You can find more detail in type attribute of "devicestate" response  
   
 ```

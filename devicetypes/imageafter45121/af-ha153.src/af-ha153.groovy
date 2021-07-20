@@ -40,6 +40,10 @@ metadata {
         capability "imageafter45121.acWindLevel"
         capability "imageafter45121.acOpMode"
         capability "imageafter45121.acVolume"
+        capability "imageafter45121.acOperation"
+        capability "imageafter45121.acDirection"
+        capability "imageafter45121.acCoMode"
+        capability "imageafter45121.acAutoClean"
         capability "Refresh"
 
         attribute "lastCheckin", "Date"
@@ -93,10 +97,10 @@ def off() {
     sendCommand("/control/AC_FUN_POWER/Off")
 }
 
-// imageafter45121.acVolume
-def setAcVolume(mode) {
-    log.debug "setAcVolume : $mode"
-    sendCommand("/control/AC_ADD_VOLUME/$mode")
+// imageafter45121.acTempSet
+def setAcTempSet(mode) {
+    log.debug "setAcTempSet : $mode"
+    sendCommand("/control/AC_FUN_TEMPSET/$mode")
 }
 
 // imageafter45121.acWindLevel
@@ -111,10 +115,34 @@ def setOpMode(mode) {
     sendCommand("/control/AC_FUN_OPMODE/$mode")
 }
 
-// imageafter45121.acTempSet
-def setAcTempSet(mode) {
-    log.debug "setAcTempSet : $mode"
-    sendCommand("/control/AC_FUN_TEMPSET/$mode")
+// imageafter45121.acVolume
+def setAcVolume(mode) {
+    log.debug "setAcVolume : $mode"
+    sendCommand("/control/AC_ADD_VOLUME/$mode")
+}
+
+// imageafter45121.acOperation
+def setAcOperation(mode) {
+    log.debug "setAcOperation : $mode"
+    sendCommand("/control/AC_FUN_OPERATION/$mode")
+}
+
+// imageafter45121.acDirection
+def setAcDirection(mode) {
+    log.debug "setAcDirection : $mode"
+    sendCommand("/control/AC_FUN_DIRECTION/$mode")
+}
+
+// imageafter45121.acCoMode
+def setAcCoMode(mode) {
+    log.debug "setAcCoMode : $mode"
+    sendCommand("/control/AC_FUN_COMODE/$mode")
+}
+
+// imageafter45121.acAutoClean
+def setAcAutoClean(mode) {
+    log.debug "setAcAutoClean : $mode"
+    sendCommand("/control/AC_ADD_AUTOCLEAN/$mode")
 }
 
 def sendCommand(path) {
@@ -157,11 +185,21 @@ def refreshCallback(physicalgraph.device.HubResponse hubResponse) {
 
 def updateAttribute() {
     log.debug "updateAttribute"
-    if (currentState.AC_FUN_DIRECTION != null) {
 
+    if (currentState.AC_ADD_AUTOCLEAN != null) {
+        sendEvent(name: "acAutoClean", value: currentState.AC_ADD_AUTOCLEAN)
     }
     if (currentState.AC_ADD_VOLUME != null) {
         sendEvent(name: "acVolume", value: currentState.AC_ADD_VOLUME)
+    }
+    if (currentState.AC_FUN_COMODE != null) {
+        sendEvent(name: "acCoMode", value: currentState.AC_FUN_COMODE)
+    }
+    if (currentState.AC_FUN_DIRECTION != null) {
+        sendEvent(name: "acDirection", value: currentState.AC_FUN_DIRECTION)
+    }
+    if (currentState.AC_FUN_OPERATION != null) {
+        sendEvent(name: "acOperation", value: currentState.AC_FUN_OPERATION)
     }
     if (currentState.AC_FUN_OPMODE != null) {
         sendEvent(name: "acOpMode", value: currentState.AC_FUN_OPMODE)
@@ -185,39 +223,19 @@ AC_FUN_COMODE/Off
 AC_FUN_COMODE/Quiet //Silent Mode
 AC_FUN_COMODE/Smart //Smart Sensor Mode based on Camera
 AC_FUN_COMODE/Speed //Temporary Speed up
+
 AC_FUN_DIRECTION/Off
 AC_FUN_DIRECTION/Center
 AC_FUN_DIRECTION/Wide
 AC_FUN_DIRECTION/Long
 AC_FUN_DIRECTION/Left
 AC_FUN_DIRECTION/Right
+
 AC_FUN_OPERATION/Family
 AC_FUN_OPERATION/Solo
-AC_FUN_OPMODE/Auto
-AC_FUN_OPMODE/Wind
-AC_FUN_OPMODE/Cool
-AC_FUN_OPMODE/Dry
-AC_FUN_OPMODE/DryClean
-AC_FUN_OPMODE/CoolClean
-AC_FUN_POWER/Off
-AC_FUN_POWER/On
-AC_FUN_POWER/Toggle
-AC_FUN_TEMPSET/{number}
-AC_FUN_TEMPSET/Up
-AC_FUN_TEMPSET/Down
-AC_FUN_WINDLEVEL/Auto
-AC_FUN_WINDLEVEL/Mid
-AC_FUN_WINDLEVEL/High
-AC_FUN_WINDLEVEL/Turbo
 
 AC_ADD_AUTOCLEAN/On
 AC_ADD_AUTOCLEAN/Off
-AC_ADD_SMARTON/Off // Lock off Official App
-AC_ADD_SMARTON/On  // Lock on Official App
-AC_ADD_VOLUME/Mute
-AC_ADD_VOLUME/33
-AC_ADD_VOLUME/66
-AC_ADD_VOLUME/100
 */
 
 /*

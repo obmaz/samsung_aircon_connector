@@ -1,0 +1,81 @@
+---
+dashboard:
+  states:
+    - label: "{{acDirection.value}}"
+  actions: []
+  basicPlus: []
+detailView:
+  - label: 바람 방향
+    displayType: list
+    list:
+      command:
+        name: setAcDirection
+        alternatives:
+          - key: Off
+            value: 자동
+          - key: Left
+            value: 왼쪽
+          - key: Right
+            value: 오른쪽
+          - key: Center
+            value: 가운데
+          - key: Wide
+            value: 와이드
+          - key: Long
+            value: 멀리
+        supportedValues: supportedAcDirections.value
+      state:
+        value: acDirection.value
+        alternatives:
+          - key: Off
+            value: 자동
+          - key: Left
+            value: 왼쪽
+          - key: Right
+            value: 오른쪽
+          - key: Center
+            value: 가운데
+          - key: Wide
+            value: 와이드
+          - key: Long
+            value: 멀리
+automation:
+  conditions:
+    - label: 바람 방향
+      displayType: list
+      list:
+        value: acDirection.value
+        alternatives:
+          - key: Off
+            value: 자동
+          - key: Left
+            value: 왼쪽
+          - key: Right
+            value: 오른쪽
+          - key: Center
+            value: 가운데
+          - key: Wide
+            value: 와이드
+          - key: Long
+            value: 멀리
+  actions:
+    - label: 바람 방향
+      displayType: list
+      list:
+        command: setAcDirection
+        alternatives:
+          - key: Off
+            value: 자동
+          - key: Left
+            value: 왼쪽
+          - key: Right
+            value: 오른쪽
+          - key: Center
+            value: 가운데
+          - key: Wide
+            value: 와이드
+          - key: Long
+            value: 멀리
+        supportedValues: supportedAcDirections.value
+id: imageafter45121.acDirection
+version: 1
