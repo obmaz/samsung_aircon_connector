@@ -43,12 +43,7 @@ detailView:
     values: []
     patch: []
   - component: main
-    capability: imageafter45121.acDirection
-    version: 1
-    values: []
-    patch: []
-  - component: main
-    capability: imageafter45121.acCoMode
+    capability: imageafter45121.acVolume
     version: 1
     values: []
     patch: []
@@ -58,7 +53,12 @@ detailView:
     values: []
     patch: []
   - component: main
-    capability: imageafter45121.acVolume
+    capability: imageafter45121.acDirection
+    version: 1
+    values: []
+    patch: []
+  - component: main
+    capability: imageafter45121.acCoMode
     version: 1
     values: []
     patch: []
