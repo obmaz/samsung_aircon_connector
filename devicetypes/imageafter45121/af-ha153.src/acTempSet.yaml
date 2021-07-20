@@ -1,0 +1,38 @@
+---
+dashboard:
+  states:
+    - label: "{{acTempSet.value}} {{acTempSet.unit}}"
+  actions: []
+  basicPlus: []
+detailView:
+  - label: 설정 온도
+    displayType: stepper
+    stepper:
+      command:
+        name: setAcTempSet
+      value: acTempSet.value
+      step: 1
+      range:
+        - 18
+        - 30
+automation:
+  conditions:
+    - label: 설정 온도
+      displayType: numberField
+      numberField:
+        value: acTempSet.value
+        unit: acTempSet.unit
+        range:
+          - 18
+          - 30
+  actions:
+    - label: 설정 온도
+      displayType: numberField
+      numberField:
+        command: setAcTempSet
+        unit: acTempSet.unit
+        range:
+          - 18
+          - 30
+id: imageafter45121.thermostatAcTempSet
+version: 1

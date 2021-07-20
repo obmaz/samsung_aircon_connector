@@ -1,0 +1,81 @@
+---
+dashboard:
+  states:
+    - label: "{{acOpMode.value}}"
+  actions: []
+  basicPlus: []
+detailView:
+  - label: 냉방 모드
+    displayType: list
+    list:
+      command:
+        name: setAcOpMode
+        alternatives:
+          - key: Auto
+            value: 아열대 쾌적
+          - key: Wind
+            value: 청정
+          - key: Cool
+            value: 냉방
+          - key: Dry
+            value: 제습
+          - key: DryClean
+            value: 청정 제습
+          - key: CoolClean
+            value: 청정 냉방
+        supportedValues: supportedAcOpModes.value
+      state:
+        value: acOpMode.value
+        alternatives:
+          - key: Auto
+            value: 아열대 쾌적
+          - key: Wind
+            value: 청정
+          - key: Cool
+            value: 냉방
+          - key: Dry
+            value: 제습
+          - key: DryClean
+            value: 청정 제습
+          - key: CoolClean
+            value: 청정 냉방
+automation:
+  conditions:
+    - label: 냉방 모드
+      displayType: list
+      list:
+        value: acOpMode.value
+        alternatives:
+          - key: Auto
+            value: 아열대 쾌적
+          - key: Wind
+            value: 청정
+          - key: Cool
+            value: 냉방
+          - key: Dry
+            value: 제습
+          - key: DryClean
+            value: 청정 제습
+          - key: CoolClean
+            value: 청정 냉방
+  actions:
+    - label: 냉방 모드
+      displayType: list
+      list:
+        command: setAcOpMode
+        alternatives:
+          - key: Auto
+            value: 아열대 쾌적
+          - key: Wind
+            value: 청정
+          - key: Cool
+            value: 냉방
+          - key: Dry
+            value: 제습
+          - key: DryClean
+            value: 청정 제습
+          - key: CoolClean
+            value: 청정 냉방
+        supportedValues: supportedAcOpModes.value
+id: imageafter45121.acOpMode
+version: 1

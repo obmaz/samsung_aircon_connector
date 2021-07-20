@@ -36,10 +36,10 @@ metadata {
     definition(name: "af ha153", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThingsCommunity", vid: "5ac1a364-c217-378a-8353-603a52449973", ocfDeviceType: 'oic.d.airconditioner') {
         capability "Switch"
         capability "Temperature Measurement"
-        capability "imageafter45121.thermostatCoolingSetpoint"
-        capability "imageafter45121.thermostatFanMode"
-        capability "imageafter45121.thermostatMode"
-        capability "imageafter45121.muteMode"
+        capability "imageafter45121.acTempSet"
+        capability "imageafter45121.acWindLevel"
+        capability "imageafter45121.acOpMode"
+        capability "imageafter45121.acVolume"
         capability "Refresh"
 
         attribute "lastCheckin", "Date"
@@ -93,27 +93,28 @@ def off() {
     sendCommand("/control/AC_FUN_POWER/Off")
 }
 
-def setMuteMode(mode) {
-    log.debug "setMuteMode : $mode"
+// imageafter45121.acVolume
+def setAcVolume(mode) {
+    log.debug "setAcVolume : $mode"
     sendCommand("/control/AC_ADD_VOLUME/$mode")
 }
 
-// Thermostat Fan Mode
-def setThermostatFanMode(mode) {
-    log.debug "setThermostatFanMode : $mode"
+// imageafter45121.acWindLevel
+def setAcWindLevel(mode) {
+    log.debug "setAcWindLevel : $mode"
     sendCommand("/control/AC_FUN_WINDLEVEL/$mode")
 }
 
-// Thermostat Mode
-def setThermostatMode(mode) {
-    log.debug "setThermostatMode : $mode"
+// imageafter45121.setOpMode
+def setOpMode(mode) {
+    log.debug "setOpMode : $mode"
     sendCommand("/control/AC_FUN_OPMODE/$mode")
 }
 
-// Thermostat Cooling Setpoint
-def setCoolingSetpoint(setpoint) {
-    log.debug "setCoolingSetpoint : $setpoint"
-    sendCommand("/control/AC_FUN_TEMPSET/$setpoint")
+// imageafter45121.acTempSet
+def setAcTempSet(mode) {
+    log.debug "setAcTempSet : $mode"
+    sendCommand("/control/AC_FUN_TEMPSET/$mode")
 }
 
 def sendCommand(path) {
@@ -160,10 +161,10 @@ def updateAttribute() {
 
     }
     if (currentState.AC_ADD_VOLUME != null) {
-        sendEvent(name: "muteMode", value: currentState.AC_ADD_VOLUME)
+        sendEvent(name: "acVolume", value: currentState.AC_ADD_VOLUME)
     }
     if (currentState.AC_FUN_OPMODE != null) {
-        sendEvent(name: "thermostatMode", value: currentState.AC_FUN_OPMODE)
+        sendEvent(name: "acOpMode", value: currentState.AC_FUN_OPMODE)
     }
     if (currentState.AC_FUN_POWER != null) {
         sendEvent(name: "switch", value: currentState.AC_FUN_POWER.toLowerCase())
@@ -172,10 +173,10 @@ def updateAttribute() {
         sendEvent(name: "temperature", value: currentState.AC_FUN_TEMPNOW.toInteger(), unit: "C")
     }
     if (currentState.AC_FUN_TEMPSET != null) {
-        sendEvent(name: "coolingSetpoint", value: currentState.AC_FUN_TEMPSET.toInteger(), unit: "C")
+        sendEvent(name: "acTempSet", value: currentState.AC_FUN_TEMPSET.toInteger(), unit: "C")
     }
     if (currentState.AC_FUN_WINDLEVEL != null) {
-        sendEvent(name: "thermostatFanMode", value: currentState.AC_FUN_WINDLEVEL)
+        sendEvent(name: "acWindLevel", value: currentState.AC_FUN_WINDLEVEL)
     }
 }
 

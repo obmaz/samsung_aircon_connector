@@ -1,0 +1,65 @@
+---
+dashboard:
+  states:
+    - label: "{{acWindLevel.value}}"
+  actions: []
+  basicPlus: []
+detailView:
+  - label: 풍량 세기
+    displayType: list
+    list:
+      command:
+        name: setAcWindLevel
+        alternatives:
+          - key: Auto
+            value: 자동
+          - key: Mid
+            value: 보통
+          - key: High
+            value: 강하게
+          - key: Turbo
+            value: 터보
+        supportedValues: supportedAcWindLevels.value
+      state:
+        value: acWindLevel.value
+        alternatives:
+          - key: Auto
+            value: 자동
+          - key: Mid
+            value: 보통
+          - key: High
+            value: 강하게
+          - key: Turbo
+            value: 터보
+automation:
+  conditions:
+    - label: 풍량 세기
+      displayType: list
+      list:
+        value: acWindLevel.value
+        alternatives:
+          - key: Auto
+            value: 자동
+          - key: Mid
+            value: 보통
+          - key: High
+            value: 강하게
+          - key: Turbo
+            value: 터보
+  actions:
+    - label: 풍량 세기
+      displayType: list
+      list:
+        command: setAcWindLevel
+        alternatives:
+          - key: Auto
+            value: 자동
+          - key: Mid
+            value: 약풍
+          - key: High
+            value: 강풍
+          - key: Turbo
+            value: 터보
+        supportedValues: supportedAcWindLevels.value
+id: imageafter45121.acWindLevel
+version: 1
