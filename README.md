@@ -1,31 +1,34 @@
-# Samsung Aircon Connector - Smartthings
+# Samsung Aircon Connector - SmartThings
+This app creates a virtual device in SmartThings.
+
 ## Limitation
-The air conditioner MCU is not good, so it sometimes could not return updated status due to MCU error or processing delay.
+The air conditioner does not broadcast own status so there is no way to get the air conditioner status change.  
+
+Instead, this DTH polls the state every miniute. Therefore, if you directly operate the air conditioner rather than SmartThings, it may take up to 1 minute for the status to be applied.
 
 ## Pre Requirement
 ### Samsung Air conditioner Connector - RESTApi Server
-It uses "Samsung Air conditioner Connector - RESTApi Server"  
-See below "Samsung Air conditioner Connector - RESTApi Server" section
+It needs server side app. See below "Samsung Air conditioner Connector - RESTApi Server" section
 
 ## Install
 ### Add Repository
-Smartthing Groovy IDE site https://graph.api.smartthings.com/  
+SmartThings Groovy IDE site https://graph.api.smartthings.com/  
 Add github repo to both "My SmartApps" and "My Device Handlers"  
 - add owner : obmaz / name : samsung_airconnector / branch : master  
   
 ![dth](./readme_images/repo_add.jpg)
 
-### Publish Smartapp and DTH
+### Publish SmartApp and DTH
 Publish DTH : devicetypes/imageafter45121/af-ha153.src/af-ha153.groovy
-Publish Smartapp : smartapps/imageafter45121/samsung-aricon-connector.src/samsung-aricon-connector.groovy
+Publish SmartApp : smartapps/imageafter45121/samsung-aricon-connector.src/samsung-aricon-connector.groovy
 
 ## Run Smartapp
-Add and Run Smartapp in your phone.  
+Add and Run SmartApp in your phone.  
 It will make virtual device based on DTH and SmartApp  
 
-* Smartapp Screen
+* SmartApp Screen
 
-![smartapp](./readme_images/smartapp1.jpg)
+![SmartApp](./readme_images/smartapp1.jpg)
 
 * Device UI Screen
 
@@ -47,8 +50,8 @@ The air conditioner MCU is not good, so it sometimes could not return updated st
 The air conditioner should be connected to router (Use Official App)  
 Note that the korea model does not need cert.
 
-## Build & Run
-### Linux
+## Install
+### Build & Run
 Note that the golang should be installed if you want build.
 
 ```bash
@@ -67,7 +70,7 @@ Note that you do not need to clone git or pull the docker image. docker pulls th
 Modify the -v option to match your host directory path
 
 ```bash
-sudo docker run -d --restart always -p 20080:20080 --name samsung_aircon_connector -v /your/host/directory/config:/config:cached obmaz99/samsung_aircon_connector
+$ sudo docker run -d --restart always -p 20080:20080 --name samsung_aircon_connector -v /your/host/directory/config:/config:cached obmaz99/samsung_aircon_connector
 ```
 
 #### Docker Compose
@@ -76,7 +79,7 @@ Use git clone or copy and paste the file.
 Modify the volume in yml file to match your host directory path
 
 ```bash
-sudo docker-compose up -d
+$ sudo docker-compose up -d
 ```
 
 #### Docker Synology
@@ -164,7 +167,7 @@ Please use it if connection problem happens.
 }
 ```
 
-#### Get Token
+#### Token
 * End Point
 ```
 /get/token
@@ -182,7 +185,7 @@ Please use it if connection problem happens.
 }
 ```
 
-#### Control Air conditioner
+#### Control
 * End Point
 ```
 /contorl/{command}/{value}
@@ -252,7 +255,7 @@ AC_ADD_VOLUME/66
 AC_ADD_VOLUME/100
 ```
 
-#### Get Device State
+#### Device State
 * End Point
 ```
 /get/devicestate
