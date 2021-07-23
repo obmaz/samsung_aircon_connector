@@ -11,8 +11,9 @@
 # VID is a set of capavilites
 ######################################################################################
 # Creating Custom Capabilities
-# It generates the uid like "imageafter45121.coolingSetpoint"
 # $smartthings capabilities:create -n imageafter45121
+#
+# It generates the uid like "imageafter45121.acOpMode"
 #-------------------------------------------------------------------------------------
 # Show capabilities
 # $smartthings capabilities
@@ -22,6 +23,7 @@
 ######################################################################################
 # Creating Capabilities Presentations
 # it might register custom capavilitiy to smartthings server
+#
 # $smartthings capabilities:presentation:create imageafter45121.acOpMode 1 --yaml --input=acOpMode.yaml
 # $smartthings capabilities:presentation:create imageafter45121.acWindLevel 1 --yaml --input=acWindLevel.yaml
 # $smartthings capabilities:presentation:create imageafter45121.acTempSet 1 --yaml --input=acTempSet.yaml
@@ -45,16 +47,24 @@
 # Go to Groovy IDE and use custom capability
 ######################################################################################
 # Generate / Post Device Configuration
-# The dth uid can be found on groovy ide url
-# It makes the deviceConfig.yaml based on dth
-# $smartthings presentation:device-config:generate 406fd1b8-c0dd-4b84-8ac0-1a13242560c1 --dth --output=deviceConfig.yaml --yaml
+# It makes the deviceConfig.yaml based on dth. The dth uid can be found on groovy ide url
+# $smartthings presentation:device-config:generate f1f4018d-696d-451d-b84f-1cee0cc267b5 --dth --output=deviceConfig.yaml --yaml
 ######################################################################################
 # Create VID
 # it makes the vid based on deviceConfig.yaml
+# $smartthings presentation:device-config:create --yaml --input deviceConfig.yaml
+#
 # It will show vid and mnmn. Please keeps vid and mnmn
 #    "vid": "1508c046-1429-3642-b115-a805a64ec459",
 #    "mnmn": "SmartThingsCommunity",
-# $smartthings presentation:device-config:create --yaml --input deviceConfig.yaml
+#
+# if vid is the same as previous (it happens when the capa list is not changed), it can be changed by adding below to deviceConfig.yaml
+#  type: dth
+#  presentationId: {previous vid}
+#  manufacturerName: SmartThingsCommunity
+#  vid: {previous vid}
+#  mnmn: SmartThingsCommunity
+#  version: 0.0.1
 ######################################################################################
 # Publish DTH with updated display keys
 # Go to Groovy IDE and update VID in DTH

@@ -43,7 +43,7 @@ detailView:
     values: []
     patch: []
   - component: main
-    capability: imageafter45121.acDirection
+    capability: imageafter45121.acVolume
     version: 1
     values: []
     patch: []
@@ -53,7 +53,7 @@ detailView:
     values: []
     patch: []
   - component: main
-    capability: imageafter45121.acVolume
+    capability: imageafter45121.acDirection
     version: 1
     values: []
     patch: []
@@ -81,11 +81,6 @@ automation:
       patch: []
     - component: main
       capability: refresh
-      version: 1
-      values: []
-      patch: []
-    - component: main
-      capability: tvChannel
       version: 1
       values: []
       patch: []
@@ -146,11 +141,6 @@ automation:
       values: []
       patch: []
     - component: main
-      capability: tvChannel
-      version: 1
-      values: []
-      patch: []
-    - component: main
       capability: imageafter45121.acTempSet
       version: 1
       values: []
@@ -191,3 +181,8 @@ automation:
       values: []
       patch: []
 type: dth
+presentationId: 5b6aeb9d-e140-3614-9dd0-2e53b9b8e654
+manufacturerName: SmartThingsCommunity
+vid: 5b6aeb9d-e140-3614-9dd0-2e53b9b8e654
+mnmn: SmartThingsCommunity
+version: 0.0.1

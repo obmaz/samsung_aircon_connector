@@ -9,7 +9,7 @@ detailView:
     displayType: toggleSwitch
     toggleSwitch:
       command:
-        name: 자동 청소
+        name: setAcAutoClean
         off: Off
         on: On
       state:
