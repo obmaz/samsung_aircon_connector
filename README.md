@@ -1,20 +1,41 @@
 # Samsung Aircon Connector - Smartthings
+## Limitation
+The air conditioner MCU is not good, so it sometimes could not return updated status due to MCU error or processing delay.
+
+## Pre Requirement
+### Samsung Air conditioner Connector - RESTApi Server
+It uses "Samsung Air conditioner Connector - RESTApi Server"  
+See below "Samsung Air conditioner Connector - RESTApi Server" section
+
+## Install
+### Add Repository
 Smartthing Groovy IDE site https://graph.api.smartthings.com/  
-Add github repo to botha "My SmartApps" and "My Device Handlers"  
+Add github repo to both "My SmartApps" and "My Device Handlers"  
 - add owner : obmaz / name : samsung_airconnector / branch : master  
   
-![dth](./readme_images/dth_smartapp.jpg)
+![dth](./readme_images/repo_add.jpg)
 
-Add and Run SmartApp in your phone.  
+### Publish Smartapp and DTH
+Publish DTH : devicetypes/imageafter45121/af-ha153.src/af-ha153.groovy
+Publish Smartapp : smartapps/imageafter45121/samsung-aricon-connector.src/samsung-aricon-connector.groovy
+
+## Run Smartapp
+Add and Run Smartapp in your phone.  
 It will make virtual device based on DTH and SmartApp  
 
-![smartapp](./readme_images/smartapp1.jpg) ![app](./readme_images/app1.jpg)
+* Smartapp Screen
 
-# Samsung Aircon Connector - RESTApi Server
-This app provides RESTFul APIs to control legacy Samsung Aircon using socket connection with 2878 port.  
+![smartapp](./readme_images/smartapp1.jpg)
+
+* Device UI Screen
+
+![ui](./readme_images/app1.png)
+
+# Samsung Air conditioner Connector - RESTApi Server
+This app provides RESTFul APIs to control legacy Samsung air conditioner using socket connection with 2878 port.  
 
 ## Limitation
-The aircon MCU is not good, so it sometimes could not return updated status due to MCU error or processing delay. 
+The air conditioner MCU is not good, so it sometimes could not return updated status due to MCU error or processing delay. 
 
 ## Dev Enviroment
 * Model : AF-HA153WRG (Korea)
@@ -23,7 +44,7 @@ The aircon MCU is not good, so it sometimes could not return updated status due 
 
 ## Pre Requirement
 ### Network Connection
-The aircon should be connected to router (Use Official App)  
+The air conditioner should be connected to router (Use Official App)  
 Note that the korea model does not need cert.
 
 ## Build & Run
@@ -32,7 +53,7 @@ Note that the golang should be installed if you want build.
 
 ```bash
 $ git clone https://github.com/obmaz/samsung_aircon_connector.git
-$ cd samsung_aircon_connector
+$ cd samsung_aircon_connector/server
 $ go build
 $ ./samsung_aircon_connector
 ```
@@ -54,7 +75,6 @@ Note that it requires docker-compose.yml file.
 Use git clone or copy and paste the file.  
 Modify the volume in yml file to match your host directory path
 
-
 ```bash
 sudo docker-compose up -d
 ```
@@ -75,15 +95,23 @@ Note that you need to pull the docker image in Synology docker app.
 ![Network](./readme_images/4.jpg)  
 
 ## Config
-To communicate between Aircon and Server, you should set some value to config.  
+To communicate between air conditioner and server, you should set some value to config.  
 The config file is located in "/config/config.yaml"
 
 ```yaml
-ServerPort : 20080
-AirconIP : {Aircon IP}
-AirconPort : 2878
-Token : {unique id from the aircon (Use GetToken API or Openssl)}
+ServerPort : {Your server port}
+AirconIP : {Your air conditioner IP}
+AirconPort : {Your ari conditioner port (2878 in case of af-ha158)}
+Token : {Unique id from the aircon (Use GetToken API or Openssl)}
 DUID : {Aircon WiFi_MAC_ADDRESS}
+```
+* Sample confing
+```yaml
+ServerPort : 20080
+AirconIP : 192.168.0.188
+AirconPort : 2878
+Token : ea89ff86-xxxx-xxxx-a9e6-705b3a3d1756
+DUID : 30144A125XXX
 ```
 
 ## How to Get Token
@@ -103,7 +131,7 @@ It only has two http status code: 200 Ok and 400 Bad Request.
 /get/ping
 ```
 
-#### Set Config via API (TBD)
+#### Set Config via API (Not Imple.)
 * End Point
 ```
 /config/airconip/{value}
@@ -154,7 +182,7 @@ Please use it if connection problem happens.
 }
 ```
 
-#### Control Aircon
+#### Control Air conditioner
 * End Point
 ```
 /contorl/{command}/{value}
@@ -186,9 +214,9 @@ You can find more detail in type attribute of "devicestate" response
 ```
 *case sensitive
 AC_FUN_COMODE/Off
-AC_FUN_COMODE/Quiet //Silent Mode
-AC_FUN_COMODE/Smart //Smart Sensor Mode based on Camera 
-AC_FUN_COMODE/Speed //Temporary Speed up
+AC_FUN_COMODE/Quiet // Silent Mode
+AC_FUN_COMODE/Smart // Smart Sensor Mode based on Camera 
+AC_FUN_COMODE/Speed // Temporary Speed up
 AC_FUN_DIRECTION/Off
 AC_FUN_DIRECTION/Center
 AC_FUN_DIRECTION/Wide
@@ -216,8 +244,8 @@ AC_FUN_WINDLEVEL/Turbo
 
 AC_ADD_AUTOCLEAN/On
 AC_ADD_AUTOCLEAN/Off
-AC_ADD_SMARTON/Off // Lock off Official App
-AC_ADD_SMARTON/On  // Lock on Official App
+AC_ADD_SMARTON/Off // Lock off to use Official App
+AC_ADD_SMARTON/On  // Lock on to useOfficial App
 AC_ADD_VOLUME/Mute
 AC_ADD_VOLUME/33
 AC_ADD_VOLUME/66
