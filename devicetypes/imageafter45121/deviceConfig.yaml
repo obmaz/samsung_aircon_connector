@@ -1,13 +1,13 @@
 dashboard:
   states:
     - component: main
-      capability: imageafter45121.acAutoClean
+      capability: switch
       version: 1
       values: []
       patch: []
   actions:
     - component: main
-      capability: imageafter45121.acAutoClean
+      capability: switch
       version: 1
       values: []
       patch: []
