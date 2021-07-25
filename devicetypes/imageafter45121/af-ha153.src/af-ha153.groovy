@@ -109,7 +109,7 @@ def setAcWindLevel(mode) {
 }
 
 // imageafter45121.setOpMode
-def setOpMode(mode) {
+def setAcOpMode(mode) {
     log.debug "setOpMode : $mode"
     sendCommand("/control/AC_FUN_OPMODE/$mode")
 }
