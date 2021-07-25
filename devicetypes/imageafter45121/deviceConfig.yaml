@@ -1,13 +1,13 @@
 dashboard:
   states:
     - component: main
-      capability: switch
+      capability: toggleSwitch
       version: 1
       values: []
       patch: []
   actions:
     - component: main
-      capability: switch
+      capability: toggleSwitch
       version: 1
       values: []
       patch: []
