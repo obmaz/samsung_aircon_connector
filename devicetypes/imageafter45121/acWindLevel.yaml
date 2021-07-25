@@ -13,16 +13,12 @@ detailView:
         alternatives:
           - key: Auto
             value: 자동
-            type: active
           - key: Mid
             value: 약풍
-            type: inactive
           - key: High
             value: 강풍
-            type: inactive
           - key: Turbo
             value: 터보
-            type: inactive
         supportedValues: supportedAcWindLevels.value
       state:
         value: acWindLevel.value
