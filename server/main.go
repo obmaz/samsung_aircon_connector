@@ -59,7 +59,14 @@ func main() {
 	router.GET("/get/:command", requestGetHandler)
 	router.GET("/config/:command", requestConfigHandler)
 	router.GET("/control/:command/:value", requestControlHandler)
+	router.POST("/post", requestPostTest)
 	router.Run(":" + config.ServerPort)
+}
+
+func requestPostTest(ctx *gin.Context) {
+	log.Println("requestPostTest")
+	jsonData, _ := ctx.GetRawData()
+	log.Println(jsonData)
 }
 
 func requestGetHandler(ctx *gin.Context) {
