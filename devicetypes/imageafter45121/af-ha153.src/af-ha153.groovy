@@ -47,7 +47,7 @@ metadata {
         capability "Refresh"
 
         attribute "lastCheckin", "Date"
-    }
+        }
 
     simulator {
     }
