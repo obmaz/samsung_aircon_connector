@@ -30,12 +30,13 @@
 import groovy.transform.Field
 
 @Field nameSpace = 'imageafter45121'
+@Field name = 'Samsung Aircon Connector'
 
 definition(
-        name: "Samsung Aircon Connector",
+        name: name,
         namespace: nameSpace,
         author: "obmaz",
-        description: "Samsung Aircon Connector",
+        description: name,
         category: "My Apps",
         iconUrl: "http://baldeagle072.github.io/icons/standard-tile@1x.png",
         iconX2Url: "http://baldeagle072.github.io/icons/standard-tile@2x.png",
@@ -50,7 +51,7 @@ def firstPage() {
     dynamicPage(name: "firstPage", title: "Setting", install: true) {
         if (location.hubs.size() < 1) {
             section() {
-                paragraph "[ERROR]\nSmartThings Hub not found.\nYou need a SmartThings Hub to use Samsung Aircon Connector."
+                paragraph "[ERROR]\nSmartThings Hub not found.\nYou need a SmartThings Hub to use $name."
             }
             return
         }
