@@ -80,7 +80,6 @@ def installed() {
 def updated() {
     log.debug "updated : ${settings}"
 
-    unsubscribe()
     initialize()
 }
 
