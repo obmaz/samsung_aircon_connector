@@ -28,10 +28,6 @@
  */
 
 import groovy.json.JsonSlurper
-import groovy.transform.Field
-
-//@Field Map currentState = [:]
-@Field LinkedHashMap currentState = [:]
 
 metadata {
     definition(name: "af ha153", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThingsCommunity", vid: "7058efc0-258b-3f62-8500-062816ef1bf7", ocfDeviceType: 'oic.d.airconditioner') {
@@ -171,23 +167,24 @@ def sendCommand(path, callback) {
 
 def refreshCallback(physicalgraph.device.HubResponse hubResponse) {
     log.debug "refreshCallback"
-
-    try {
+	def currentState = [:]
+    
+	try {
         def msg = parseLanMessage(hubResponse.description)
         def jsonObj = new JsonSlurper().parseText(msg.body)
         def attrCount = jsonObj.data.deviceState.device.attr.size()
 
-        for (def i = 0; i < attrCount; i++) {
+		for (def i = 0; i < attrCount; i++) {
             currentState[jsonObj.data.deviceState.device.attr[i].id] = jsonObj.data.deviceState.device.attr[i].value
         }
     } catch (e) {
         log.error "refreshCallback : Exception caught while parsing data: " + e
     }
 
-    updateAttribute()
+    updateAttribute(currentState)
 }
 
-def updateAttribute() {
+def updateAttribute(currentState) {
     log.debug "updateAttribute"
 
     if (currentState.AC_ADD_AUTOCLEAN != null) {
