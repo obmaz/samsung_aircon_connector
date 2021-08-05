@@ -146,13 +146,21 @@ def sendCommand(path) {
     refresh()
 }
 
+def getServerIP() {
+	return parent.getServerIP()
+}
+
+def getServerPort() {
+	return parent.getServerPort()
+}
+
 def sendCommand(path, callback) {
-    log.debug "sendCommand : ${parent.getServerIP()}:${parent.getServerPort()}${path}"
+    log.debug "sendCommand : $serverIP:$serverPort$path"
     def params = [
             "method" : "GET",
             "path"   : path,
             "headers": [
-                    "HOST"        : parent.getServerIP() + ":" + parent.getServerPort(),
+                    "HOST"        : serverIP + ":" + serverPort,
                     "Content-Type": "application/json"
             ]
     ]
