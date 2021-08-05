@@ -61,12 +61,12 @@ def firstPage() {
         }
 
         section("Connector Server") {
-            input "dthModel", "enum", title: "Model", required: true, options: ["af ha153"]
             input "serverIP", "text", title: "Server IP", required: true, description: "ex) 192.168.0.71"
             input "serverPort", "text", title: "Server Port", required: true, description: "ex) 20080"
         }
         
         section("Device") {
+            input "dthModel", "enum", title: "Model", required: true, options: ["af ha153"]
             input "deviceName", "text", title: "Device Name", required: true, description: "ex) My Air Conditioner"
         }
     }
@@ -91,7 +91,8 @@ def initialize() {
     def existing = getChildDevice(deviceId)
 
     if (!existing) {
-        def childDevice = addChildDevice(nameSpace, dthModel, deviceId, getLocationID(), [label: deviceName])
+//        def childDevice = addChildDevice(nameSpace, dthModel, deviceId, getLocationID(), [label: deviceName])
+        addChildDevice(nameSpace, dthModel, deviceId, getLocationID(), [label: deviceName])
     }
 }
 
