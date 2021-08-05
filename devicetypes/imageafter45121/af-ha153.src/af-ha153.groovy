@@ -30,7 +30,8 @@
 import groovy.json.JsonSlurper
 import groovy.transform.Field
 
-@Field Map currentState = [:]
+//@Field Map currentState = [:]
+@Field LinkedHashMap currentState = [:]
 
 metadata {
     definition(name: "af ha153", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThingsCommunity", vid: "7058efc0-258b-3f62-8500-062816ef1bf7", ocfDeviceType: 'oic.d.airconditioner') {
@@ -48,9 +49,6 @@ metadata {
 
         attribute "lastCheckin", "Date"
         }
-
-    simulator {
-    }
 
     preferences {
         input name: "language", title: "Select a language", type: "enum", required: true, options: ["EN", "KR"], defaultValue: "KR", description: "Language for DTH"
