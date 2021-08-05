@@ -74,13 +74,11 @@ def firstPage() {
 
 def installed() {
     log.debug "installed : ${settings}"
-
-    initialize()
+    updated()
 }
 
 def updated() {
     log.debug "updated : ${settings}"
-
     initialize()
 }
 
