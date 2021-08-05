@@ -89,8 +89,7 @@ def initialize() {
     def existing = getChildDevice(deviceId)
 
     if (!existing) {
-//        def childDevice = addChildDevice(nameSpace, dthModel, deviceId, getLocationID(), [label: deviceName])
-        addChildDevice(nameSpace, dthModel, deviceId, getLocationID(), [label: deviceName])
+        def childDevice = addChildDevice(nameSpace, dthModel, deviceId, getLocationID(), [label: deviceName])
     }
 }
 
