@@ -74,7 +74,6 @@ def firstPage() {
 
 def installed() {
     log.debug "installed : ${settings}"
-    updated()
 }
 
 def updated() {

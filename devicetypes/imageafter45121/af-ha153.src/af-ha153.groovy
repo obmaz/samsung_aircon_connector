@@ -61,15 +61,14 @@ def updateLastTime() {
     sendEvent(name: "lastCheckin", value: now, displayed: false)
 }
 
+def installed() {
+    log.debug "installed"
+}
+
 def updated() {
     log.debug "updated"
     refresh()
     runEvery1Minute(refresh)
-}
-
-def installed() {
-    log.debug "installed"
-    updated()
 }
 
 // To use parse when hubaction should call with DNI that is MAC of server
