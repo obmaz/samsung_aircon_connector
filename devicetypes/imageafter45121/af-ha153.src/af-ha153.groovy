@@ -172,11 +172,17 @@ def refreshCallback(physicalgraph.device.HubResponse hubResponse) {
 	try {
         def msg = parseLanMessage(hubResponse.description)
         def jsonObj = new JsonSlurper().parseText(msg.body)
-        def attrCount = jsonObj.data.deviceState.device.attr.size()
+//        def attrCount = jsonObj.data.deviceState.device.attr.size()
+//
+//		for (def i = 0; i < attrCount; i++) {
+//            currentState[jsonObj.data.deviceState.device.attr[i].id] = jsonObj.data.deviceState.device.attr[i].value
+//        }
 
-		for (def i = 0; i < attrCount; i++) {
-            currentState[jsonObj.data.deviceState.device.attr[i].id] = jsonObj.data.deviceState.device.attr[i].value
+        jsonObj.data.deviceState.device.attr.each {
+            item -> currentState[item.id] = item.value
         }
+
+
     } catch (e) {
         log.error "refreshCallback : Exception caught while parsing data: " + e
     }
