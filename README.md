@@ -19,7 +19,7 @@ Add github repo to both "My SmartApps" and "My Device Handlers"
 ![dth](./readme_images/repo_add.jpg)
 
 ### Publish SmartApp and DTH
-Publish DTH : devicetypes/imageafter45121/af-ha153.src/af-ha153.groovy
+Publish DTH : devicetypes/imageafter45121/af-ha153.src/af-ha153.groovy  
 Publish SmartApp : smartapps/imageafter45121/samsung-aricon-connector.src/samsung-aricon-connector.groovy
 
 ## Run Smartapp
