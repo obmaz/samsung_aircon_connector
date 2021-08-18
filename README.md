@@ -23,7 +23,7 @@ Publish DTH : devicetypes/imageafter45121/af-ha153.src/af-ha153.groovy
 Publish SmartApp : smartapps/imageafter45121/samsung-aricon-connector.src/samsung-aricon-connector.groovy
 
 ## Run Smartapp
-Add and Run SmartApp in your device.  
+Add and Run SmartApp in your device  
 It will make virtual device based on DTH and SmartApp  
 
 * SmartApp Screen
