@@ -44,7 +44,7 @@ metadata {
         capability "Refresh"
 
         attribute "lastCheckin", "Date"
-        }
+    }
 
     preferences {
         input name: "language", title: "Select a language", type: "enum", required: true, options: ["EN", "KR"], defaultValue: "KR", description: "Language for DTH"
@@ -172,11 +172,6 @@ def refreshCallback(physicalgraph.device.HubResponse hubResponse) {
 	try {
         def msg = parseLanMessage(hubResponse.description)
         def jsonObj = new JsonSlurper().parseText(msg.body)
-//        def attrCount = jsonObj.data.deviceState.device.attr.size()
-//
-//		for (def i = 0; i < attrCount; i++) {
-//            currentState[jsonObj.data.deviceState.device.attr[i].id] = jsonObj.data.deviceState.device.attr[i].value
-//        }
 
         jsonObj.data.deviceState.device.attr.each {
             item -> currentState[item.id] = item.value
@@ -223,4 +218,5 @@ def updateAttribute(currentState) {
     if (currentState.AC_FUN_WINDLEVEL != null) {
         sendEvent(name: "acWindLevel", value: currentState.AC_FUN_WINDLEVEL)
     }
+    updateLastTime()
 }
