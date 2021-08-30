@@ -558,3 +558,6 @@ It should be called first before call a command.
 ```xml
 <Request Type="DeviceState" DUID="30144A125XXX"></Request>
 ```
+
+## License
+It is released under the Apache 2.0 License.
