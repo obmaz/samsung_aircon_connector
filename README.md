@@ -560,4 +560,4 @@ It should be called first before call a command.
 ```
 
 ## License
-It is released under the MIT
+It is released under the MIT License.  
