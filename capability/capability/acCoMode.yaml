@@ -1,0 +1,24 @@
+id: imageafter45121.acCoMode
+version: 1
+status: proposed
+name: AC CO Mode
+attributes:
+  acCoMode:
+    schema:
+      type: object
+      properties:
+        value:
+          type: string
+      additionalProperties: false
+      required:
+        - value
+    setter: setAcCoMode
+    enumCommands: []
+commands:
+  setAcCoMode:
+    name: setAcCoMode
+    arguments:
+      - name: value
+        optional: false
+        schema:
+          type: string

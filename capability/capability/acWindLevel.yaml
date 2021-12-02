@@ -1,0 +1,24 @@
+id: imageafter45121.acWindLevel
+version: 1
+status: proposed
+name: AC Wind Level
+attributes:
+  acWindLevel:
+    schema:
+      type: object
+      properties:
+        value:
+          type: string
+      additionalProperties: false
+      required:
+        - value
+    setter: setAcWindLevel
+    enumCommands: []
+commands:
+  setAcWindLevel:
+    name: setAcWindLevel
+    arguments:
+      - name: value
+        optional: false
+        schema:
+          type: string

@@ -1,0 +1,28 @@
+id: imageafter45121.acTempSet
+version: 1
+status: proposed
+name: AC Temp Set
+attributes:
+  acTempSet:
+    schema:
+      type: object
+      properties:
+        value:
+          type: number
+          minimum: 18
+          maximum: 30
+      additionalProperties: false
+      required:
+        - value
+    setter: setAcTempSet
+    enumCommands: []
+commands:
+  setAcTempSet:
+    name: setAcTempSet
+    arguments:
+      - name: value
+        optional: false
+        schema:
+          type: number
+          minimum: 18
+          maximum: 30

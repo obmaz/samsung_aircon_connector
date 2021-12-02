@@ -1,0 +1,24 @@
+id: imageafter45121.acDirection
+version: 1
+status: proposed
+name: AC Direction
+attributes:
+  acDirection:
+    schema:
+      type: object
+      properties:
+        value:
+          type: string
+      additionalProperties: false
+      required:
+        - value
+    setter: setAcDirection
+    enumCommands: []
+commands:
+  setAcDirection:
+    name: setAcDirection
+    arguments:
+      - name: value
+        optional: false
+        schema:
+          type: string

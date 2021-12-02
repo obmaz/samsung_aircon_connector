@@ -1,0 +1,24 @@
+id: imageafter45121.acOpMode
+version: 1
+status: proposed
+name: AC OP Mode
+attributes:
+  acOpMode:
+    schema:
+      type: object
+      properties:
+        value:
+          type: string
+      additionalProperties: false
+      required:
+        - value
+    setter: setAcOpMode
+    enumCommands: []
+commands:
+  setAcOpMode:
+    name: setAcOpMode
+    arguments:
+      - name: value
+        optional: false
+        schema:
+          type: string
