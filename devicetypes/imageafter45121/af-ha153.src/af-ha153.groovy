@@ -30,7 +30,7 @@
 import groovy.json.JsonSlurper
 
 metadata {
-    definition(name: "af ha153", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThingsCommunity", vid: "7058efc0-258b-3f62-8500-062816ef1bf7", ocfDeviceType: 'oic.d.airconditioner') {
+    definition(name: "af ha153", namespace: "imageafter45121", author: "obmaz", mnmn: "SmartThingsCommunity", vid: "0694508d-8d01-3e09-857c-ccba143c53b9", ocfDeviceType: 'oic.d.airconditioner') {
         capability "Switch"
         capability "Temperature Measurement"
         capability "imageafter45121.acTempSet"
