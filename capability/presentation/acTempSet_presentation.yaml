@@ -6,11 +6,11 @@ dashboard:
   basicPlus: []
 detailView:
   - label: 설정 온도
-    displayType: stepper
-    stepper:
-      command:
-        name: setAcTempSet
+    displayType: slider
+    slider:
+      command: setAcTempSet
       value: acTempSet.value
+      unit: acTempSet.unit
       step: 1
       range:
         - 18
