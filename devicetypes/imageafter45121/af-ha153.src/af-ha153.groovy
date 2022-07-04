@@ -137,17 +137,17 @@ def setAcAutoClean(mode) {
     sendCommand("/control/AC_ADD_AUTOCLEAN/$mode")
 }
 
-def sendCommand(path) {
-    sendCommand(path, null)
-    refresh()
-}
-
 def getServerIP() {
-	return parent.getServerIP()
+    return parent.getServerIP()
 }
 
 def getServerPort() {
-	return parent.getServerPort()
+    return parent.getServerPort()
+}
+
+def sendCommand(path) {
+    sendCommand(path, null)
+    refresh()
 }
 
 def sendCommand(path, callback) {
