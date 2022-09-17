@@ -4,25 +4,28 @@ This app creates a virtual device in SmartThings.
 ## Limitation
 The air conditioner does not broadcast own status so there is no way to get the air conditioner status change.  
 
-Instead, this DTH polls the state every miniute. Therefore, if you directly operate the air conditioner rather than SmartThings, it may take up to 1 minute for the status to be applied.
+Instead, this polls the state every miniute. Therefore, if you directly operate the air conditioner rather than SmartThings, it may take up to 1 minute for the status to be applied.
 
 ## Pre Requirement
 ### Samsung Air conditioner Connector - RESTApi Server
 It needs server side app. See below "Samsung Air conditioner Connector - RESTApi Server" section
 
 ## Install
-### Add Repository
+### Edge Driver
+**Note:** Current edge driver is in progress.
+
+### DTH and SmartApp
+**Note:** Smartthings does not support DTH anymore from 2022.09  
 SmartThings Groovy IDE site https://graph.api.smartthings.com/  
 Add github repo to both "My SmartApps" and "My Device Handlers"  
 - add owner : obmaz / name : samsung_airconnector / branch : master  
   
 ![dth](./readme_images/repo_add.jpg)
 
-### Publish SmartApp and DTH
 Publish DTH : devicetypes/imageafter45121/af-ha153.src/af-ha153.groovy  
 Publish SmartApp : smartapps/imageafter45121/samsung-aricon-connector.src/samsung-aricon-connector.groovy
 
-## Run Smartapp
+#### Run Smartapp
 Add and Run SmartApp in your device  
 It will make virtual device based on DTH and SmartApp  
 
