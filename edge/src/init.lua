@@ -224,10 +224,10 @@ local function discovery_handler(driver, _, should_continue)
   if not initialized then
     log.info("Creating Web Request device")
     local MFG_NAME = 'SmartThings Community'
-    local VEND_LABEL = 'Edge Divoom64'
-    local MODEL = 'divoom64'
-    local ID = 'divoom64' .. '_' .. socket.gettime()
-    local PROFILE = 'LAN-Divoom64'
+    local VEND_LABEL = 'Samsung-af-ha153'
+    local MODEL = 'af-ha153'
+    local ID = 'af-ha153' .. '_' .. socket.gettime()
+    local PROFILE = 'LAN-Samsung-af-ha153'
 
     -- Create master device
     local create_device_msg = {
@@ -270,5 +270,5 @@ thisDriver = Driver("thisDriver", {
   }
 })
 
-log.info('LAN-Divoom64 Started')
+log.info('LAN-Samsung-af-ha153 Started')
 thisDriver:run()
