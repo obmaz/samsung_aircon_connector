@@ -1,0 +1,31 @@
+name: LAN-Samsung-af-ha153
+components:
+  - id: main
+    capabilities:
+      - id: switch
+        version: 1
+      - id: refresh
+        version: 1
+  - id: switch1
+    capabilities:
+      - id: switch
+        version: 1
+  - id: switch2
+    capabilities:
+      - id: switch
+        version: 1
+metadata:
+  mnmn: SmartThingsCommunity
+  ocfDeviceType: oic.d.switch
+  vid: 11a4fcd3-27e3-3059-a96e-f79c7a6316eb
+preferences:
+  - title: "Server Address"
+    name: divoom64_addr
+    description: "IP:port"
+    required: true
+    preferenceType: string
+    definition:
+    stringType: text
+    minLength: 17
+    default: "http://192.168.0.87"
+
