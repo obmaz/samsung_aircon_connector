@@ -24,41 +24,41 @@
 # Creating Capabilities Presentations
 # it might register custom capavilitiy to smartthings server
 #
-# $smartthings capabilities:presentation:create imageafter45121.acOpMode 1 --yaml --input=acOpMode_presentation.yaml
-# $smartthings capabilities:presentation:create imageafter45121.acWindLevel 1 --yaml --input=acWindLevel_presentation.yaml
-# $smartthings capabilities:presentation:create imageafter45121.acTempSet 1 --yaml --input=acTempSet_presentation.yaml
-# $smartthings capabilities:presentation:create imageafter45121.acVolume 1 --yaml --input=acVolume_presentation.yaml
-# $smartthings capabilities:presentation:create imageafter45121.acAutoClean 1 --yaml --input=acAutoClean_presentation.yaml
-# $smartthings capabilities:presentation:create imageafter45121.acCoMode 1 --yaml --input=acCoMode_presentation.yaml
-# $smartthings capabilities:presentation:create imageafter45121.acDirection 1 --yaml --input=acDirection_presentation.yaml
-# $smartthings capabilities:presentation:create imageafter45121.acOperation 1 --yaml --input=acOperation_presentation.yaml
+# $smartthings capabilities:presentation:create imageafter45121.acOpMode 1 --yaml --input=acOpMode-presentation.yaml
+# $smartthings capabilities:presentation:create imageafter45121.acWindLevel 1 --yaml --input=acWindLevel-presentation.yaml
+# $smartthings capabilities:presentation:create imageafter45121.acTempSet 1 --yaml --input=acTempSet-presentation.yaml
+# $smartthings capabilities:presentation:create imageafter45121.acVolume 1 --yaml --input=acVolume-presentation.yaml
+# $smartthings capabilities:presentation:create imageafter45121.acAutoClean 1 --yaml --input=acAutoClean-presentation.yaml
+# $smartthings capabilities:presentation:create imageafter45121.acCoMode 1 --yaml --input=acCoMode-presentation.yaml
+# $smartthings capabilities:presentation:create imageafter45121.acDirection 1 --yaml --input=acDirection-presentation.yaml
+# $smartthings capabilities:presentation:create imageafter45121.acOperation 1 --yaml --input=acOperation-presentation.yaml
 #-------------------------------------------------------------------------------------
 # Update Presentation custom capability
-# $smartthings capabilities:presentation:update imageafter45121.acOpMode 1 --yaml --input=acOpMode_presentation.yaml
-# $smartthings capabilities:presentation:update imageafter45121.acWindLevel 1 --yaml --input=acWindLevel_presentation.yaml
-# $smartthings capabilities:presentation:update imageafter45121.acTempSet 1 --yaml --input=acTempSet_presentation.yaml
-# $smartthings capabilities:presentation:update imageafter45121.acVolume 1 --yaml --input=acVolume_presentation.yaml
-# $smartthings capabilities:presentation:update imageafter45121.acAutoClean 1 --yaml --input=acAutoClean_presentation.yaml
-# $smartthings capabilities:presentation:update imageafter45121.acCoMode 1 --yaml --input=acCoMode_presentation.yaml
-# $smartthings capabilities:presentation:update imageafter45121.acDirection 1 --yaml --input=acDirection_presentation.yaml
-# $smartthings capabilities:presentation:update imageafter45121.acOperation 1 --yaml --input=acOperation_presentation.yaml
+# $smartthings capabilities:presentation:update imageafter45121.acOpMode 1 --yaml --input=acOpMode-presentation.yaml
+# $smartthings capabilities:presentation:update imageafter45121.acWindLevel 1 --yaml --input=acWindLevel-presentation.yaml
+# $smartthings capabilities:presentation:update imageafter45121.acTempSet 1 --yaml --input=acTempSet-presentation.yaml
+# $smartthings capabilities:presentation:update imageafter45121.acVolume 1 --yaml --input=acVolume-presentation.yaml
+# $smartthings capabilities:presentation:update imageafter45121.acAutoClean 1 --yaml --input=acAutoClean-presentation.yaml
+# $smartthings capabilities:presentation:update imageafter45121.acCoMode 1 --yaml --input=acCoMode-presentation.yaml
+# $smartthings capabilities:presentation:update imageafter45121.acDirection 1 --yaml --input=acDirection-presentation.yaml
+# $smartthings capabilities:presentation:update imageafter45121.acOperation 1 --yaml --input=acOperation-presentation.yaml
 ######################################################################################
 # Updating DTH to use Custom Capabilities
 # Go to Groovy IDE and use custom capability
 ######################################################################################
 # Generate / Post Device Configuration
-# It makes the deviceConfig.yaml based on dth. The dth uid can be found on groovy ide url
-# $smartthings presentation:device-config:generate f1f4018d-696d-451d-b84f-1cee0cc267b5 --dth --output=deviceConfig.yaml --yaml
+# It makes the device-config.yaml based on dth. The dth uid can be found on groovy ide url
+# $smartthings presentation:device-config:generate f1f4018d-696d-451d-b84f-1cee0cc267b5 --dth --output=device-config.yaml --yaml
 ######################################################################################
 # Create VID
-# it makes the vid based on deviceConfig.yaml
-# $smartthings presentation:device-config:create --yaml --input deviceConfig.yaml
+# it makes the vid based on device-config.yaml
+# $smartthings presentation:device-config:create --yaml --input device-config.yaml
 #
 # It will show vid and mnmn. Please keeps vid and mnmn
 #    "vid": "1508c046-1429-3642-b115-a805a64ec459",
 #    "mnmn": "SmartThingsCommunity",
 #
-# if vid is the same as previous (it happens when the capa list is not changed), it can be changed by adding below to deviceConfig.yaml
+# if vid is the same as previous (it happens when the capa list is not changed), it can be changed by adding below to device-config.yaml
 #  type: dth
 #  presentationId: {previous vid}
 #  manufacturerName: SmartThingsCommunity
