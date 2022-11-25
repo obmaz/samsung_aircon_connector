@@ -20,7 +20,7 @@ SmartThings Groovy IDE site https://graph.api.smartthings.com/
 Add github repo to both "My SmartApps" and "My Device Handlers"  
 - add owner : obmaz / name : samsung_airconnector / branch : master  
   
-![dth](./readme_images/repo_add.jpg)
+![dth](resource/readme_images/repo_add.jpg)
 
 Publish DTH : devicetypes/imageafter45121/af-ha153.src/af-ha153.groovy  
 Publish SmartApp : smartapps/imageafter45121/samsung-aricon-connector.src/samsung-aricon-connector.groovy
@@ -31,11 +31,11 @@ It will make virtual device based on DTH and SmartApp
 
 * SmartApp Screen
 
-![SmartApp](./readme_images/smartapp1.jpg)
+![SmartApp](resource/readme_images/smartapp1.jpg)
 
 * Device UI Screen
 
-![ui](./readme_images/app1.png)
+![ui](resource/readme_images/app1.png)
 
 # Samsung Air conditioner Connector - RESTApi Server
 This app provides RESTFul APIs to control legacy Samsung air conditioner using socket connection with 2878 port.  
@@ -89,16 +89,16 @@ $ sudo docker-compose up -d
 Note that you need to pull the docker image in Synology docker app.
 
 * Check Permission  
-![Permission](./readme_images/1.jpg)  
+![Permission](resource/readme_images/1.jpg)  
 
 * Check Auto Restart  
-![Restart](./readme_images/2.jpg)  
+![Restart](resource/readme_images/2.jpg)  
 
 * Map the /config directory to external  
-![Map](./readme_images/3.jpg)  
+![Map](resource/readme_images/3.jpg)  
 
 * Check Host Network (Optional)  
-![Network](./readme_images/4.jpg)  
+![Network](resource/readme_images/4.jpg)  
 
 ## Config
 To communicate between air conditioner and server, you should set some value to config.  
