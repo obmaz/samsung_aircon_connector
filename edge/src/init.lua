@@ -1,235 +1,198 @@
--- Edge libraries
 local capabilities = require "st.capabilities"
 local Driver = require "st.driver"
 local cosock = require "cosock"                 -- just for time
 local socket = require "cosock.socket"          -- just for time
 local json = require "dkjson"
 local log = require "log"
-
--- Module variables
-local thisDriver
+local comms = require "comms"
 local initialized = false
-local periodic_timer
+local base_url
+local capability_channel = capabilities['imageafter45121.channel']
+local capability_cloud_channel = capabilities['imageafter45121.cloudChannel']
+local capability_visualizer_channel = capabilities['imageafter45121.visualizerChannel']
+local capability_custom_channel = capabilities['imageafter45121.customChannel']
+local capability_weather = capabilities['imageafter45121.weather']
+local capability_message = capabilities['imageafter45121.message']
 
-local function disptable(table, tab, maxlevels, currlevel)
+-- Divoom API http://doc.divoom-gz.com/web/#/12?page_id=241
+local function request(body)
+  log.info("<<---- Divoom ---->> request : ", body)
+  -- Divoom 64 has only one endpoint and use POST
+  local status, response = comms.request('POST', base_url .. '/post', body)
 
-  if not currlevel then
-    ;
-    currlevel = 0;
-  end
-  currlevel = currlevel + 1
-  for key, value in pairs(table) do
-    if type(key) ~= 'table' then
-      log.debug(tab .. '  ' .. key, value)
+  log.info("<<---- Divoom ---->> request, status : ", status)
+  log.info("<<---- Divoom ---->> request, response : ", response)
+
+  if status then
+    responseTable, pos, err = json.decode(response, 1, nil)
+    if responseTable.error_code == 0 then
+      return true, responseTable;
     else
-      log.debug(tab .. '  ', key, value)
+      return false;
     end
-    if (type(value) == 'table') and (currlevel < maxlevels) then
-      disptable(value, '  ' .. tab, maxlevels, currlevel)
-    end
-  end
-end
-
-local function validate_address(lanAddress)
-  local valid = true
-  local hostaddr = lanAddress:match('://(.+)$')
-  if hostaddr == nil then
-    ;
+  else
     return false;
   end
+end
 
-  local ip = hostaddr:match('^(%d.+):')
-  local port = tonumber(hostaddr:match(':(%d+)$'))
+local function get_channel(device)
+  local payload = string.format('{"Command": "Channel/GetIndex"}')
+  local status, response = request(payload);
 
-  if ip then
-    local chunks = { ip:match("^(%d+)%.(%d+)%.(%d+)%.(%d+)$") }
-    if #chunks == 4 then
-      for _, v in pairs(chunks) do
-        if tonumber(v) > 255 then
-          valid = false
-          break
-        end
-      end
-    else
-      valid = false
+  if status then
+    local SelectIndex = response.SelectIndex;
+    log.info("<<---- Divoom ---->> Channel/GetIndex: ", SelectIndex)
+    if SelectIndex == 0 then
+      selectIndexValue = "Faces"
+    elseif SelectIndex == 1 then
+      selectIndexValue = "Cloud Channel"
+    elseif SelectIndex == 2 then
+      selectIndexValue = "Visualizer"
+    elseif SelectIndex == 3 then
+      selectIndexValue = "Custom"
+    elseif SelectIndex == 4 then
+      selectIndexValue = "Black Screen"
     end
-  else
-    valid = false
-  end
 
-  if port then
-    if type(port) == 'number' then
-      if (port < 1) or (port > 65535) then
-        valid = false
-      end
-    else
-      valid = false
-    end
-  else
-    valid = false
-  end
+    log.info("<<---- Divoom ---->> selectIndexValue Channel/GetIndex: ", selectIndexValue)
 
-  if valid then
-    return ip, port
-  else
-    return nil
+    device.profile.components['main']:emit_event(capability_channel.channel({ value = selectIndexValue }))
   end
-
 end
 
--- Go to weather API and get data, then update SmartThings
--- this is also called by a period timer, so can't receive device parameter
-local function refresh_data()
-  local device_list = thisDriver:get_devices()
-  --for _, device in ipairs(device_list) do
-  --
-  --  local status, weatherjson
-  --  local weathertable, pos, err
-  --  local baseurl = device.preferences.divoom64_addr .. '/api/forward?url='
-  --
-  --  -- Get Current observations
-  --  if device.preferences.url then
-  --
-  --    local request_url
-  --    if device.preferences.proxytype == 'edge' then
-  --      request_url = baseurl .. device.preferences.url
-  --    else
-  --      request_url = device.preferences.url
-  --    end
-  --    status, weatherjson = comms.issue_request(device, "GET", request_url)
-  --
-  --    if status == true then
-  --
-  --      weathertable, pos, err = json.decode(weatherjson, 1, nil)
-  --
-  --      wmodule[device.preferences.wsource].update_current(device, weathertable)
-  --
-  --    end
-  --
-  --    -- Get Forecast if different URL
-  --    if device.preferences.furl ~= 'xxxxx' then
-  --
-  --      if device.preferences.proxytype == 'edge' then
-  --        request_url = baseurl .. device.preferences.furl
-  --      else
-  --        request_url = device.preferences.furl
-  --      end
-  --      status, weatherjson = comms.issue_request(device, "GET", request_url)
-  --      if status == true then
-  --        weathertable, pos, err = json.decode(weatherjson, 1, nil)
-  --      end
-  --    end
-  --
-  --    if status == true then
-  --      wmodule[device.preferences.wsource].update_forecast(device, weathertable)
-  --    end
-  --  end
-  --end
+local function get_all_conf(device)
+  --  { "RotationFlag": 1, "ClockTime": 30, "GalleryTime": 50, "SingleGalleyTime": 3, "PowerOnChannelId": 5, "GalleryShowTimeFlag": 0, "CurClockId": 182, "Time24Flag": 1, "TemperatureMode": 0, "GyrateAngle": 0, "MirrorFlag": 0, "LightSwitch": 1 }
+  local payload = string.format('{"Command": "Channel/GetAllConf"}')
+  local status, response = request(payload);
+  if status then
+    local LightSwitch = response.LightSwitch;
+    log.info("<<---- Divoom ---->> Channel/GetAllConf LightSwitch : ", LightSwitch)
+    local on_off = (LightSwitch == 0) and capabilities.switch.switch.off() or capabilities.switch.switch.on()
+    device.profile.components['main']:emit_event(on_off)
+
+    local Brightness = response.Brightness;
+    log.info("<<---- Divoom ---->> Channel/GetAllConf Brightness : ", Brightness)
+    device.profile.components['system']:emit_event(capabilities.switchLevel.level({ value = Brightness }))
+
+    local RotationFlag = response.RotationFlag;
+    log.info("<<---- Divoom ---->> Channel/GetAllConf RotationFlag : ", RotationFlag)
+    --device.profile.components['system']:emit_event(capabilities.switchLevel.level({ value = RotationFlag }))
+
+    local ClockTime = response.ClockTime;
+    log.info("<<---- Divoom ---->> Channel/GetAllConf ClockTime : ", ClockTime)
+    --device.profile.components['system']:emit_event(capabilities.switchLevel.level({ value = ClockTime }))
+
+    local GalleryTime = response.GalleryTime;
+    log.info("<<---- Divoom ---->> Channel/GetAllConf GalleryTime : ", GalleryTime)
+    --device.profile.components['system']:emit_event(capabilities.switchLevel.level({ value = GalleryTime }))
+
+    local SingleGalleyTime = response.SingleGalleyTime;
+    log.info("<<---- Divoom ---->> Channel/GetAllConf SingleGalleyTime : ", SingleGalleyTime)
+    --device.profile.components['system']:emit_event(capabilities.switchLevel.level({ value = SingleGalleyTime }))
+
+    local PowerOnChannelId = response.PowerOnChannelId;
+    log.info("<<---- Divoom ---->> Channel/GetAllConf PowerOnChannelId : ", PowerOnChannelId)
+    --device.profile.components['system']:emit_event(capabilities.switchLevel.level({ value = PowerOnChannelId }))
+
+    local GalleryShowTimeFlag = response.GalleryShowTimeFlag;
+    log.info("<<---- Divoom ---->> Channel/GetAllConf GalleryShowTimeFlag : ", GalleryShowTimeFlag)
+    --device.profile.components['system']:emit_event(capabilities.switchLevel.level({ value = GalleryShowTimeFlag }))
+
+    local CurClockId = response.CurClockId;
+    log.info("<<---- Divoom ---->> Channel/GetAllConf CurClockId : ", CurClockId)
+    --device.profile.components['system']:emit_event(capabilities.switchLevel.level({ value = CurClockId }))
+
+    local Time24Flag = response.Time24Flag;
+    log.info("<<---- Divoom ---->> Channel/GetAllConf Time24Flag : ", Time24Flag)
+    --device.profile.components['system']:emit_event(capabilities.switchLevel.level({ value = Time24Flag }))
+
+    TemperatureMode = response.TemperatureMode;
+    log.info("<<---- Divoom ---->> Channel/GetAllConf TemperatureMode : ", TemperatureMode)
+    --device.profile.components['system']:emit_event(capabilities.switchLevel.level({ value = TemperatureMode }))
+
+    local GyrateAngle = response.GyrateAngle;
+    log.info("<<---- Divoom ---->> Channel/GetAllConf GyrateAngle : ", GyrateAngle)
+    --device.profile.components['system']:emit_event(capabilities.switchLevel.level({ value = GyrateAngle }))
+
+    local MirrorFlag = response.MirrorFlag;
+    log.info("<<---- Divoom ---->> Channel/GetAllConf MirrorFlag : ", MirrorFlag)
+    --device.profile.components['system']:emit_event(capabilities.switchLevel.level({ value = MirrorFlag }))
+  end
 end
 
------------------------------------------------------------------------
---										COMMAND HANDLERS
------------------------------------------------------------------------
-local function handle_refresh(driver, device, command)
-  log.info('Refresh requested')
-  refresh_data()
+local function get_weather_info(device)
+  local payload = string.format('{"Command": "Device/GetWeatherInfo"}')
+  local status, response = request(payload);
+  --{ "error_code": 0, "Weather":"Sunny", "CurTemp":8.080000, "MinTemp":7.140000, "MaxTemp":11.050000, "Pressure":1015, "Humidity":84, "Visibility":10000, "WindSpeed":5.140000 }
+  if status then
+    local CurTemp = response.CurTemp;
+    local Weather = response.Weather;
+    local CelsiusOrFahrenheit = (TemperatureMode == 0) and 'C' or 'F'
+    log.info("<<---- Divoom ---->> Device/GetWeatherInfo: ", CurTemp)
+    device.profile.components['system']:emit_event(capabilities.temperatureMeasurement.temperature({ value = CurTemp, unit = CelsiusOrFahrenheit }))
+    device.profile.components['system']:emit_event(capability_weather.weather({ value = Weather }))
+  end
 end
 
-------------------------------------------------------------------------
---                REQUIRED EDGE DRIVER HANDLERS
-------------------------------------------------------------------------
--- Lifecycle handler to initialize existing devices AND newly discovered devices
+local function refresh_handler(driver, device, command)
+  log.info("<<---- Divoom ---->> refresh_handler")
+  get_channel(device)
+  -- Divoom API에 특정 Channel의 Index를 가지고 오는 방법이 없음, emit 시 상태를 설정함
+  --get_cloud_channel(device)
+  --get_visualizer_channel(device)
+  --get_custom_channel(device)
+  get_all_conf(device)
+  get_weather_info(device)
+end
+
 local function device_init(driver, device)
-  log.debug(device.id .. ": " .. device.device_network_id .. "> INITIALIZING")
+  log.info("<<---- Divoom ---->> device_init")
   initialized = true
+  base_url = device.preferences.divoomIP
 
-  if (validate_address(device.preferences.divoom64_addr)) and device.preferences.url ~= 'xxxxx' then
-    refresh_data()
-
-    if device.preferences.autorefresh == 'enabled' then
-      if periodic_timer then
-        -- just in case
-        driver:cancel_timer(periodic_timer)
-      end
-      periodic_timer = driver:call_on_schedule(device.preferences.refreshrate * 60, refresh_data, 'Refresh timer')
-    end
-  end
+  device.profile.components['main']:emit_event(capability_cloud_channel.cloudChannel({ value = "Recommend Gallery" }))
+  device.profile.components['main']:emit_event(capability_visualizer_channel.visualizerChannel({ value = 0 }))
+  device.profile.components['main']:emit_event(capability_custom_channel.customChannel({ value = "First" }))
+  refresh_handler(driver, device, null)
 end
 
--- Called when device was just created in SmartThings
 local function device_added (driver, device)
-  log.info(device.id .. ": " .. device.device_network_id .. "> ADDED")
-  --device:emit_component_event(device.profile.components.main, capabilities.temperatureMeasurement.temperature({ value = 20, unit = 'C' }))
-  --device:emit_component_event(device.profile.components.main, capabilities.relativeHumidityMeasurement.humidity(50))
+  log.info("<<---- Divoom ---->> device_added")
 end
 
--- Called when SmartThings thinks the device needs provisioning
 local function device_doconfigure (_, device)
   -- Nothing to do here!
 end
 
--- Called when device was deleted via mobile app
 local function device_removed(_, device)
-  log.warn(device.id .. ": " .. device.device_network_id .. "> removed")
+  log.info("<<---- Divoom ---->> device_removed : ", device.id .. ": " .. device.device_network_id)
   initialized = false
 end
 
-local function handler_driverchanged(driver, device, event, args)
-  log.debug('*** Driver changed handler invoked ***')
+local function device_driver_switched(driver, device, event, args)
+  log.info("<<---- Divoom ---->> device_driver_switched")
 end
 
 local function shutdown_handler(driver, event)
-  log.info('*** Driver being shut down ***')
+  log.info("<<---- Divoom ---->> shutdown_handler")
 end
 
-local function handler_infochanged (driver, device, event, args)
-  log.debug('*** Info changed handler invoked ***')
-  ---- Did preferences change?
-  --if args.old_st_store.preferences then
-  --  -- Examine each preference setting to see if it changed
-  --  if args.old_st_store.preferences.divoom64_addr ~= device.preferences.divoom64_addr then
-  --    if (validate_address(device.preferences.divoom64_addr)) then
-  --      log.info('Proxy address is valid')
-  --    else
-  --      log.warn('Proxy address is INVALID')
-  --    end
-  --
-  --  elseif args.old_st_store.preferences.autorefresh ~= device.preferences.autorefresh then
-  --    if device.preferences.autorefresh == 'disabled' and periodic_timer then
-  --      driver:cancel_timer(periodic_timer)
-  --      periodic_timer = nil
-  --    elseif device.preferences.autorefresh == 'enabled' then
-  --      if periodic_timer then
-  --        -- just in case
-  --        driver:cancel_timer(periodic_timer)
-  --      end
-  --      periodic_timer = driver:call_on_schedule(device.preferences.refreshrate * 60, refresh_data, 'Refresh timer')
-  --    end
-  --
-  --  elseif args.old_st_store.preferences.refreshrate ~= device.preferences.refreshrate then
-  --    if device.preferences.autorefresh == 'enabled' then
-  --      if periodic_timer then
-  --        driver:cancel_timer(periodic_timer)
-  --      end
-  --      periodic_timer = driver:call_on_schedule(device.preferences.refreshrate * 60, refresh_data, 'Refresh timer')
-  --    end
-  --  end
-  --else
-  --  log.warn('Old preferences missing')
-  --end
+local function device_info_changed (driver, device, event, args)
+  log.info("<<---- Divoom ---->> device_info_changed")
+  if args.old_st_store.preferences.divoomIP ~= device.preferences.divoomIP then
+    base_url = device.preferences.divoomIP;
+  end
 end
 
--- Create Weather Device
 local function discovery_handler(driver, _, should_continue)
   if not initialized then
     log.info("Creating Web Request device")
     local MFG_NAME = 'SmartThings Community'
-    local VEND_LABEL = 'Samsung-af-ha153'
-    local MODEL = 'af-ha153'
-    local ID = 'af-ha153' .. '_' .. socket.gettime()
-    local PROFILE = 'LAN-Samsung-af-ha153'
+    local VEND_LABEL = 'Edge Divoom'
+    local MODEL = 'divoom'
+    local ID = 'divoom' .. '_' .. socket.gettime()
+    local PROFILE = 'LAN-Divoom'
 
-    -- Create master device
     local create_device_msg = {
       type = "LAN",
       device_network_id = ID,
@@ -239,36 +202,170 @@ local function discovery_handler(driver, _, should_continue)
       model = MODEL,
       vendor_provided_label = VEND_LABEL,
     }
-    assert(driver:try_create_device(create_device_msg), "failed to create divoom64 device")
+    assert(driver:try_create_device(create_device_msg), "failed to create divoom device")
     log.debug("Exiting device creation")
   else
-    log.info('Weather device already created')
+    log.info('divoom device already created')
   end
 end
 
------------------------------------------------------------------------
---        DRIVER MAINLINE: Build driver context table
------------------------------------------------------------------------
-thisDriver = Driver("thisDriver", {
+local switch_handler = function(driver, device, command)
+  log.info("<<---- Divoom ---->> on_off_handler - command.component : ", command.component)
+  log.info("<<---- Divoom ---->> on_off_handler - command.command : ", command.command)
+  local on_off = (command.command == "off") and 0 or 1
+  local payload = string.format('{"Command": "Channel/OnOffScreen", "OnOff": %d}', on_off)
+  local status, response = request(payload);
+
+  refresh_handler(driver, device, command)
+end
+
+local bright_handler = function(driver, device, command)
+  log.info("<<---- Divoom ---->> bright_handler - command.component : ", command.component)
+  log.info("<<---- Divoom ---->> bright_handler - command.args.level : ", command.args.level)
+  local payload = string.format('{"Command": "Channel/SetBrightness", "Brightness": %s}', command.args.level)
+  local status, response = request(payload);
+
+  refresh_handler(driver, device, command)
+end
+
+local channel_handler = function(driver, device, command)
+  log.info("<<---- Divoom ---->> channel_handler - command.component : ", command.component)
+  log.info("<<---- Divoom ---->> channel_handler - command.args.value : ", command.args.value)
+  local payload = string.format('{"Command": "Channel/SetIndex", "SelectIndex": %d}', command.args.value)
+  local status, response = request(payload);
+
+  refresh_handler(driver, device, command)
+end
+
+local cloud_channel_handler = function(driver, device, command)
+  log.info("<<---- Divoom ---->> cloud_channel_handler - command.component : ", command.component)
+  log.info("<<---- Divoom ---->> cloud_channel_handler - command.args.value : ", command.args.value)
+  local payload = string.format('{"Command": "Channel/CloudIndex", "Index": %d}', command.args.value)
+  local status, response = request(payload);
+
+  if status then
+    if command.args.value == "0" then
+      cloudChannelValue = "Recommend Gallery"
+    elseif command.args.value == "1" then
+      cloudChannelValue = "Favourite"
+    elseif command.args.value == "2" then
+      cloudChannelValue = "Subscribe Artist"
+    elseif command.args.value == "3" then
+      cloudChannelValue = "Album"
+    end
+
+    device.profile.components['main']:emit_event(capability_cloud_channel.cloudChannel({ value = cloudChannelValue }))
+    refresh_handler(driver, device, command)
+  end
+end
+
+local visualizer_channel_handler = function(driver, device, command)
+  log.info("<<---- Divoom ---->> visualizer_channel_handler - command.component : ", command.component)
+  log.info("<<---- Divoom ---->> visualizer_channel_handler - command.args.value : ", command.args.value)
+  local payload = string.format('{"Command": "Channel/SetEqPosition", "EqPosition": %d}', command.args.value)
+  local status, response = request(payload);
+
+  if status then
+    device.profile.components['main']:emit_event(capability_visualizer_channel.visualizerChannel({ value = command.args.value }))
+    refresh_handler(driver, device, command)
+  end
+end
+
+local custom_channel_handler = function(driver, device, command)
+  log.info("<<---- Divoom ---->> custom_channel_handler - command.component : ", command.component)
+  log.info("<<---- Divoom ---->> custom_channel_handler - command.args.value : ", command.args.value)
+  local payload = string.format('{"Command": "Channel/SetCustomPageIndex", "CustomPageIndex": %d}', command.args.value)
+  local status, response = request(payload);
+
+  if status then
+    if status then
+      if command.args.value == "0" then
+        customChannelValue = "First"
+      elseif command.args.value == "1" then
+        customChannelValue = "Second"
+      elseif command.args.value == "2" then
+        customChannelValue = "Third"
+      end
+    end
+
+    device.profile.components['main']:emit_event(capability_custom_channel.customChannel({ value = customChannelValue }))
+    refresh_handler(driver, device, command)
+  end
+end
+
+local message_handler = function(driver, device, command)
+  log.info("<<---- Divoom ---->> message_handler - command.component : ", command.component)
+  log.info("<<---- Divoom ---->> message_handler - command.args.value : ", command.args.value)
+
+  local payload1 = string.format('{"Command":"Draw/ResetHttpGifId"}')
+  local status1, response1 = request(payload1)
+
+  local payload2 = string.format('{"Command":"Draw/SendHttpGif","PicNum":1,"PicWidth":64,"PicOffset":0,"PicID":1,"PicSpeed":10,"PicData":""}')
+  local status2, response2 = request(payload2)
+
+  local item1 = string.format(
+          '{"TextId":1, "type":22,"x":0, "y":0, "dir":0, "font":112, "TextWidth":64, "Textheight":16, "speed":100, "TextString": "Sending Time: %s", "color":"#FF00000", "align":2}', os.date())
+  local item2 = string.format(
+          '{"TextId":2, "type":22,"x":0, "y":7, "dir":0, "font":2, "TextWidth":64, "Textheight":16, "speed":100, "TextString": "%s", "color":"#FFFFFF", "align":2}', command.args.value)
+  local payload3 = string.format('{"Command":"Draw/SendHttpItemList", "ItemList":[%s,%s]}', item1, item2)
+
+  local status3, response3 = request(payload3)
+  -- Note: Draw/CommandList로 같이 보내면 작동이 잘 안됨
+
+  log.info("<<---- Divoom ---->> message_handler - status : ", status3)
+  if status1 and status2 and status3 then
+    device.profile.components['system']:emit_event(capability_message.message({ value = "Sending Success" }))
+  else
+    device.profile.components['system']:emit_event(capability_message.message({ value = "Sending Fail" }))
+  end
+
+  refresh_handler(driver, device, command)
+end
+
+local lanDriver = Driver("lanDriver", {
   discovery = discovery_handler,
   lifecycle_handlers = {
-    init = device_init,
     added = device_added,
-    driverSwitched = handler_driverchanged,
-    infoChanged = handler_infochanged,
+    init = device_init,
+    driverSwitched = device_driver_switched,
+    infoChanged = device_info_changed,
     doConfigure = device_doconfigure,
     removed = device_removed
   },
   driver_lifecycle = shutdown_handler,
   supported_capabilities = {
-    capabilities.refresh
+    capabilities.refresh,
+    capabilities.switch,
+    capabilities.temperatureMeasurement
   },
   capability_handlers = {
     [capabilities.refresh.ID] = {
       [capabilities.refresh.commands.refresh.NAME] = refresh_handler,
     },
+    [capabilities.switch.ID] = {
+      [capabilities.switch.commands.on.NAME] = switch_handler,
+      [capabilities.switch.commands.off.NAME] = switch_handler,
+    },
+    [capability_channel.ID] = {
+      [capability_channel.commands.setChannel.NAME] = channel_handler,
+    },
+    [capability_cloud_channel.ID] = {
+      [capability_cloud_channel.commands.setCloudChannel.NAME] = cloud_channel_handler,
+    },
+    [capability_visualizer_channel.ID] = {
+      [capability_visualizer_channel.commands.setVisualizerChannel.NAME] = visualizer_channel_handler,
+    },
+    [capability_custom_channel.ID] = {
+      [capability_custom_channel.commands.setCustomChannel.NAME] = custom_channel_handler,
+    },
+    [capability_message.ID] = {
+      [capability_message.commands.setMessage.NAME] = message_handler,
+    },
+    [capabilities.switchLevel.ID] = {
+      [capabilities.switchLevel.commands.setLevel.NAME] = bright_handler,
+    },
   }
 })
 
-log.info('LAN-Samsung-af-ha153 Started')
-thisDriver:run()
+log.info('LAN-Divoom Started')
+lanDriver:run()

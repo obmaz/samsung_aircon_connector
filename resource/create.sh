@@ -46,18 +46,18 @@
 # Go to Groovy IDE and use custom capability
 ######################################################################################
 # Generate / Post Device Configuration
-# It makes the device-config.yaml based on dth. The dth uid can be found on groovy ide url
-#  $smartthings presentation:device-config:generate f1f4018d-696d-451d-b84f-1cee0cc267b5 --dth --output=device-config.yaml --yaml
+# It makes the lan-af-ha153-device-config.yaml based on dth. The dth uid can be found on groovy ide url
+#  $smartthings presentation:device-config:generate f1f4018d-696d-451d-b84f-1cee0cc267b5 --dth --output=lan-af-ha153-device-config.yaml --yaml
 ######################################################################################
 # Create VID
-# It makes the vid based on device-config.yaml
-#  $smartthings presentation:device-config:create --yaml --input device-config.yaml
+# It makes the vid based on lan-af-ha153-device-config.yaml
+#  $smartthings presentation:device-config:create --yaml --input lan-af-ha153-device-config.yaml
 #
 # It will show vid and mnmn. Please keeps vid and mnmn
 #    "vid": "1508c046-1429-3642-b115-a805a64ec459",
 #    "mnmn": "SmartThingsCommunity",
 #
-# If vid is the same as previous (it happens when the capa list is not changed), it can be changed by adding below to device-config.yaml
+# If vid is the same as previous (it happens when the capa list is not changed), it can be changed by adding below to lan-af-ha153-device-config.yaml
 #  type: dth
 #  presentationId: {previous vid}
 #  manufacturerName: SmartThingsCommunity
