@@ -6,26 +6,36 @@ components:
         version: 1
       - id: refresh
         version: 1
-  - id: switch1
-    capabilities:
-      - id: switch
+      - id: imageafter45121.acAutoClean
         version: 1
-  - id: switch2
+      - id: imageafter45121.acCoMode
+        version: 1
+      - id: imageafter45121.acDirection
+        version: 1
+      - id: imageafter45121.acOperation
+        version: 1
+      - id: imageafter45121.acOpMode
+        version: 1
+  - id: system
     capabilities:
-      - id: switch
+      - id: imageafter45121.acTempSet
+        version: 1
+      - id: imageafter45121.acVolume
+        version: 1
+      - id: imageafter45121.acWindLevel
         version: 1
 metadata:
   mnmn: SmartThingsCommunity
   ocfDeviceType: oic.d.switch
-  vid: 11a4fcd3-27e3-3059-a96e-f79c7a6316eb
+  vid: 7f3f7cfa-4e63-3210-a9fd-535c4213d46b
 preferences:
   - title: "Server Address"
-    name: relay_server_addr
+    name: relayServerIp
     description: "IP:port"
     required: true
     preferenceType: string
     definition:
-    stringType: text
-    minLength: 17
-    default: "http://192.168.0.71:20080"
+      stringType: text
+      minLength: 17
+      default: "http://192.168.0.71:20080"
 

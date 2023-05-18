@@ -148,7 +148,7 @@ end
 local function device_init(driver, device)
   log.info("<<---- Divoom ---->> device_init")
   initialized = true
-  base_url = device.preferences.divoomIP
+  base_url = device.preferences.relayServerIp
 
   device.profile.components['main']:emit_event(capability_cloud_channel.cloudChannel({ value = "Recommend Gallery" }))
   device.profile.components['main']:emit_event(capability_visualizer_channel.visualizerChannel({ value = 0 }))
@@ -179,8 +179,8 @@ end
 
 local function device_info_changed (driver, device, event, args)
   log.info("<<---- Divoom ---->> device_info_changed")
-  if args.old_st_store.preferences.divoomIP ~= device.preferences.divoomIP then
-    base_url = device.preferences.divoomIP;
+  if args.old_st_store.preferences.relayServerIp ~= device.preferences.relayServerIp then
+    base_url = device.preferences.relayServerIp;
   end
 end
 
@@ -367,5 +367,5 @@ local lanDriver = Driver("lanDriver", {
   }
 })
 
-log.info('LAN-Divoom Started')
+log.info('LAN af-ha153 Started')
 lanDriver:run()

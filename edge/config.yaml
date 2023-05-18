@@ -1,5 +1,5 @@
-name: 'LAN Samsung af-ha153'
-packageKey: 'LAN-Samsung-af-ha153'
+name: 'LAN af-ha153'
+packageKey: 'LAN-af-ha153'
 permissions:
   lan: {}
   discovery: {}

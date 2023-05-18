@@ -1,3 +1,7 @@
+mnmn: SmartThingsCommunity
+version: 0.0.1
+#type: dth
+type: profile
 dashboard:
   states:
     - component: main
@@ -200,4 +204,4 @@ automation:
       values: []
       patch: []
       exclusion: []
-type: dth
+manufacturerName: SmartThingsCommunity
