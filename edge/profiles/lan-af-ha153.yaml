@@ -2,9 +2,11 @@ name: LAN-af-ha153
 components:
   - id: main
     capabilities:
+      - id: refresh
+        version: 1
       - id: switch
         version: 1
-      - id: refresh
+      - id: temperatureMeasurement
         version: 1
       - id: imageafter45121.acAutoClean
         version: 1
@@ -16,8 +18,6 @@ components:
         version: 1
       - id: imageafter45121.acOpMode
         version: 1
-  - id: system
-    capabilities:
       - id: imageafter45121.acTempSet
         version: 1
       - id: imageafter45121.acVolume
@@ -29,7 +29,7 @@ metadata:
   ocfDeviceType: oic.d.switch
   vid: 7f3f7cfa-4e63-3210-a9fd-535c4213d46b
 preferences:
-  - title: "Server Address"
+  - title: "Relay Server Address"
     name: relayServerIp
     description: "IP:port"
     required: true
