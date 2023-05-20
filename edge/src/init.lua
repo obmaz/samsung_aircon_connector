@@ -20,10 +20,8 @@ local capability_ac_operation = capabilities['imageafter45121.acOperation']
 local function request(path)
   log.info("<<---- af-ha153 ---->> request : ", path)
   local status, response = comms.request('GET', base_url .. path, nil)
-
-  log.info("<<---- af-ha153 ---->> request, status : ", status)
-  log.info("<<---- af-ha153 ---->> request, response : ", response)
-
+  --log.info("<<---- af-ha153 ---->> request, status : ", status)
+  --log.info("<<---- af-ha153 ---->> request, response : ", response)
   if status then
     responseTable, pos, err = json.decode(response, 1, nil)
     if responseTable.status == 'Success' then
@@ -48,20 +46,21 @@ local function refresh_handler(driver, device, command)
       log.info("<<---- af-ha153 ---->> value.value  : ", state.value)
 
       if state.id == 'AC_FUN_POWER' then
-        local on_off = (attr.value == 'On') and capabilities.switch.switch.on() or capabilities.switch.switch.off()
+        local on_off = (state.value == 'On') and capabilities.switch.switch.on() or capabilities.switch.switch.off()
         device.profile.components['main']:emit_event(on_off)
       end
 
       if state.id == 'AC_FUN_TEMPNOW' then
-        device.profile.components['main']:emit_event(capabilities.temperatureMeasurement.temperature({ value = tonumber(state.value), unit = "C"  }))
+        device.profile.components['main']:emit_event(capabilities.temperatureMeasurement.temperature({ value = tonumber(state.value), unit = "C" }))
       end
 
       if state.id == 'AC_FUN_TEMPSET' then
-        device.profile.components['main']:emit_event(capability_ac_temp_set.acTempSet({ value = tonumber(state.value)}))
+        device.profile.components['main']:emit_event(capability_ac_temp_set.acTempSet({ value = tonumber(state.value) }))
       end
 
       if state.id == 'AC_ADD_AUTOCLEAN' then
-        device.profile.components['main']:emit_event(capability_ac_auto_clean.acAutoClean({ value = state.value }))
+        local on_off = (state.value == 'On') and 'On' or 'Off'
+        device.profile.components['main']:emit_event(capability_ac_auto_clean.acAutoClean({ value = on_off }))
       end
 
       if state.id == 'AC_ADD_VOLUME' then
@@ -156,73 +155,71 @@ local function discovery_handler(driver, _, should_continue)
 end
 
 local switch_handler = function(driver, device, command)
-  log.info("<<---- af-ha153 ---->> switch_handler - command.component : ", command.component)
-  log.info("<<---- af-ha153 ---->> switch_handler - command.command : ", command.command)
+  log.info("<<---- af-ha153 ---->> : ", command.command)
   local path = (command.command == "on") and '/control/AC_FUN_POWER/On' or '/control/AC_FUN_POWER/Off'
   local status, response = request(path);
   refresh_handler(driver, device, command)
 end
 
 local ac_temp_set_handler = function(driver, device, command)
-  log.info("<<---- af-ha153 ---->> ac_temp_set_handler - command.component : ", command.component)
-  log.info("<<---- af-ha153 ---->> ac_temp_set_handler - command.command : ", command.command)
-  local path = '/control/AC_FUN_TEMPSET/' + command.command
+  log.info("<<---- af-ha153 ---->> : ", command.command)
+  log.info("<<---- af-ha153 ---->> : ", command.args.value)
+  local path = '/control/AC_FUN_TEMPSET/' .. command.args.value
   local status, response = request(path);
   refresh_handler(driver, device, command)
 end
 
 local ac_auto_clean_handler = function(driver, device, command)
-  log.info("<<---- af-ha153 ---->> ac_auto_clean_handler - command.component : ", command.component)
-  log.info("<<---- af-ha153 ---->> ac_auto_clean_handler - command.command : ", command.command)
-  local path = '/control/AC_ADD_AUTOCLEAN/' + command.command
+  log.info("<<---- af-ha153 ---->> : ", command.command)
+  local path = (command.command == "on") and '/control/AC_ADD_AUTOCLEAN/On' or '/control/AC_FUN_POWER/Off'
   local status, response = request(path);
   refresh_handler(driver, device, command)
 end
 
 local ac_op_mode_handler = function(driver, device, command)
-  log.info("<<---- af-ha153 ---->> ac_op_mode_handler - command.component : ", command.component)
-  log.info("<<---- af-ha153 ---->> ac_op_mode_handler - command.command : ", command.command)
-  local path = '/control/AC_FUN_OPMODE/' + command.command
+  log.info("<<---- af-ha153 ---->> : ", command.command)
+  log.info("<<---- af-ha153 ---->> : ", command.args.value)
+  local path = '/control/AC_FUN_OPMODE/' .. command.args.value
   local status, response = request(path);
   refresh_handler(driver, device, command)
 end
 
 local ac_wind_level_handler = function(driver, device, command)
-  log.info("<<---- af-ha153 ---->> ac_wind_level_handler - command.component : ", command.component)
-  log.info("<<---- af-ha153 ---->> ac_wind_level_handler - command.command : ", command.command)
-  local path = '/control/AC_FUN_WINDLEVEL/' + command.command
+  log.info("<<---- af-ha153 ---->> : ", command.command)
+  log.info("<<---- af-ha153 ---->> : ", command.args.value)
+  local path = '/control/AC_FUN_WINDLEVEL/' .. command.args.value
   local status, response = request(path);
   refresh_handler(driver, device, command)
 end
 
 local ac_direction_handler = function(driver, device, command)
-  log.info("<<---- af-ha153 ---->> ac_direction_handler - command.component : ", command.component)
-  log.info("<<---- af-ha153 ---->> ac_direction_handler - command.command : ", command.command)
-  local path = '/control/AC_FUN_DIRECTION/' + command.command
+  log.info("<<---- af-ha153 ---->> : ", command.command)
+  log.info("<<---- af-ha153 ---->> : ", command.args.value)
+  local path = '/control/AC_FUN_DIRECTION/' .. command.args.value
   local status, response = request(path);
   refresh_handler(driver, device, command)
 end
 
 local ac_co_mode_handler = function(driver, device, command)
-  log.info("<<---- af-ha153 ---->> ac_co_mode_handler - command.component : ", command.component)
-  log.info("<<---- af-ha153 ---->> ac_co_mode_handler - command.command : ", command.command)
-  local path = '/control/AC_FUN_COMODE/' + command.command
+  log.info("<<---- af-ha153 ---->> : ", command.command)
+  log.info("<<---- af-ha153 ---->> : ", command.args.value)
+  local path = '/control/AC_FUN_COMODE/' .. command.args.value
   local status, response = request(path);
   refresh_handler(driver, device, command)
 end
 
 local ac_volume_handler = function(driver, device, command)
-  log.info("<<---- af-ha153 ---->> ac_volume_handler - command.component : ", command.component)
-  log.info("<<---- af-ha153 ---->> ac_volume_handler - command.command : ", command.command)
-  local path = '/control/AC_ADD_VOLUME/' + command.command
+  log.info("<<---- af-ha153 ---->> : ", command.command)
+  log.info("<<---- af-ha153 ---->> : ", command.args.value)
+  local path = '/control/AC_ADD_VOLUME/' .. command.args.value
   local status, response = request(path);
   refresh_handler(driver, device, command)
 end
 
 local ac_operation_handler = function(driver, device, command)
-  log.info("<<---- af-ha153 ---->> ac_operation_handler - command.component : ", command.component)
-  log.info("<<---- af-ha153 ---->> ac_operation_handler - command.command : ", command.command)
-  local path = '/control/AC_FUN_OPERATION/' + command.command
+  log.info("<<---- af-ha153 ---->> : ", command.command)
+  log.info("<<---- af-ha153 ---->> : ", command.args.value)
+  local path = '/control/AC_FUN_OPERATION/' .. command.args.value
   local status, response = request(path);
   refresh_handler(driver, device, command)
 end

@@ -12,11 +12,13 @@ It needs server side app. See below "Samsung Air conditioner Connector - RESTApi
 
 ## Install
 ### Edge Driver
-**Note:** Current edge driver is in progress.
+You can enroll the channel and install edge drivers by using invitation url   
+https://api.smartthings.com/invitation-web/accept?id=2d6da83b-ae22-4fda-8af5-bbb8890872d4
 
 ### DTH and SmartApp
-**Note:** Smartthings does not support DTH anymore from 2022.09  
+**Update:** Smartthings does not support DTH anymore from 2022.09  
 SmartThings Groovy IDE site https://graph.api.smartthings.com/  
+
 Add github repo to both "My SmartApps" and "My Device Handlers"  
 - add owner : obmaz / name : samsung_airconnector / branch : master  
   
