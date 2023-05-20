@@ -7,6 +7,8 @@ hub_address=192.168.0.119
 vid=$(smartthings presentation:device-config:create --yaml --input ../resource/device-config/lan-af-ha153-device-config.yaml | grep vid)
 sed -e "s/vid.*/$vid/g" ./profiles/lan-af-ha153.yaml | sponge ./profiles/lan-af-ha153.yaml
 
+#smartthings edge:drivers:uninstall $driverId --hub $hub
+
 smartthings edge:drivers:package ./
 smartthings edge:channels:assign $driverId --channel $channel
 smartthings edge:drivers:install $driverId --channel $channel --hub $hub

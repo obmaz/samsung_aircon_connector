@@ -1,5 +1,4 @@
 #!/bin/bash
-#smartthings edge:drivers:uninstall $driverId --hub $hub
 smartthings capabilities:update imageafter45121.acAutoClean --input ../resource/capability/acAutoClean.yaml
 sleep 2
 smartthings capabilities:presentation:update imageafter45121.acAutoClean 1 --yaml --input=../resource/capability/acAutoClean-presentation.yaml
@@ -9,7 +8,6 @@ smartthings capabilities:update imageafter45121.acCoMode --input ../resource/cap
 sleep 2
 smartthings capabilities:presentation:update imageafter45121.acCoMode 1 --yaml --input=../resource/capability/acCoMode-presentation.yaml
 sleep 2
-
 
 smartthings capabilities:update imageafter45121.acDirection --input ../resource/capability/acDirection.yaml
 sleep 2
