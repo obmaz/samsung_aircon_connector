@@ -164,7 +164,7 @@ end
 local ac_temp_set_handler = function(driver, device, command)
   log.info("<<---- af-ha153 ---->> : ", command.command)
   log.info("<<---- af-ha153 ---->> : ", command.args.value)
-  local path = '/control/AC_FUN_TEMPSET/' .. command.args.value
+  local path = '/control/AC_FUN_TEMPSET/' .. math.floor(command.args.value)
   local status, response = request(path);
   refresh_handler(driver, device, command)
 end
