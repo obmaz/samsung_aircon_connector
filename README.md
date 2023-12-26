@@ -565,4 +565,4 @@ It should be called first before call a command.
 ```
 
 ## License
-It is released under the MIT License.  
+It is released under the Apache 2.0 License.
