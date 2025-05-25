@@ -8,4 +8,4 @@ services:
         container_name: samsung_aircon_connector
         volumes:
             - '/volume1/docker/samsung_aircon_connector/config:/config:cached'
-        image: zambobmaz/samsung_aircon_connector
+        image: obmaz99/samsung_aircon_connector
