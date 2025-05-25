@@ -1,11 +1,12 @@
+#smartthings presentation:device-config:create --yaml --input lan-af-ha153-device-config.yaml
 mnmn: SmartThingsCommunity
+vid: b033dc74-7b33-37e4-bc47-5944be583b62
 version: 0.0.1
-#type: dth
 type: profile
 dashboard:
   states:
     - component: main
-      capability: temperatureMeasurement
+      capability: switch
       version: 1
       values: []
   actions:
@@ -204,4 +205,5 @@ automation:
       values: []
       patch: []
       exclusion: []
+presentationId: b033dc74-7b33-37e4-bc47-5944be583b62
 manufacturerName: SmartThingsCommunity

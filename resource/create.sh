@@ -64,7 +64,3 @@
 #  vid: {previous vid}
 #  mnmn: SmartThingsCommunity
 #  version: 0.0.1
-######################################################################################
-# Publish DTH with updated display keys
-# Go to Groovy IDE and update VID in DTH
-######################################################################################

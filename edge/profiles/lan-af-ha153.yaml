@@ -27,7 +27,7 @@ components:
 metadata:
   mnmn: SmartThingsCommunity
   ocfDeviceType: oic.d.airconditioner
-  vid: 7f3f7cfa-4e63-3210-a9fd-535c4213d46b
+  vid: 9dae2a08-7a8c-38b6-a2d4-6c105d23a6d8
 preferences:
   - title: "Relay Server Address"
     name: relayServerIp
@@ -37,5 +37,5 @@ preferences:
     definition:
       stringType: text
       minLength: 17
-      default: "http://192.168.0.71:20080"
+      default: "http://192.168.10.71:20080"
 
