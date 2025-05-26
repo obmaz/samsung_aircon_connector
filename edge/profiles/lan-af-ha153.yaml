@@ -27,7 +27,7 @@ components:
 metadata:
   mnmn: SmartThingsCommunity
   ocfDeviceType: oic.d.airconditioner
-  vid: 9dae2a08-7a8c-38b6-a2d4-6c105d23a6d8
+  vid: 387b4b6c-db8a-3584-86ef-cab3be4f9bdd
 preferences:
   - title: "Relay Server Address"
     name: relayServerIp

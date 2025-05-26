@@ -1,6 +1,6 @@
 #smartthings presentation:device-config:create --yaml --input lan-af-ha153-device-config.yaml
 mnmn: SmartThingsCommunity
-vid: b033dc74-7b33-37e4-bc47-5944be583b62
+vid: 387b4b6c-db8a-3584-86ef-cab3be4f9bdd
 version: 0.0.1
 type: profile
 dashboard:
@@ -205,5 +205,5 @@ automation:
       values: []
       patch: []
       exclusion: []
-presentationId: b033dc74-7b33-37e4-bc47-5944be583b62
+presentationId: 387b4b6c-db8a-3584-86ef-cab3be4f9bdd
 manufacturerName: SmartThingsCommunity
